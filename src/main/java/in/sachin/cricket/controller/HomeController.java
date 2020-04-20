@@ -3,6 +3,8 @@
  */
 package in.sachin.cricket.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import in.sachin.cricket.entity.CFLMessage;
+import in.sachin.cricket.entity.CFLNoticeBoard;
 import in.sachin.cricket.service.MessageService;
+import in.sachin.cricket.service.NoticeBoardService;
 import in.sachin.cricket.service.PlayerService;
 import in.sachin.cricket.service.TeamService;
 
@@ -31,6 +35,9 @@ public class HomeController {
 
 	@Autowired
 	MessageService messageService;
+
+	@Autowired
+	NoticeBoardService noticeBoardService;
 
 	/**
 	 * This method is used to display the WCFL home page.
@@ -59,7 +66,7 @@ public class HomeController {
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String displayHomePageWithHomeUrl(Model model) {
 		try {
-			//TODO - Logic for top teams
+			// TODO - Logic for top teams
 			model.addAttribute("playerLeaderboard", playerService.fetchTopTeams());
 			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
 		} catch (Exception e) {
@@ -69,12 +76,12 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/home/howToPlay", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/howtoplay", method = RequestMethod.GET)
 	public String displayHowToPlay(Model model) {
 		return "howToPlay";
 	}
 
-	@RequestMapping(value = "/home/contactUs", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/contactus", method = RequestMethod.GET)
 	public String displayContactUs(Model model) {
 		return "contactInfo";
 	}
@@ -114,20 +121,20 @@ public class HomeController {
 	public String displayGallary(Model model) {
 		return "testimonial";
 	}
-	
-	@RequestMapping(value = "/home/noticeBoard", method = RequestMethod.GET)
-	public String displayFeeback(Model model) {
-		// try {
-		// List<WCFLFeedback> feedbackList = wcflServices.getFeedback();
-		// if(feedbackList!=null && !feedbackList.isEmpty()){
-		// model.addAttribute("feedbackList", feedbackList);
-		// }else{
-		// model.addAttribute("exp", "exp");
-		// }
-		// } catch (Exception e) {
-		// model.addAttribute("exp", "exp");
-		// }
-		return "feedback";
+
+	@RequestMapping(value = "/home/noticeboard", method = RequestMethod.GET)
+	public String displayNoticeBoard(Model model) {
+		try {
+			List<CFLNoticeBoard> noticeList = noticeBoardService.getAllNotices();
+			if (noticeList != null && !noticeList.isEmpty()) {
+				model.addAttribute("noticeList", noticeList);
+			} else {
+				model.addAttribute("exp", "exp");
+			}
+		} catch (Exception e) {
+			model.addAttribute("exp", "exp");
+		}
+		return "noticeBoard";
 	}
 
 }

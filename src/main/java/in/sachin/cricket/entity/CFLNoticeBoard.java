@@ -19,8 +19,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "cfl_feedback")
-public class CFLFeedback {
+@Table(name = "cfl_noticeboard")
+public class CFLNoticeBoard {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

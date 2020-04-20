@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cricket Fantasy League  - Notice Board</title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+<style>
+ul.pinboards li,ul.tag-list li {
+	list-style: none;
+}
+
+ul.pinboards li h4 {
+	margin-top: 20px;
+	font-size: 18px;
+}
+
+ul.pinboards li div p {
+	font-size: 16px;
+}
+
+ul.pinboards li div {
+	text-decoration: none;
+	color: #000;
+	background: #ffc;
+	display: block;
+	height: 140px;
+	width: 140px;
+	padding: 1em;
+	position: relative;
+}
+
+ul.pinboards li div small {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 10px;
+}
+
+ul.pinboards li div a {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	color: inherit;
+}
+
+ul.pinboards li {
+	margin: 10px 40px 50px 0;
+	float: left;
+}
+
+ul.pinboards li div p {
+	font-size: 12px;
+}
+
+ul.pinboards li div {
+	text-decoration: none;
+	color: #000;
+	background: #ffc;
+	display: block;
+	height: 140px;
+	width: 140px;
+	padding: 1em;
+	/* Firefox */
+	-moz-box-shadow: 5px 5px 2px #212121;
+	/* Safari+Chrome */
+	-webkit-box-shadow: 5px 5px 2px rgba(33, 33, 33, 0.7);
+	/* Opera */
+	box-shadow: 5px 5px 2px rgba(33, 33, 33, 0.7);
+}
+
+ul.pinboards li div {
+	-webkit-transform: rotate(-6deg);
+	-o-transform: rotate(-6deg);
+	-moz-transform: rotate(-6deg);
+	-ms-transform: rotate(-6deg);
+}
+
+ul.pinboards li:nth-child(even) div {
+	-o-transform: rotate(4deg);
+	-webkit-transform: rotate(4deg);
+	-moz-transform: rotate(4deg);
+	-ms-transform: rotate(4deg);
+	position: relative;
+	top: 5px;
+}
+
+ul.pinboards li:nth-child(3n) div {
+	-o-transform: rotate(-3deg);
+	-webkit-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg);
+	position: relative;
+	top: -5px;
+}
+
+ul.pinboards li:nth-child(5n) div {
+	-o-transform: rotate(5deg);
+	-webkit-transform: rotate(5deg);
+	-moz-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	position: relative;
+	top: -10px;
+}
+
+ul.pinboards li div:hover,ul.pinboards li div:focus {
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	position: relative;
+	z-index: 5;
+}
+
+ul.pinboards li div {
+	text-decoration: none;
+	color: #000;
+	background: #ffc;
+	display: block;
+	height: 210px;
+	width: 210px;
+	padding: 1em;
+	-moz-box-shadow: 5px 5px 7px #212121;
+	-webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+	box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+	-moz-transition: -moz-transform 0.15s linear;
+	-o-transition: -o-transform 0.15s linear;
+	-webkit-transition: -webkit-transform 0.15s linear;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/home">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+	<li class="dropdown"><a href="#" class="dropdown-toggle"
+		data-toggle="dropdown">Leader Board<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="/home/leaderboard">Team Leader Board</a></li>
+			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
+			<li><a href="/home/previousleaderboard">Previous Year Board</a></li>
+
+		</ul></li>
+
+	<li><a href="/home/howtoplay">How to Play</a></li>
+	<li><a href="/home/contactUs">Contact Us</a></li>
+	<li><a href="/home/prizes">Prizes</a></li>
+	<li><a href="/home/testimonial">Testimonials</a></li>
+	<li><a href="/home/timeline">Timeline</a></li>
+	<li><a href="/home/noticeboard">Notice Board</a></li>
+	
+	
+</ul>
+
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">CFL Notice Board</h1>
+				<ol class="breadcrumb">
+					<li><a href="/home">Home</a></li>
+					<li class="active">CFL Notice Board</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+		<div class="row">
+		
+				<div th:if= "${exp != null}" class="col-md-12">
+					<div class="jumbotron">
+						<p>Keep watching this space for update related to CFL <script>document.write(new Date().getFullYear())</script> .</p>
+					</div>
+				</div>
+
+			<ul th:if= "${exp == null}" class="pinboards">
+					<li>
+						<div th:each="searchResult : ${noticeList}">
+							<small>[[${searchResult.date}]]</small>
+							<h4>[[${searchResult.name}]]</h4>
+							[[${searchResult.message} ]]
+						</div>
+					</li>
+
+
+			</ul>
+
+
+		</div>
+
+
+
+		<!-- /.row -->
+
+		<hr>
+
+
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>
