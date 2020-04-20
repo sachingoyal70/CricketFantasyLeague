@@ -1,0 +1,308 @@
+
+.website-logo {
+    display: inline-block;
+    top: 140px;
+    left: 80px;
+    right: initial;
+    bottom: initial;
+}
+
+.website-logo img {
+    width: 100px;
+}
+
+.website-logo .logo {
+    background-image: url("../images/logo-light.png");
+}
+
+.website-logo .logo img {
+    width: 100px;
+}
+
+.website-logo-inside img {
+    width: 100px;
+}
+
+.website-logo-inside .logo {
+    background-image: url("../images/logo-light.png");
+}
+
+.website-logo-inside .logo img {
+    width: 100px;
+}
+
+.img-holder {
+    width: 30%;
+    background-color: #27c8a9;
+}
+
+.img-holder .info-holder h3 {
+    color: #fff;
+}
+
+.img-holder .info-holder p {
+    color: #fff;
+}
+
+.img-holder .bg {
+    opacity: 1;
+    background-image: none;
+}
+
+.form-holder {
+    margin-left: 35%;
+    margin-top: 2%;
+}
+
+.form-holder .form-content ::-webkit-input-placeholder {
+    color: #000000;
+}
+
+.form-holder .form-content :-moz-placeholder {
+    color: #000000;
+}
+
+.form-holder .form-content ::-moz-placeholder {
+    color: #000000;
+}
+
+.form-holder .form-content :-ms-input-placeholder {
+    color: #000000;
+}
+
+.form-control ::-webkit-input-placeholder {
+    color: #000000;
+}
+
+.form-control :-moz-placeholder {
+    color: #000000;
+}
+
+.form-control ::-moz-placeholder {
+    color: #000000;
+}
+
+.form-control :-ms-input-placeholder {
+    color: #000000;
+}
+
+.form-content {
+    background-color: #fff;
+}
+
+.form-content .form-group {
+    color: #000;
+}
+
+.form-content .form-items {
+    max-width: 80%;
+    text-align: left;
+}
+
+.form-content h3 {
+    color: #000;
+    text-align: left;
+}
+
+.doubleunderlinetext{
+	text-decoration-line: underline;
+  	text-decoration-style: double;
+}
+
+.singleunderlinetext{
+	text-decoration-line: underline;
+  	text-decoration-style: solid;
+}
+
+.form-content p {
+    color: #000;
+    text-align: left;
+}
+
+.form-content label {
+    color: #000;
+    text-align: left;
+}
+
+.form-content .page-links a {
+    color: #000;
+}
+
+.form-content .page-links a:after {
+    background-color: rgba(222, 222, 222, 0.7);
+}
+
+.form-content .page-links a.active:after {
+    background-color: #0092FE;
+}
+
+.form-content .page-links a:hover:after, .form-content .page-links a:focus:after {
+    background-color: #0092FE;
+}
+
+.form-content input, .form-content .dropdown-toggle.btn-default {
+    border: 1px solid rgb(39, 200, 169);
+    background-color: #F7F7F7;
+    color: #000000;
+}
+
+.form-content input:hover, .form-content input:focus, .form-content .dropdown-toggle.btn-default:hover, .form-content .dropdown-toggle.btn-default:focus {
+    border: 1px solid #0093FF;
+    background-color: #fff;
+    color: #000000;
+}
+
+.form-content select, .form-content .dropdown-toggle.btn-default {
+    border: 1px solid rgb(39, 200, 169);
+    background-color: #F7F7F7;
+    color: #000000;
+}
+
+.form-content select:hover, .form-content input:focus, .form-content .dropdown-toggle.btn-default {
+    border: 1px solid #0093FF;
+    background-color: #fff;
+    color: #000000;
+}
+
+.form-content textarea {
+    background-color: #F7F7F7;
+    border: 1px solid rgb(39, 200, 169);
+    color: #000000;
+}
+
+.form-content textarea:hover, .form-content textarea:focus {
+    border: 1px solid #0093FF;
+    background-color: #fff;
+    color: #000000;
+}
+
+.form-content input[type="checkbox"]:not(:checked) + label, .form-content input[type="checkbox"]:checked + label, .form-content input[type="radio"]:not(:checked) + label, .form-content input[type="radio"]:checked + label {
+    color: #000;
+}
+
+.form-content input[type="checkbox"]:checked + label, .form-content input[type="radio"]:checked + label {
+    color: #000;
+}
+
+.form-content input[type="checkbox"]:checked + label:before, .form-content input[type="radio"]:checked + label:before {
+    background: #000;
+    border: 0px solid #000;
+}
+
+.form-content input[type="checkbox"]:not(:checked) + label:before, .form-content input[type="radio"]:not(:checked) + label:before {
+    background: transparent;
+    border: 2px solid #000;
+}
+
+.form-content input[type="checkbox"]:checked + label:after, .form-content input[type="checkbox"]:not(:checked) + label:after {
+    color: #fff;
+}
+
+.form-content input[type="radio"]:checked + label:after, .form-content input[type="radio"]:not(:checked) + label:after {
+    background-color: #fff;
+}
+
+.form-content .custom-options input[type="checkbox"]:not(:checked) + label, .form-content .custom-options input[type="checkbox"]:checked + label, .form-content .custom-options input[type="radio"]:not(:checked) + label, .form-content .custom-options input[type="radio"]:checked + label {
+    color: #606060;
+    background-color: #F7F7F7;
+}
+
+.form-content .custom-options input[type="checkbox"]:checked + label, .form-content .custom-options input[type="radio"]:checked + label {
+    color: #fff;
+    background-color: #57D38C;
+    -webkit-box-shadow: 0 3px 8px rgba(74, 230, 142, 0.35);
+    box-shadow: 0 3px 8px rgba(74, 230, 142, 0.35);
+}
+
+.form-content .form-button .ibtn {
+    background-color: #27c8a9;
+    color: #fff;
+    -webkit-box-shadow: 0 0 0 rgba(80, 182, 255, 0.31);
+    box-shadow: 0 0 0 rgba(80, 182, 255, 0.31);
+}
+
+.form-content .form-button .ibtn:hover, .form-content .form-button .ibtn:focus {
+    -webkit-box-shadow: 0 5px 6px rgba(80, 182, 255, 0.31);
+    box-shadow: 0 5px 6px rgba(80, 182, 255, 0.31);
+}
+
+.form-content .other-links span {
+    color: #000;
+}
+
+.form-content .other-links a {
+    color: #000;
+}
+
+/* -----------------------------------
+    2 - Responsive Styles
+------------------------------------*/
+@media (max-width: 992px) {
+    .form-holder {
+        margin-left: 0;
+    }
+
+    .website-logo {
+        top: 50px;
+        left: 50px;
+        right: initial;
+        bottom: initial;
+    }
+
+    .website-logo .logo {
+        background-image: url("../images/logo-light.png");
+    }
+}
+
+.img-border{
+	border: 2px solid;
+  	padding: 5px;
+  	width:200px;
+  	height:150px;
+}
+
+#overlay {
+  background: #ffffff;
+  color: #18bc9c;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+  padding-top: 25%;
+  opacity: .80;
+}
+button {
+  margin: 40px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+.spinner {
+    margin: 0 auto;
+    height: 64px;
+    width: 64px;
+    animation: rotate 0.8s infinite linear;
+    border: 5px solid firebrick;
+    border-right-color: transparent;
+    border-radius: 50%;
+    color: #18bc9c;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hide input{
+  text-indent: -99em;
+}
+
+.empty-space{
+	height:10px;
+}
