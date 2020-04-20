@@ -1,7 +1,7 @@
 /**
  * 
  */
-package in.sachin.cricket.model;
+package in.sachin.cricket.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

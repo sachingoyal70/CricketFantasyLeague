@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import in.sachin.cricket.model.Role;
-import in.sachin.cricket.model.User;
+import in.sachin.cricket.entity.Role;
+import in.sachin.cricket.entity.User;
 import in.sachin.cricket.repository.RoleRepository;
 import in.sachin.cricket.repository.UserRepository;
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import in.sachin.cricket.model.User;
+import in.sachin.cricket.entity.User;
 import in.sachin.cricket.model.UserDetails;
 import in.sachin.cricket.service.UserService;
 import in.sachin.cricket.util.CommonUtils;

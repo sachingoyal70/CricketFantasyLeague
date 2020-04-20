@@ -1,4 +1,7 @@
-package in.sachin.cricket.model;
+/**
+ * 
+ */
+package in.sachin.cricket.entity;
 
 import java.util.Set;
 
@@ -18,6 +21,11 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
+
+/**
+ * @author sachingoyal
+ *
+ */
 
 @Data
 @Entity
@@ -46,10 +54,22 @@ public class User {
 	@Column(name = "last_name")
 	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
-	
+
 	@Column(name = "phone_number")
 	@NotEmpty(message = "*Please provide your phone number")
 	private String phoneNumber;
+
+	@Column(name = "user_location")
+	@NotEmpty(message = "*Please provide your location")
+	private String location;
+
+	@Column(name = "user_ser_question")
+	@NotEmpty(message = "*Please provide your security question")
+	private String serQuestion;
+
+	@Column(name = "user_ser_answer")
+	@NotEmpty(message = "*Please provide your security answer")
+	private String serAnswer;
 
 	@Column(name = "active")
 	private int active;
@@ -168,6 +188,48 @@ public class User {
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	/**
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	/**
+	 * @return the serQuestion
+	 */
+	public String getSerQuestion() {
+		return serQuestion;
+	}
+
+	/**
+	 * @param serQuestion the serQuestion to set
+	 */
+	public void setSerQuestion(String serQuestion) {
+		this.serQuestion = serQuestion;
+	}
+
+	/**
+	 * @return the serAnswer
+	 */
+	public String getSerAnswer() {
+		return serAnswer;
+	}
+
+	/**
+	 * @param serAnswer the serAnswer to set
+	 */
+	public void setSerAnswer(String serAnswer) {
+		this.serAnswer = serAnswer;
 	}
 
 }

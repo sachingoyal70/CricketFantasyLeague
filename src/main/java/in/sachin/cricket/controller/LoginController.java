@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import in.sachin.cricket.model.User;
+import in.sachin.cricket.entity.User;
 import in.sachin.cricket.service.CompanyDetailsService;
 import in.sachin.cricket.service.UserService;
 
@@ -31,7 +31,7 @@ public class LoginController {
 	@Autowired
 	CompanyDetailsService companyDetailsService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String setup(ModelMap model) {
 		return "login";
 	}
