@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cricket Fantasy League </title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+	
+	
+
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/css/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/home">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+	<li class="dropdown"><a href="#" class="dropdown-toggle"
+		data-toggle="dropdown">Leader Board<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="/home/leaderboard">Team Leader Board</a></li>
+			<li><a href="/home/Playerleaderboard">Player Leader Board</a></li>
+			<li><a href="/home/Previousleaderboard">Previous Year Board</a></li>
+
+		</ul></li>
+
+	<li><a href="/home/howToPlay">How to Play</a></li>
+	<li><a href="/home/contactUs">Contact Us</a></li>
+	<li><a href="/home/prizes">Prizes</a></li>
+	<li><a href="/home/testimonial">Testimonials</a></li>
+	<li><a href="/home/timeline">Timeline</a></li>
+	<li><a href="/home/winners">Winners</a></li>	
+	<li><a href="/home/noticeBoard">Notice Board</a></li>
+	
+	
+</ul>
+
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">How to Play</h1>
+				<ol class="breadcrumb">
+					<li><a href="/home">Home</a></li>
+					<li class="active">How To Play</li>
+				</ol>
+			</div>
+		</div>
+
+
+		<!-- Service Tabs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<ul id="myTab" class="nav nav-tabs nav-justified">
+					<li class="active"><a href="#service-one" data-toggle="tab"><i
+							class="fa fa-tree"></i> Rules</a></li>
+					<li class=""><a href="#service-two" data-toggle="tab"><i
+							class="fa fa-database"></i> Points calculation</a></li>
+
+				</ul>
+
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade active in" id="service-one">
+						<h3>Rules</h3>
+						<ul>
+							<li>This contest is open for Walgreens employee and
+								consultant only.
+							<li>User should register to the site with their Walgreens
+								email ID only.
+							<li>Each player has to create the team of 11 players.
+							<li>Each team should have a name given by team owner.
+							<li>Participation fee for this game is $5.00 (Onshore) and
+								Rs 200 (Offshore). We are collecting fee to ensure serious
+								participation and end of the game total money will be
+								distributed amongst top 3 players.
+							<li>Each player has assigned a $ value based individual
+								skill & their ICC ranking.
+							<li>Each team owner can use max $21 (virtual money) to
+								create the team of 11 players.
+							<li>While creating the team each team owner should follow
+								either one of the below skill set. Set #1 : 5Bat+5Bwl+1wk , Set
+								#2 : 4Bat+4Bwl+2All+1wk
+							<li><b>Each team owner can substitute a maximum 2 of
+									their incumbent players with new players each time however
+									substitution should be done with same skill & $ value players.</b>
+							<li><b>Unlimited substitution will be allowed till 29th
+									May 11.59 P.M. IST.</b>
+							<li><b>Players substitution (After 29th May 11.59 P.M)
+									will be allowed twice during entire tournament schedule and
+									substitution window time will be communicated by system
+									administrator.</b>
+							<li><b>New player points will not roll over to the team.</b>
+							<li><b>You will not loose any point for the replaced
+									players and new players will start earning from their future
+									matches only.</b> <!-- 		<li>The playing role mentioned on below website is what we
+								considered as skill for each player. No other information or
+								website will be considered to identify the player skills or
+								sqad.<a
+								href="http://www.espncricinfo.com/icc-world-twenty20-2017/content/squad/970611.html"
+								target="_blank">Click Here</a> -->
+							<li>To win the game, individual team must work towards
+								attaining the maximum points.
+							<li>In case if tie amount will be equally distributed among
+								winners.
+							<li>Any rule can be changed by system administrator without
+								prior notice.
+							<li>In case of any dispute system administrator decision
+								will be final and abide.
+						</ul>
+					</div>
+					<div class="tab-pane fade" id="service-two">
+						<h3>Points calculation</h3>
+						<ul>
+							<li>1 point per run scored
+							<li>2 bonus points per boundary hit (i.e.4 runs)
+							<li>4 bonus points per six runs scored
+							<li>20 bonus points on half-century
+							<li>20 bonus point on a century
+							<li>20 points per wicket
+							<li>25 bonus points on 3 wicket haul
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+
+
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>	
+
+</body>
+
+</html>

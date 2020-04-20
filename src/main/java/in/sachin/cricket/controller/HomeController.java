@@ -43,7 +43,7 @@ public class HomeController {
 
 		return "home";
 	}
-	
+
 	/**
 	 * This method is used to display the WCFL home page.
 	 * 
@@ -61,5 +61,11 @@ public class HomeController {
 
 		return "home";
 	}
+	
+	
+	@RequestMapping(value = "/home/howToPlay", method = RequestMethod.GET)
+	  public String displayHowToPlay(Model model) {
+	    return "howToPlay";
+	  }
 
 }
