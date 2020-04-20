@@ -47,9 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
-				.antMatchers("/", "/css/**", "/js/**", "/images/**", "/registration","/forgotPassword", "/webfonts/**", "/home/**").permitAll()
-				.antMatchers("/welcome/**").hasAuthority("USER").anyRequest().authenticated().and().formLogin()
-				.loginPage("/login").defaultSuccessUrl("/home").permitAll().and().logout().permitAll().and()
+				.antMatchers("/", "/css/**", "/js/**", "/images/**", "/fonts/**", "/font-awesome/**", "/registration",
+						"/forgotPassword", "/webfonts/**", "/home/**")
+				.permitAll().antMatchers("/welcome/**").hasAuthority("USER").anyRequest().authenticated().and()
+				.formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll().and().logout().permitAll().and()
 				.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
 	}
