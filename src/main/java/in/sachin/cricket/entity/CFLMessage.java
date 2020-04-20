@@ -36,7 +36,7 @@ public class CFLMessage {
 	@Column(name = "phone")
 	private String phone;
 
-	@Column(name = "message")
+	@Column(name = "message", length = 999)
 	private String message;
 
 	/**
@@ -108,7 +108,5 @@ public class CFLMessage {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
 
 }
