@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cricket Fantasy League  - Prizes </title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+<style>
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/home">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+	<li class="dropdown"><a href="#" class="dropdown-toggle"
+		data-toggle="dropdown">Leader Board<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="/home/leaderboard">Team Leader Board</a></li>
+			<li><a href="/home/Playerleaderboard">Player Leader Board</a></li>
+			<li><a href="/home/Previousleaderboard">Previous Year Board</a></li>
+
+		</ul></li>
+
+	<li><a href="/home/howToPlay">How to Play</a></li>
+	<li><a href="/home/contactUs">Contact Us</a></li>
+	<li><a href="/home/prizes">Prizes</a></li>
+	<li><a href="/home/testimonial">Testimonials</a></li>
+	<li><a href="/home/timeline">Timeline</a></li>
+	<li><a href="/home/winners">Winners</a></li>	
+	<li><a href="/home/noticeBoard">Notice Board</a></li>
+	
+	
+</ul>
+
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">CFL Prizes</h1>
+				<ol class="breadcrumb">
+					<li><a href="/home">Home</a></li>
+					<li class="active">Prizes</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Prizes</h3>
+				<p>The team with the most points at the end of the tournament
+					wins. There will be separate winners per location
+					(Onshore/Offshore).</p>
+				<ul>
+					<li>1st Prize : 50% of total amount collected at each location.
+					
+					<li>2nd Prize : 20% of total amount collected at each location.
+
+					<li>3rd Prize : 10% of total amount collected at each location.
+					
+					<li>Surprise Gifts : 20% of total money will be used to award few surprise prizes.
+						
+					<br> <br> Note: % calculation will be round down to
+						nearest even number.
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<img class="img-responsive"
+					th:src="@{/images/prizes.jpg}" alt=" "
+					width="100%" align="middle">
+			</div>
+		</div>
+
+
+
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

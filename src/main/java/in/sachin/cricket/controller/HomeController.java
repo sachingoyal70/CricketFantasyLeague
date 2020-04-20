@@ -59,6 +59,7 @@ public class HomeController {
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String displayHomePageWithHomeUrl(Model model) {
 		try {
+			//TODO - Logic for top teams
 			model.addAttribute("playerLeaderboard", playerService.fetchTopTeams());
 			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
 		} catch (Exception e) {
@@ -99,21 +100,6 @@ public class HomeController {
 		return "timeline";
 	}
 
-	@RequestMapping(value = "/home/noticeBoard", method = RequestMethod.GET)
-	public String displayFeeback(Model model) {
-		// try {
-		// List<WCFLFeedback> feedbackList = wcflServices.getFeedback();
-		// if(feedbackList!=null && !feedbackList.isEmpty()){
-		// model.addAttribute("feedbackList", feedbackList);
-		// }else{
-		// model.addAttribute("exp", "exp");
-		// }
-		// } catch (Exception e) {
-		// model.addAttribute("exp", "exp");
-		// }
-		return "feedback";
-	}
-
 	@RequestMapping(value = "/home/prizes", method = RequestMethod.GET)
 	public String displayPrizes(Model model) {
 		return "prizes";
@@ -132,6 +118,21 @@ public class HomeController {
 	@RequestMapping(value = "/home/testimonial", method = RequestMethod.GET)
 	public String displayGallary(Model model) {
 		return "testimonial";
+	}
+	
+	@RequestMapping(value = "/home/noticeBoard", method = RequestMethod.GET)
+	public String displayFeeback(Model model) {
+		// try {
+		// List<WCFLFeedback> feedbackList = wcflServices.getFeedback();
+		// if(feedbackList!=null && !feedbackList.isEmpty()){
+		// model.addAttribute("feedbackList", feedbackList);
+		// }else{
+		// model.addAttribute("exp", "exp");
+		// }
+		// } catch (Exception e) {
+		// model.addAttribute("exp", "exp");
+		// }
+		return "feedback";
 	}
 
 }
