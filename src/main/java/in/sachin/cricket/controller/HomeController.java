@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-
 	
 	/**
 	   * This method is used to display the WCFL home page.
@@ -28,8 +27,8 @@ public class HomeController {
 	  @RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	  public String displayHomePage(Model model) {
 	    try {
-	      model.addAttribute("playerLeaderboard", new ArrayList<String>());
-	      model.addAttribute("teamLeaderboard",  new ArrayList<String>());
+	      model.addAttribute("playerLeaderboard", new ArrayList<String>()); //TODO 
+	      model.addAttribute("teamLeaderboard",  new ArrayList<String>()); //TODO
 	    } catch (Exception e) {
 	      model.addAttribute("exp", "exp");
 	    }
