@@ -110,11 +110,6 @@ public class HomeController {
 		return "announcement";
 	}
 
-	@RequestMapping(value = "/home/winners", method = RequestMethod.GET)
-	public String displayWinners(Model model) {
-		return "winners";
-	}
-
 	@RequestMapping(value = "/home/testimonial", method = RequestMethod.GET)
 	public String displayGallary(Model model) {
 		return "testimonial";

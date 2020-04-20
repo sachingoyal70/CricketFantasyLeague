@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cricket Fantasy League  - Testimonials </title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+<style type="text/css">
+	*{
+   font-family: 'Poppins', sans-serif;
+}
+.testimonial_subtitle{
+    color: #0aaa7a;
+    font-size: 12px;
+}
+  .testimonial_btn{
+    background-color: #373d4b !important;
+    color: #fff !important;
+ }
+ .seprator {
+    height: 2px;
+    width: 56px;
+    background-color: #0aaa7a;
+    margin: 7px 0 10px 0;
+}
+
+#testimonials {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px #888888;
+}
+
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/home">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+	<li class="dropdown"><a href="#" class="dropdown-toggle"
+		data-toggle="dropdown">Leader Board<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="/home/leaderboard">Team Leader Board</a></li>
+			<li><a href="/home/Playerleaderboard">Player Leader Board</a></li>
+			<li><a href="/home/Previousleaderboard">Previous Year Board</a></li>
+
+		</ul></li>
+
+	<li><a href="/home/howToPlay">How to Play</a></li>
+	<li><a href="/home/contactUs">Contact Us</a></li>
+	<li><a href="/home/prizes">Prizes</a></li>
+	<li><a href="/home/testimonial">Testimonials</a></li>
+	<li><a href="/home/timeline">Timeline</a></li>
+	<li><a href="/home/noticeBoard">Notice Board</a></li>
+	
+	
+</ul>
+
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">CFL Testimonials</h1>
+				<ol class="breadcrumb">
+					<li><a href="/home">Home</a></li>
+					<li class="active">CFL Testimonials</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+		
+		<div class="col-sm-8" id="testimonials">
+       <!--  <h3><strong>Testimonial</strong></h3>  -->
+        <div class="seprator"></div>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <div class="row" style="padding: 20px">
+                    <button style="border: none;"><i class="fa fa-quote-left testimonial_fa" aria-hidden="true"></i></button>
+                    <p class="testimonial_para">Completely thrilled by the excitement that the Walgreens Fantasy Cricket league 2016 provided. Very well organized and very well played by all teams.</p><br>
+                    <div class="row">
+                        <div class="col-sm-10">
+                        <h4><strong>Sumit Varshnay</strong></h4>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+               <div class="item">
+                   <div class="row" style="padding: 20px">
+                    <button style="border: none;"><i class="fa fa-quote-left testimonial_fa" aria-hidden="true"></i></button>
+                    <p class="testimonial_para">Another season ended. From 30+ teams last time (Season 1) we were now closer to 130 teams (Season 2). Great job team for creating the Fantasy League app.</p><br>
+                    <div class="row">
+                        <div class="col-sm-10">
+                        <h4><strong>Maiez Syed</strong></h4>
+                        
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                 <div class="item">
+                   <div class="row" style="padding: 20px">
+                    <button style="border: none;"><i class="fa fa-quote-left testimonial_fa" aria-hidden="true"></i></button>
+                    <p class="testimonial_para">It was fun doing this activity and helped us ease some of the stress of the work. The perspective watch the matches was changed after enrolling into WFCL. It was all about points.</p><br>
+                    <div class="row">
+                        <div class="col-sm-10">
+                        <h4><strong>Vivek Panday</strong></h4>
+                        
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                 <div class="item">
+                   <div class="row" style="padding: 20px">
+                    <button style="border: none;"><i class="fa fa-quote-left testimonial_fa" aria-hidden="true"></i></button>
+                    <p class="testimonial_para">First of all thank you very much team for building this awesome application. Last couple of days were spent with full zeal and we should continue these activities in future. See you in CFL 4 !</p><br>
+                    <div class="row">
+                        <div class="col-sm-10">
+                        <h4><strong>Rajat Madaan</strong></h4>
+                        
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                 <div class="item">
+                   <div class="row" style="padding: 20px">
+                    <button style="border: none;"><i class="fa fa-quote-left testimonial_fa" aria-hidden="true"></i></button>
+                    <p class="testimonial_para">Seriously guys it just changed the way we enjoy cricket match. Being proud Indian we support guys in blue but believe me there was a time in CFL 2017 when we started praying that only our selected players should perform rest may get out on golden duck or they should get any wicket. Thanks for providing this fun at workplace. It does not matter if I am on top or lying down at bottom or struggling somewhere in between pages but I enjoyed a lot. Thanks Team.</p><br>
+                    <div class="row">
+                        <div class="col-sm-10">
+                        <h4><strong>Vivek Panday</strong></h4>
+                        
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="item">
+                   <div class="row" style="padding: 20px">
+                    <button style="border: none;"><i class="fa fa-quote-left testimonial_fa" aria-hidden="true"></i></button>
+                    <p class="testimonial_para">Thanks for providing us a chance to "earn n fun".</p><br>
+                    <div class="row">
+                        <div class="col-sm-10">
+                        <h4><strong>Anonymous</strong></h4>
+                        
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+              </div>
+            </div>
+            <div class="controls testimonial_control pull-right">
+                <a class="left fa fa-chevron-left btn btn-default testimonial_btn" href="#carousel-example-generic"
+                  data-slide="prev"></a>
+
+                <a class="right fa fa-chevron-right btn btn-default testimonial_btn" href="#carousel-example-generic"
+                  data-slide="next"></a>
+              </div>
+        </div>
+        		
+        
+        
+        
+	</div>
+
+		<hr>
+
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>
