@@ -189,8 +189,7 @@ a:hover,a:visited,a:link,a:active {
 				<h2 class="page-header">Leader Board</h2>
 			</div>
 
-			<c:if test="${empty exp}">
-				<div class="col-md-6">
+				<div th:if= "${exp == null}" class="col-md-6">
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -214,9 +213,9 @@ a:hover,a:visited,a:link,a:active {
 									<tbody>
 										<c:forEach items="${teamLeaderboard}" var="searchResult">
 											<tr align="center">
-												<td><c:out value="${searchResult.rank}" /></td>
+												<td><c:out value="${searchResult.id}" /></td>
 												<td><c:out value="${searchResult.teamName}" /></td>
-												<td><c:out value="${searchResult.liveScore}" /></td>
+												<td><c:out value="${searchResult.teamCurrentScore}" /></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -231,7 +230,7 @@ a:hover,a:visited,a:link,a:active {
 						<!-- /.panel-body -->
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div th:if= "${exp == null}" class="col-md-6">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>
@@ -255,10 +254,10 @@ a:hover,a:visited,a:link,a:active {
 									<tbody>
 										<c:forEach items="${playerLeaderboard}" var="searchResult">
 											<tr align="center">
-												<td><c:out value="${searchResult.rank}" /></td>
+												<td><c:out value="${searchResult.id}" /></td>
 												<td><c:out value="${searchResult.name}" /></td>
 												<td><c:out value="${searchResult.team}" /></td>
-												<td><c:out value="${searchResult.livePoints}" /></td>
+												<td><c:out value="${searchResult.currentScore}" /></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -275,16 +274,13 @@ a:hover,a:visited,a:link,a:active {
 
 				</div>
 
-			</c:if>
 
-			<c:if test="${not empty exp}">
-				<div class="col-lg-12">
+				<div th:if= "${exp != null}" class="col-lg-12">
 					<div class="jumbotron">
 						<p>Technical Issue : Unable to connect to database.</p>
 
 					</div>
 				</div>
-			</c:if>
 		</div>
 		<!-- /.row -->
 

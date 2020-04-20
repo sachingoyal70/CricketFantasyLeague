@@ -37,7 +37,7 @@ public class User {
 	@Column(name = "user_id")
 	private int id;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
@@ -70,6 +70,10 @@ public class User {
 	@Column(name = "user_ser_answer")
 	@NotEmpty(message = "*Please provide your security answer")
 	private String serAnswer;
+
+	@Column(name = "user_activation_key")
+	@NotEmpty(message = "*Please provide your activation key")
+	private String userActivationKey;
 
 	@Column(name = "active")
 	private int active;
@@ -149,42 +153,14 @@ public class User {
 	}
 
 	/**
-	 * @return the active
-	 */
-	public int getActive() {
-		return active;
-	}
-
-	/**
-	 * @param active the active to set
-	 */
-	public void setActive(int active) {
-		this.active = active;
-	}
-
-	/**
-	 * @return the roles
-	 */
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	/**
-	 * @return the phone_number
+	 * @return the phoneNumber
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
 	/**
-	 * @param phone_number the phone_number to set
+	 * @param phoneNumber the phoneNumber to set
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
@@ -230,6 +206,48 @@ public class User {
 	 */
 	public void setSerAnswer(String serAnswer) {
 		this.serAnswer = serAnswer;
+	}
+
+	/**
+	 * @return the userActivationKey
+	 */
+	public String getUserActivationKey() {
+		return userActivationKey;
+	}
+
+	/**
+	 * @param userActivationKey the userActivationKey to set
+	 */
+	public void setUserActivationKey(String userActivationKey) {
+		this.userActivationKey = userActivationKey;
+	}
+
+	/**
+	 * @return the active
+	 */
+	public int getActive() {
+		return active;
+	}
+
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+	/**
+	 * @return the roles
+	 */
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }
