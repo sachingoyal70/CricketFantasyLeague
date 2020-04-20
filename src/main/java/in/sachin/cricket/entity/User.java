@@ -37,7 +37,7 @@ public class User {
 	@Column(name = "user_id")
 	private int id;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true , length = 100)
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
