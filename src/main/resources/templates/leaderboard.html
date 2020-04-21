@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cricket Fantasy League  - Announcement</title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/home">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+	<li class="dropdown"><a href="#" class="dropdown-toggle"
+		data-toggle="dropdown">Leader Board<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="/home/leaderboard">Team Leader Board</a></li>
+			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
+			<li><a href="/home/previousleaderboard">Previous Year Board</a></li>
+
+		</ul></li>
+
+	<li><a href="/home/howtoplay">How to Play</a></li>
+	<li><a href="/home/contactus">Contact Us</a></li>
+	<li><a href="/home/prizes">Prizes</a></li>
+	<li><a href="/home/testimonial">Testimonials</a></li>
+	<li><a href="/home/timeline">Timeline</a></li>
+	<li><a href="/home/noticeboard">Notice Board</a></li>
+	
+	
+</ul>
+
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Team Leader Board</h1>
+				<ol class="breadcrumb">
+					<li><a href="/home">Home</a></li>
+					<li class="active">Team Leader Board</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+		<div class="row">
+		
+	
+		<!--  		 	<marquee direction="left" onmouseover="this.stop();"
+						onmouseout="this.start();" scrollamount="4">
+						<b style="color: red"><font size="4">Substitution window notification. <a href="/announcement">Click Here for
+								details </a></font>
+						</b>
+					</marquee> --> 
+	
+
+			<div class="col-md-3">
+				<div class="list-group">
+					<h4 align="center">Leader board</h4>
+					<p align="center">
+						<a href="/leaderboard" class="list-group-item">Team
+							Leader board</a>
+					</p>
+					<p align="center">
+						<a href="/Playerleaderboard" class="list-group-item">Player
+							Leader board</a>
+					</p>
+
+					<p align="center">
+
+						<a href="/Previousleaderboard" class="list-group-item">Previous
+							Year Board</a>
+					</p>
+
+				</div>
+			</div>
+				<div th:if= "${exp == null}" class="col-md-9">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 align="center">Team Leaderboard</h4>
+						</div>
+
+						<div class="panel-body">
+
+							<div class="table-responsive">
+								<table id="example" class="display" cellspacing="0" width="100%">
+									<thead>
+										<tr align="center">
+											<th><p align="center">Rank</p></th>
+
+											<th><p align="center">Team Name
+												<p></th>
+											<th><p align="center">Team Owner</p></th>
+											<th><p align="center">Location</p></th>
+											<th><p align="center">Today's Points</p></th>
+											<th><p align="center">Current Points</p></th>
+											<th><p align="center">Team Details</p></th>
+										</tr>
+									</thead>
+									<tbody>
+											<tr data-th-each="searchResult : ${teamLeaderboard}" align="center">
+												<td data-th-text="${searchResult.id}"></td>
+												<td data-th-text="${searchResult.teamName}"></td>
+												<td data-th-text="${searchResult.user.name}"></td>
+												<td data-th-text="${searchResult.user.location}"></td>
+												<td data-th-text="${searchResult.teamScore}"></td>
+												<td data-th-text="${searchResult.teamCurrentScore}"></td>
+												<td><a
+													th:href="@{/teamDetails/__${searchResult.id}__">Click
+														Here</a></td>
+											</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<br>
+				<br>
+				<div th:if= "${exp != null}" class="col-md-9">
+					<div class="jumbotron">
+						<p>Technical Issue : Unable to connect to database.</p>
+
+					</div>
+				</div>
+
+			<!-- <div class="col-md-6">
+				<img class="img-responsive"
+					src="<c:url value="/resources/images/trophy.jpg"/>" alt=" "
+					width="100%" align="middle">
+			</div> -->
+
+
+
+
+		</div>
+
+
+
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+	
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"deferRender" : true,
+				"scrollX" : true			
+			});
+		});
+	</script>
+
+</body>
+
+</html>
