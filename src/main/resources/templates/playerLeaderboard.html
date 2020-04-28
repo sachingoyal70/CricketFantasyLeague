@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Cricket Fantasy League  - Team Leaderboard</title>
+	<title>Cricket Fantasy League  - Player Leaderboard</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
@@ -65,10 +65,10 @@
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Team Leader Board</h1>
+				<h1 class="page-header">Player Leader Board</h1>
 				<ol class="breadcrumb">
 					<li><a href="/home">Home</a></li>
-					<li class="active">Team Leader Board</li>
+					<li class="active">Player Leader Boards</li>
 				</ol>
 			</div>
 		</div>
@@ -107,7 +107,7 @@
 				<div th:if= "${exp == null}" class="col-md-9">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 align="center">Team Leaderboard</h4>
+							<h4 align="center">Player Leaderboard</h4>
 						</div>
 
 						<div class="panel-body">
@@ -118,26 +118,28 @@
 										<tr align="center">
 											<th><p align="center">Rank</p></th>
 
-											<th><p align="center">Team Name
+											<th><p align="center">#
 												<p></th>
-											<th><p align="center">Team Owner</p></th>
-											<th><p align="center">Location</p></th>
+											<th><p align="center">Player Name</p></th>
+											<th><p align="center">Player Team</p></th>
+											<th><p align="center">Player Role</p></th>
+											<th><p align="center">Player Value</p></th>
 											<th><p align="center">Today's Points</p></th>
 											<th><p align="center">Current Points</p></th>
-											<th><p align="center">Team Details</p></th>
+											
 										</tr>
 									</thead>
 									<tbody>
-											<tr data-th-each="searchResult : ${teamLeaderboard}" align="center">
+											<tr data-th-each="searchResult : ${playerLeaderboard}" align="center">
 												<td data-th-text="${searchResult.id}"></td>
-												<td data-th-text="${searchResult.teamName}"></td>
-												<td data-th-text="${searchResult.user.name}"></td>
-												<td data-th-text="${searchResult.user.location}"></td>
-												<td data-th-text="${searchResult.teamScore}"></td>
-												<td data-th-text="${searchResult.teamCurrentScore}"></td>
-												<td><a
-													th:href="@{/home/teamDetails/__${searchResult.id}__}">Click
-														Here</a></td>
+												<td><a th:href="@{https://www.espncricinfo.com/india/content/player/35320.html}" target="_blank"><img class="img-responsive" th:src="@{https://p.imgci.com/db/PICTURES/CMS/128400/128483.1.jpg}" alt=" " align="middle" width="60px" height="60px"></a></td>
+												<td data-th-text="${searchResult.name}"></td>
+												<td data-th-text="${searchResult.team}"></td>
+												<td data-th-text="${searchResult.role}"></td>
+												<td data-th-text="${searchResult.value}"></td>
+												<td data-th-text="${searchResult.score}"></td>
+												<td data-th-text="${searchResult.currentScore}"></td>
+												
 											</tr>
 
 									</tbody>

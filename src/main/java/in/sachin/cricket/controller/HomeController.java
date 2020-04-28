@@ -48,8 +48,8 @@ public class HomeController {
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String displayHomePage(Model model) {
 		try {
-			model.addAttribute("playerLeaderboard", playerService.fetchTopTeams());
-			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
+			model.addAttribute("playerLeaderboard", playerService.fetchAllPlayers());
+			model.addAttribute("teamLeaderboard", teamService.fetchAllTeams());
 		} catch (Exception e) {
 			model.addAttribute("exp", "exp");
 		}
@@ -67,8 +67,8 @@ public class HomeController {
 	public String displayHomePageWithHomeUrl(Model model) {
 		try {
 			// TODO - Logic for top teams
-			model.addAttribute("playerLeaderboard", playerService.fetchTopTeams());
-			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
+			model.addAttribute("playerLeaderboard", playerService.fetchAllPlayers());
+			model.addAttribute("teamLeaderboard", teamService.fetchAllTeams());
 		} catch (Exception e) {
 			model.addAttribute("exp", "exp");
 		}

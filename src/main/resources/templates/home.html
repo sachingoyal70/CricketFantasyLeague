@@ -47,7 +47,7 @@ a:hover,a:visited,a:link,a:active {
 		<ul class="dropdown-menu">
 			<li><a href="/home/leaderboard">Team Leader Board</a></li>
 			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
-			<li><a href="/home/previousleaderboard">Previous Year Board</a></li>
+			<li><a href="/home/previousleaderboard">Previous Year Boards</a></li>
 
 		</ul></li>
 
@@ -202,18 +202,16 @@ a:hover,a:visited,a:link,a:active {
 											<th><p align="center">Rank</p></th>
 											<th><p align="center">Team Name
 												<p></th>
-											<th><p align="center">Live Score</p></th>
+											<th><p align="center">Current Score</p></th>
 
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${teamLeaderboard}" var="searchResult">
-											<tr align="center">
-												<td><c:out value="${searchResult.id}" /></td>
-												<td><c:out value="${searchResult.teamName}" /></td>
-												<td><c:out value="${searchResult.teamCurrentScore}" /></td>
+											<tr data-th-each="searchResult : ${teamLeaderboard}" align="center">
+												<td data-th-text="${searchResult.id}"></td>
+												<td data-th-text="${searchResult.teamName}"></td>
+												<td data-th-text="${searchResult.teamCurrentScore}"></td>
 											</tr>
-										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -243,19 +241,17 @@ a:hover,a:visited,a:link,a:active {
 											<th><p align="center">Player Name
 												<p></th>
 											<th><p align="center">Player Team</p></th>
-											<th><p align="center">Live Points</p></th>
+											<th><p align="center">Current Points</p></th>
 
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${playerLeaderboard}" var="searchResult">
-											<tr align="center">
-												<td><c:out value="${searchResult.id}" /></td>
-												<td><c:out value="${searchResult.name}" /></td>
-												<td><c:out value="${searchResult.team}" /></td>
-												<td><c:out value="${searchResult.currentScore}" /></td>
+											<tr data-th-each="searchResult : ${playerLeaderboard}" align="center">
+												<td data-th-text="${searchResult.id}"></td>
+												<td data-th-text="${searchResult.name}"></td>
+												<td data-th-text="${searchResult.team}"></td>
+												<td data-th-text="${searchResult.currentScore}"></td>
 											</tr>
-										</c:forEach>
 									</tbody>
 								</table>
 							</div>

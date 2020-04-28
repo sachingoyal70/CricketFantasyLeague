@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.service.MessageService;
 import in.sachin.cricket.service.NoticeBoardService;
@@ -48,35 +49,20 @@ public class LearderboardController {
 		return "leaderboard";
 	}
 
-	// @RequestMapping(value = "/Playerleaderboard", method = RequestMethod.GET)
-	// public String displayPlayerLeaderBoard(Model model) {
-	// try {
-	// List<WCFLPlayer> playerScore = wcflServices.getPlayersLeaderBoard();
-	// WCFLPlayerLeadeboard playersDetails =
-	// WCFLUtils.getPlayerLeaderboardDetails(playerScore);
-	// model.addAttribute("playerLeaderboard", playerScore);
-	// model.addAttribute("topBatsmen", playersDetails.getTopBatsmen());
-//	      model.addAttribute("topBowler", playersDetails.getTopBowler());
-//	      model.addAttribute("topAllRounder", playersDetails.getTopAllRounder());
-//	      model.addAttribute("topWicketKeeper", playersDetails.getTopWicketKeeper());
-//	    } catch (Exception e) {
-//	      model.addAttribute("exp", "exp");
-//	    }
-//	    return "playerleaderboard";
-//	  }
-//
-//	  @RequestMapping(value = "/Previousleaderboard", method = RequestMethod.GET)
-//	  public String displayPreviousLeaderBoard(Model model) {
-//	    return "previousleaderboard";
-///	  }
+	@RequestMapping(value = "/home/playerleaderboard", method = RequestMethod.GET)
+	public String displayPlayerLeaderBoard(Model model) {
+		try {
+			List<CFLPlayer> playerLeaderboard = playerService.fetchAllPlayers();
+			model.addAttribute("playerLeaderboard", playerLeaderboard);
+		} catch (Exception e) {
+			model.addAttribute("exp", "exp");
+		}
+		return "playerLeaderboard";
+	}
 
-	// @RequestMapping(value = "/teamDetails", params = { "id", "team" }, method =
-	// RequestMethod.GET)
-	// public String displayTeamDetails(Model model, @RequestParam(value = "id")
-//	  String id, @RequestParam(value = "team")
-///	  String team) {
-	// model.addAttribute("teamDetails", wcflServices.getUserTeamDetails(id));
-	// model.addAttribute("teamName", team);
-	// return "teamDetails";
-	// }
+	@RequestMapping(value = "/home/previousleaderboard", method = RequestMethod.GET)
+	public String displayPreviousLeaderBoard(Model model) {
+		return "previousLeaderboard";
+	}
+
 }
