@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Cricket Fantasy League  - Registration</title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+<style type="text/css">
+.error {
+	color: #ff0000;
+	font-style: italic;
+	font-weight: bold;
+}
+</style>
+
+<style type="text/css">
+a:hover,a:visited,a:link,a:active {
+	text-decoration: none;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/home">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+	<li class="dropdown"><a href="#" class="dropdown-toggle"
+		data-toggle="dropdown">Leader Board<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="/home/leaderboard">Team Leader Board</a></li>
+			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
+			<li><a href="/home/previousleaderboard">Previous Year Boards</a></li>
+
+		</ul></li>
+
+	<li><a href="/home/howtoplay">How to Play</a></li>
+	<li><a href="/home/contactus">Contact Us</a></li>
+	<li><a href="/home/prizes">Prizes</a></li>
+	<li><a href="/home/testimonial">Testimonials</a></li>
+	<li><a href="/home/timeline">Timeline</a></li>
+	<li><a href="/home/noticeboard">Notice Board</a></li>
+	
+	
+</ul>
+
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">CFL Registration</h1>
+				<ol class="breadcrumb">
+					<li><a href="/home">Home</a></li>
+					<li class="active">CFL Registration</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<form class="form form-vertical" th:action="@{/home/registration}"
+				role="form" data-toggle="validator" name="signUpForm" method="post"
+				th:object="${user}">
+
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>First Name</label>
+							<input type="text" th:field="*{name}"
+								placeholder="Enter First Name" class="form-control"
+								required="true" data-error="Please enter your first name" />
+							<div class="help-block with-errors"></div>
+						</div>
+
+
+						<div class="col-sm-6 form-group">
+							<label>Last Name</label>
+							<input type="text" th:field="*{lastName}"
+								placeholder="Enter Last Name" class="form-control"
+								required="true" data-error="Please enter your last name" />
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>Email Address</label>
+							<input type="text" th:field="*{email}" placeholder="Enter Your Email"
+								class="form-control"
+								data-error="Please enter your email address" required="true" />
+							<div class="help-block with-errors"></div>
+							<label
+							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+							class="validation-message"></label>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Phone Number</label>
+							<input type="text" th:field="*{phoneNumber}" placeholder="Enter Phone"
+								class="form-control" required="true"
+								data-error="Please enter your phone" />
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>Password</label>
+							<input type="password" th:field="*{password}"
+								placeholder="Enter Password" class="form-control"
+								data-minlength="6" required="true"
+								data-error="Please enter password minimum of 6 characters" />
+							<div class="help-block with-errors"></div>
+							<label
+							th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+							class="validation-message" ></label>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Confirm Password</label>
+							<input type="password" th:field="*{confirmPassword}"
+								placeholder="Enter Confirm Password" class="form-control"
+								required="true" data-error="Please enter your confirm password" />
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>Location</label>
+							<select type="text" th:field="*{location}"
+								placeholder="Enter Location" class="form-control"
+								required="true" data-error="Please select your location">
+								<option value="" selected="selected">--Select Location--</option>
+								<option value="Onshore">Onshore</option>
+								<option value="Offshore">Offshore</option>
+							</select>
+							<div class="help-block with-errors"></div>
+						</div>
+						
+						<div class="col-sm-6 form-group">
+							<label>Security Question</label>
+							<select type="text" th:field="*{serQuestion}"
+								placeholder="Enter Security Question" class="form-control"
+								required="true"
+								data-error="Please select your security Question">
+								<option value="" selected="selected">--Select Question--</option>
+								<option value="What is your nickname ?">What is your nickname ?</option>
+								<option value="Who was your childhood hero ?">Who was your childhood hero ?</option>
+								<option value="What is your youngest brother's birthday ?">What is your youngest brother's birthday ?</option>
+								<option value="What was the name of your school ?">What was the name of your school ?</option>
+								<option value="What was the name of your pet ?">What was the name of your pet ?</option>
+								<option value="In what city or town was your first job ?">In what city or town was your first job ?</option>
+								<option
+									value="In what city did your mother and father meet ?">In what city did your mother and father meet ?</option>
+								<option value="Which place you like to visit ?">Which place you like to visit ?</option>
+							</select>
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>Security Answer</label>
+							<input type="password" th:field="*{serAnswer}"
+								placeholder="Enter Security Answer" class="form-control"
+								required="true" data-error="Please enter security answer" />
+							<div class="help-block with-errors"></div>
+							<label
+							th:if="${#fields.hasErrors('serAnswer')}" th:errors="*{serAnswer}"
+							class="validation-message"></label>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>Confirm Security Answer</label>
+							<input type="password" th:field="*{confirmSerAnswer}"
+								placeholder="Enter Confirm Security Answer" class="form-control"
+								required="true"
+								data-error="Please enter confirm security answer" />
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					
+				
+
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<div class="checkbox">
+								<label> <input type="checkbox" id="terms"
+									data-error="Please read all rules and regulation before proceeding"
+									required="true">I am aware and agreed with all the <a href="/home/howtoplay" target="_blank">rule and
+									regulations </a> of WCFL. 
+								</label>
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-lg btn-info">Submit</button>
+				</div>
+			</form>
+		</div>
+
+
+
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
+	<script th:src="@{/js/validator.js}"></script>
+
+	<script>
+		$('#signUpForm').validator();
+	</script>
+
+</body>
+
+</html>

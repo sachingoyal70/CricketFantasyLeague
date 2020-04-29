@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -37,7 +38,7 @@ public class User {
 	@Column(name = "user_id")
 	private int id;
 
-	@Column(name = "email", unique = true , length = 100)
+	@Column(name = "email", unique = true, length = 100)
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
@@ -46,6 +47,9 @@ public class User {
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
 	private String password;
+
+	@Transient
+	private String confirmPassword;
 
 	@Column(name = "name")
 	@NotEmpty(message = "*Please provide your name")
@@ -70,6 +74,9 @@ public class User {
 	@Column(name = "user_ser_answer")
 	@NotEmpty(message = "*Please provide your security answer")
 	private String serAnswer;
+
+	@Transient
+	private String confirmSerAnswer;
 
 	@Column(name = "user_activation_key")
 	@NotEmpty(message = "*Please provide your activation key")
@@ -115,6 +122,20 @@ public class User {
 	 */
 	public String getPassword() {
 		return password;
+	}
+
+	/**
+	 * @return the confirmPassword
+	 */
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	/**
+	 * @param confirmPassword the confirmPassword to set
+	 */
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	/**
@@ -206,6 +227,20 @@ public class User {
 	 */
 	public void setSerAnswer(String serAnswer) {
 		this.serAnswer = serAnswer;
+	}
+
+	/**
+	 * @return the confirmSerAnswer
+	 */
+	public String getConfirmSerAnswer() {
+		return confirmSerAnswer;
+	}
+
+	/**
+	 * @param confirmSerAnswer the confirmSerAnswer to set
+	 */
+	public void setConfirmSerAnswer(String confirmSerAnswer) {
+		this.confirmSerAnswer = confirmSerAnswer;
 	}
 
 	/**
