@@ -79,7 +79,6 @@ public class User {
 	private String confirmSerAnswer;
 
 	@Column(name = "user_activation_key")
-	@NotEmpty(message = "*Please provide your activation key")
 	private String userActivationKey;
 
 	@Column(name = "active")

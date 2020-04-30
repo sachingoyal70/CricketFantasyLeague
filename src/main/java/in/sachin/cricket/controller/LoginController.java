@@ -71,9 +71,9 @@ public class LoginController {
 		} else {
 			modelAndView.setViewName("login");
 			modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
+			userService.saveUser(user);
 			emailservice.sendEmail(user, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
 					messageproperties.getAcctactivationBody());
-			userService.saveUser(user);
 		}
 		return modelAndView;
 	}
