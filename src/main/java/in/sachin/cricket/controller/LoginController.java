@@ -61,7 +61,7 @@ public class LoginController {
 		} else if (user.getPassword() != null && !user.getPassword().equals(user.getConfirmPassword())) {
 			bindingResult.rejectValue("password", "error.user", loginregistermessageproperties.getPasswordNotMatch());
 
-		} else if (user.getSerAnswer() != null && !user.getPassword().equals(user.getConfirmSerAnswer())) {
+		} else if (user.getSerAnswer() != null && !user.getSerAnswer().equals(user.getConfirmSerAnswer())) {
 			bindingResult.rejectValue("serAnswer", "error.user",
 					loginregistermessageproperties.getSecurityAnsNotMatch());
 		}
