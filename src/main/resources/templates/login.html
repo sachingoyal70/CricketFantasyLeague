@@ -11,6 +11,7 @@
 <link th:href="@{/css/modern-business.css}" rel="stylesheet">
 <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -63,49 +64,66 @@
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Announcement</h1>
+				<h1 class="page-header">
+					CFL Login
+				</h1>
 				<ol class="breadcrumb">
 					<li><a href="/home">Home</a></li>
-					<li class="active">Announcement</li>
+					<li class="active">CFL Login</li>
 				</ol>
 			</div>
 		</div>
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-md-6">
-				<h3>CFL - Team Players Substitution</h3>
-				<p>Dear Team Owners,</p>
-				<p>
-					We now announce the second team players SUBSTITUTION in CFL.
-					'Modify Team' option will be enabled as per below timings :-
-				</p>
-				<b>Offshore :- June 13th (06:00 AM IST) to June 13th (11:30 PM IST)</b>
-				
-				<p>
-					<b>Onshore :- June 12th (07:30 PM CST) to June 13th (01:00 PM CST)</b>
-				</p>
-				
-				<p>Rules for team players substitution are as follows:</p>
-				<ul>
-					<li>Each team owner can substitute 2 of their players with new
-						players, however substitution should be done with same skill and overall same $
-						value.
-					<li>Player's substitution is allowed only during the defined period.
-					<li>You will not loose any point for the replaced players and
-						new players will start earning from their future matches only.
-				</ul>
-				<br>
 
-				<p>Happy Playing !!!</p>
-				<p>
-					<b>Regards,<br> CFL - Admin Team
-					</b>
-				</p>
+
+
+				<form name='loginForm' class="form form-vertical"
+					th:action="@{/login}" method='POST'>
+					<br> <br>
+					<table align="center">
+
+						<tr>
+					<td align="center" colspan='2'>		 <div th:if="${message}" th:text="${message}"
+					class="alert alert-info"></div></td>
+						</tr>
+
+						<tr>
+							<td><b>Email : </b></td>
+							<td><input class="form-control" type='text' name='username'
+								value=''></td>
+						</tr>
+						<tr>
+							<td><br> <b>Password : </b></td>
+							<td><br> <input class="form-control" type='password'
+								name='password' /></td>
+						</tr>
+						<tr>
+							<td align="center" colspan='2'>
+
+								<div class="control-group">
+									<label></label>
+									<div class="controls">
+										<br>
+										<button type="submit" class="btn btn-primary">Login</button>
+									</div>
+								</div>
+
+							</td>
+						</tr>
+
+
+					</table>
+				</form>
+				<br>
+				<p align="right"><a href="/forgetPassword">Forgot Password ?</a></p>
+				
 			</div>
 			<div class="col-md-6">
 				<img class="img-responsive"
-					th:src="@{/images/Announcement1.jpg}" alt=" "
-					align="middle">
+					th:src="@{/images/login.jpg}" alt=" "
+					width="100%" align="middle">
 			</div>
 		</div>
 
@@ -114,7 +132,6 @@
 		<!-- /.row -->
 
 		<hr>
-
 		<!-- Footer -->
 		<footer>
 		<div class="row">
