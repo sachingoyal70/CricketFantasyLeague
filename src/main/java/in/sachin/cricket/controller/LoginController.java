@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import in.sachin.cricket.configurations.LoginRegisterMessages;
+import in.sachin.cricket.configurations.MessageProperties;
 import in.sachin.cricket.entity.User;
+import in.sachin.cricket.service.EmailService;
 import in.sachin.cricket.service.UserService;
 
 /**
@@ -30,6 +32,12 @@ public class LoginController {
 
 	@Autowired
 	private LoginRegisterMessages loginregistermessageproperties;
+
+	@Autowired
+	private EmailService emailservice;
+
+	@Autowired
+	private MessageProperties messageproperties;
 
 	/**
 	 * This method is used to display the WCFL Registration page.
@@ -52,8 +60,7 @@ public class LoginController {
 			bindingResult.rejectValue("email", "error.user",
 					loginregistermessageproperties.getUserAlreadyExistsMessage());
 		} else if (user.getPassword() != null && !user.getPassword().equals(user.getConfirmPassword())) {
-			bindingResult.rejectValue("password", "error.user",
-					loginregistermessageproperties.getPasswordNotMatch());
+			bindingResult.rejectValue("password", "error.user", loginregistermessageproperties.getPasswordNotMatch());
 
 		} else if (user.getSerAnswer() != null && !user.getPassword().equals(user.getConfirmSerAnswer())) {
 			bindingResult.rejectValue("serAnswer", "error.user",
@@ -64,6 +71,9 @@ public class LoginController {
 			modelAndView.setViewName("registration");
 		} else {
 			modelAndView.setViewName("login");
+			modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
+			emailservice.sendEmail(user, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
+					messageproperties.getAcctactivationBody());
 			userService.saveUser(user);
 		}
 		return modelAndView;

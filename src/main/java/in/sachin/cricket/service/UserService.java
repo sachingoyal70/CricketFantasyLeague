@@ -14,6 +14,7 @@ import in.sachin.cricket.entity.Role;
 import in.sachin.cricket.entity.User;
 import in.sachin.cricket.repository.RoleRepository;
 import in.sachin.cricket.repository.UserRepository;
+import in.sachin.cricket.util.CommonUtils;
 
 /**
  * @author sachingoyal
@@ -22,29 +23,30 @@ import in.sachin.cricket.repository.UserRepository;
 @Service("userService")
 public class UserService {
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private UserRepository userRepository;
+	private RoleRepository roleRepository;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    public UserService(UserRepository userRepository,
-                       RoleRepository roleRepository,
-                       BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
+	@Autowired
+	public UserService(UserRepository userRepository, RoleRepository roleRepository,
+			BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.userRepository = userRepository;
+		this.roleRepository = roleRepository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
 
-    public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+	public User findUserByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
 
-    public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(1);
-        Role userRole = roleRepository.findByRole("USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        userRepository.save(user);
-    }
+	public void saveUser(User user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setActive(0);
+		user.setSerAnswer(bCryptPasswordEncoder.encode(user.getSerAnswer()));
+		user.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
+		Role userRole = roleRepository.findByRole("USER");
+		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		userRepository.save(user);
+	}
 
 }
