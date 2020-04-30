@@ -23,7 +23,6 @@ import in.sachin.cricket.service.UserService;
  * @author sachingoyal
  *
  */
-
 @Controller
 public class LoginController {
 
