@@ -205,7 +205,6 @@ public class LoginController {
 			emailservice.forgetPassword(userExists, messageproperties.getEmailFrom(),
 					messageproperties.getForgetPasswordSubject(), messageproperties.getForgetPasswordBody(),
 					newPassword);
-
 		}
 		return modelAndView;
 
