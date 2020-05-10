@@ -145,7 +145,7 @@ public class LoginController {
 		if (userExists == null) {
 			modelAndView.setViewName("forgotPassword");
 			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
-		} else if (!userExists.getSerAnswer().equals(user.getSerAnswer())) {
+		} else if (!bCryptPasswordEncoder.matches(user.getSerAnswer(), userExists.getSerAnswer())) {
 			modelAndView.addObject("message", loginregistermessageproperties.getIncorrectSecAnswer());
 			modelAndView.addObject("user", user);
 			modelAndView.setViewName("resetPassword");
