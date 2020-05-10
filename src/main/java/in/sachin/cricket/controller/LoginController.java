@@ -6,6 +6,7 @@ package in.sachin.cricket.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -39,6 +40,9 @@ public class LoginController {
 
 	@Autowired
 	private MessageProperties messageproperties;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	/**
 	 * This method is used to display the WCFL Registration page.
@@ -94,6 +98,70 @@ public class LoginController {
 		}
 
 		return modelAndView;
+	}
+
+	/**
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/home/forgotpassword", method = RequestMethod.GET)
+	public String displayForgetPasswordPage(Model model) {
+		model.addAttribute("user", new User());
+		return "forgotPassword";
+	}
+
+	/**
+	 * @param registration
+	 * @returo
+	 */
+	@RequestMapping(value = "/home/forgotpassword", method = RequestMethod.POST)
+	public ModelAndView setForgetPassword(User user, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		User userExists = userService.findUserByEmail(user.getEmail());
+
+		if (userExists == null) {
+			modelAndView.setViewName("forgotPassword");
+			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
+		} else {
+			user.setSerQuestion(userExists.getSerQuestion());
+			modelAndView.addObject("user", user);
+			modelAndView.setViewName("resetPassword");
+		}
+		return modelAndView;
+
+	}
+
+	/**
+	 * @param registration
+	 * @returo
+	 */
+	@RequestMapping(value = "/home/resetpassword", method = RequestMethod.POST)
+	public ModelAndView resetPassword(User user, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		User userExists = userService.findUserByEmail(user.getEmail());
+
+		if (userExists == null) {
+			modelAndView.setViewName("forgotPassword");
+			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
+		} else if (!userExists.getSerAnswer().equals(user.getSerAnswer())) {
+			modelAndView.addObject("message", loginregistermessageproperties.getIncorrectSecAnswer());
+			modelAndView.addObject("user", user);
+			modelAndView.setViewName("resetPassword");
+		} else if (user.getPassword() != null && !user.getPassword().equals(user.getConfirmPassword())) {
+			modelAndView.addObject("message", loginregistermessageproperties.getPasswordNotMatch());
+			modelAndView.addObject("user", user);
+			modelAndView.setViewName("resetPassword");
+		} else {
+			userExists.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			userService.updateUser(userExists);
+			modelAndView.addObject("message", loginregistermessageproperties.getPasswordResetSuccess());
+			modelAndView.setViewName("login");
+
+		}
+		return modelAndView;
+
 	}
 
 }

@@ -20,6 +20,8 @@ public class LoginRegisterMessages {
 	private String activationLinkSentMessage;
 	private String passwordNotMatch;
 	private String securityAnsNotMatch;
+	private String incorrectSecAnswer;
+	private String passwordResetSuccess;
 
 	/**
 	 * @return the inCorrectLoginMessage
@@ -173,6 +175,34 @@ public class LoginRegisterMessages {
 	 */
 	public void setSecurityAnsNotMatch(String securityAnsNotMatch) {
 		this.securityAnsNotMatch = securityAnsNotMatch;
+	}
+
+	/**
+	 * @return the incorrectSecAnswer
+	 */
+	public String getIncorrectSecAnswer() {
+		return incorrectSecAnswer;
+	}
+
+	/**
+	 * @param incorrectSecAnswer the incorrectSecAnswer to set
+	 */
+	public void setIncorrectSecAnswer(String incorrectSecAnswer) {
+		this.incorrectSecAnswer = incorrectSecAnswer;
+	}
+
+	/**
+	 * @return the passwordResetSuccess
+	 */
+	public String getPasswordResetSuccess() {
+		return passwordResetSuccess;
+	}
+
+	/**
+	 * @param passwordResetSuccess the passwordResetSuccess to set
+	 */
+	public void setPasswordResetSuccess(String passwordResetSuccess) {
+		this.passwordResetSuccess = passwordResetSuccess;
 	}
 
 }
