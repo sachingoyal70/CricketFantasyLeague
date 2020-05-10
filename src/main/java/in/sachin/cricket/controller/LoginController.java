@@ -19,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import in.sachin.cricket.configurations.LoginRegisterMessages;
 import in.sachin.cricket.configurations.MessageProperties;
 import in.sachin.cricket.entity.User;
+import in.sachin.cricket.security.SecurityConstants;
 import in.sachin.cricket.service.EmailService;
 import in.sachin.cricket.service.UserService;
+import in.sachin.cricket.util.CommonUtils;
 
 /**
  * @author sachingoyal
@@ -164,4 +166,48 @@ public class LoginController {
 
 	}
 
+	/**
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/home/signingerror", method = RequestMethod.GET)
+	public String displaySigningInErrorPage(Model model) {
+		model.addAttribute("user", new User());
+		return "signingError";
+	}
+
+	/**
+	 * @param registration
+	 * @returo
+	 */
+	@RequestMapping(value = "/home/signingerror", method = RequestMethod.POST)
+	public ModelAndView setSigningError(User user, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		User userExists = userService.findUserByEmail(user.getEmail());
+
+		if (userExists == null) {
+			modelAndView.setViewName("signingerror");
+			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
+		} else if (user.getSigningError() == SecurityConstants.RESEND_ACTIVATION_LINK) {
+			user.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
+			userService.updateUser(userExists);
+			modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
+			modelAndView.setViewName("login");
+			emailservice.sendEmail(user, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
+					messageproperties.getAcctactivationBody());
+		} else {
+			String newPassword = CommonUtils.generateCommonTextPassword();
+			modelAndView.addObject("message", loginregistermessageproperties.getNewPasswordSentMessage());
+			userExists.setPassword(bCryptPasswordEncoder.encode(newPassword));
+			userService.updateUser(userExists);
+			modelAndView.setViewName("login");
+			emailservice.forgetPassword(userExists, messageproperties.getEmailFrom(),
+					messageproperties.getForgetPasswordSubject(), messageproperties.getForgetPasswordBody(),
+					newPassword);
+
+		}
+		return modelAndView;
+
+	}
 }

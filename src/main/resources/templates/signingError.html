@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	<title>Cricket Fantasy League  - Forgot Password</title>
+	<title>Cricket Fantasy League  - Trouble Signing In</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
@@ -70,12 +70,12 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					CFL Forgot Password
+					CFL Trouble Signing In
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="/home">Home</a></li>
 					<li><a href="/login">Login</a></li>
-					<li class="active">CFL Forgot Password</li>
+					<li class="active">CFL Trouble Signing In</li>
 				</ol>
 			</div>
 		</div>
@@ -86,7 +86,7 @@
 
 
 				<form class="form form-vertical"
-					th:action="@{/home/forgotpassword}" name="forgetPasswordForm"
+					th:action="@{/home/signingerror}" name="forgetPasswordForm"
 					method="post" th:object="${user}">
 
 					<div class="row">
@@ -99,10 +99,22 @@
 					<td align="center" colspan='2'>		 <div th:if="${message}" th:text="${message}"
 					class="alert alert-info"></div></td>
 						</tr>
+						
+						<tr>
+						<td><b>Select Issue : </b></td>
+					<td>	<select type="text" th:field="*{signingError}"
+							 class="form-control"
+								required="true" data-error="Please select your location">
+								<option value="0">Resend Activation Link</option>
+								<option value="1">Send New Password</option>
+							</select>
+						</td>
+						</tr>
+						
 
 							<tr>
-								<td><b>Email : </b></td>
-								<td><input type="email"  th:field="*{email}"
+								<td><br></br><b>Email : </b></td>
+								<td><br><input type="email"  th:field="*{email}"
 										placeholder="Enter Email" class="form-control" /></td>
 							</tr>
 							<tr>

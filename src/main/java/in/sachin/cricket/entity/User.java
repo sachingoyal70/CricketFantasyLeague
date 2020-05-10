@@ -78,6 +78,9 @@ public class User {
 	@Transient
 	private String confirmSerAnswer;
 
+	@Transient
+	private int signingError;
+
 	@Column(name = "user_activation_key")
 	private String userActivationKey;
 
@@ -282,6 +285,20 @@ public class User {
 	 */
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	/**
+	 * @return the signingError
+	 */
+	public int getSigningError() {
+		return signingError;
+	}
+
+	/**
+	 * @param signingError the signingError to set
+	 */
+	public void setSigningError(int signingError) {
+		this.signingError = signingError;
 	}
 
 }
