@@ -3,6 +3,8 @@
  */
 package in.sachin.cricket.controller;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -190,7 +193,7 @@ public class LoginController {
 			modelAndView.setViewName("signingerror");
 			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
 		} else if (user.getSigningError() == SecurityConstants.RESEND_ACTIVATION_LINK) {
-			user.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
+			userExists.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
 			userService.updateUser(userExists);
 			modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
 			modelAndView.setViewName("login");
@@ -209,4 +212,25 @@ public class LoginController {
 		return modelAndView;
 
 	}
+
+	@RequestMapping(value = { "/home/accountactivation/{email}/{token}" })
+	public ModelAndView view(@PathVariable("email") String email, @PathVariable("token") String token) throws IOException {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("login");
+		User userExists = userService.findUserByEmail(email);
+		if (userExists == null) {
+			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
+		} else {
+			boolean isValidToken = CommonUtils.isValidToken(token, userExists.getUserActivationKey());
+			if (isValidToken) {
+				userExists.setActive(1);
+				userService.updateUser(userExists);
+				modelAndView.addObject("message", loginregistermessageproperties.getSuccessAcctActivationMessage());
+			} else {
+				modelAndView.addObject("message", loginregistermessageproperties.getFailedAcctActivationMessage());
+			}
+		}
+		return modelAndView;
+	}
+
 }
