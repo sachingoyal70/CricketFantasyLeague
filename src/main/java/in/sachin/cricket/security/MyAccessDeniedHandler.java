@@ -20,26 +20,21 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class MyAccessDeniedHandler implements AccessDeniedHandler{
-	
+public class MyAccessDeniedHandler implements AccessDeniedHandler {
+
 	@Override
-    public void handle(HttpServletRequest httpServletRequest,
-                       HttpServletResponse httpServletResponse,
-                       AccessDeniedException e) throws IOException, ServletException {
+	public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+			AccessDeniedException e) throws IOException, ServletException {
 
-        Authentication auth
-                = SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (auth != null) {
-            System.out.println("User '" + auth.getName() + auth.getAuthorities()
-                    + "' attempted to access the protected URL: "
-                    + httpServletRequest.getRequestURI());
-        }
+		if (auth != null) {
+			System.out.println("User '" + auth.getName() + auth.getAuthorities()
+					+ "' attempted to access the protected URL: " + httpServletRequest.getRequestURI());
+		}
 
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");
+		httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");
 
-    }
-	
-	
+	}
 
 }

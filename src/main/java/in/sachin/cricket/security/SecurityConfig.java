@@ -49,9 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().authorizeRequests()
 				.antMatchers("/", "/css/**", "/js/**", "/images/**", "/fonts/**", "/font-awesome/**", "/registration",
 						"/forgotPassword", "/webfonts/**", "/home/**")
-				.permitAll().antMatchers("/welcome/**").hasAuthority("USER").anyRequest().authenticated().and()
-				.formLogin().loginPage("/login").defaultSuccessUrl("/welcome").permitAll().and().logout().permitAll().and()
-				.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+				.permitAll().antMatchers("/welcome/**").hasAuthority("USER").antMatchers("/admin/**")
+				.hasAuthority("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
+				.defaultSuccessUrl("/welcome").permitAll().and().logout().permitAll().and().exceptionHandling()
+				.accessDeniedHandler(accessDeniedHandler);
 
 	}
 }

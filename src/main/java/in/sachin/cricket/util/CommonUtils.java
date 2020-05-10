@@ -15,9 +15,15 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class CommonUtils {
 
 	public static boolean isTokenExpired(String token) {
-		Claims claims = Jwts.parser().setSigningKey(SecurityConstants.SECURITY_KEY).parseClaimsJws(token).getBody();
-		Date expDate = claims.getExpiration();
-		return expDate.before(new Date());
+		boolean isExpired = true;
+		try {
+			Claims claims = Jwts.parser().setSigningKey(SecurityConstants.SECURITY_KEY).parseClaimsJws(token).getBody();
+			Date expDate = claims.getExpiration();
+			isExpired = expDate.before(new Date());
+		} catch (Exception e) {
+
+		}
+		return isExpired;
 	}
 
 	public static String generateToken(String id) {
