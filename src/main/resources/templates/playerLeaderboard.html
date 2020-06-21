@@ -136,7 +136,7 @@
 									</thead>
 									<tbody>
 											<tr data-th-each="searchResult : ${playerLeaderboard}" align="center">
-												<td data-th-text="${searchResult.id}"></td>
+												<td data-th-text="${searchResult.ranks}"></td>
 												<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
 												<td data-th-text="${searchResult.name}"></td>
 												<td data-th-text="${searchResult.team}"></td>

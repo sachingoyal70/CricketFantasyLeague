@@ -214,7 +214,7 @@ a:hover,a:visited,a:link,a:active {
 									</thead>
 									<tbody>
 											<tr data-th-each="searchResult : ${teamLeaderboard}" align="center">
-												<td data-th-text="${searchResult.id}"></td>
+												<td data-th-text="${searchResult.ranks}"></td>
 												<td data-th-text="${searchResult.teamName}"></td>
 												<td data-th-text="${searchResult.teamCurrentScore}"></td>
 											</tr>
@@ -253,7 +253,7 @@ a:hover,a:visited,a:link,a:active {
 									</thead>
 									<tbody>
 											<tr data-th-each="searchResult : ${playerLeaderboard}" align="center">
-												<td data-th-text="${searchResult.id}"></td>
+												<td data-th-text="${searchResult.ranks}"></td>
 												<td data-th-text="${searchResult.name}"></td>
 												<td data-th-text="${searchResult.team}"></td>
 												<td data-th-text="${searchResult.currentScore}"></td>

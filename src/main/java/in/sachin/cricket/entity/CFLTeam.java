@@ -40,7 +40,7 @@ public class CFLTeam {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "team_owner", nullable = false , unique = true)
+	@Column(name = "team_owner", nullable = false, unique = true)
 	private String owner;
 
 	@Column(name = "team_name", nullable = false)
@@ -48,7 +48,7 @@ public class CFLTeam {
 
 	@Transient
 	private int[] teamPlayers;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_user")
 	private User user;
@@ -78,7 +78,22 @@ public class CFLTeam {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_players")
 	private List<CFLTeamPlayers> teamSelectedPlayers;
-	
+
+	private int ranks;
+
+	/**
+	 * @return the ranks
+	 */
+	public int getRanks() {
+		return ranks;
+	}
+
+	/**
+	 * @param ranks the ranks to set
+	 */
+	public void setRanks(int ranks) {
+		this.ranks = ranks;
+	}
 
 	/**
 	 * @return the id

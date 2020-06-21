@@ -25,10 +25,10 @@ public interface PlayerRepository extends JpaRepository<CFLPlayer, Integer> {
 	@Query(value = "SELECT * FROM cfl_player WHERE player_id in (:ids)", nativeQuery = true)
 	List<CFLPlayer> findAllTeamPlayer(@Param("ids") List<Integer> id);
 
-	@Query(value = "SELECT player_id,player_name,player_team,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score, DENSE_RANK() OVER(ORDER BY player_current_score DESC) id FROM cfl_player ORDER BY id LIMIT 5", nativeQuery = true)
+	@Query(value = "SELECT id,player_id,player_name,player_team,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score, DENSE_RANK() OVER(ORDER BY player_current_score DESC) ranks FROM cfl_player ORDER BY ranks LIMIT 5", nativeQuery = true)
 	List<CFLPlayer> findTopTeamPlayer();
 	
-	@Query(value = "SELECT player_id,player_name,player_team,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score, DENSE_RANK() OVER(ORDER BY player_current_score DESC) id FROM cfl_player ORDER BY id", nativeQuery = true)
+	@Query(value = "SELECT id,player_id,player_name,player_team,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score, DENSE_RANK() OVER(ORDER BY player_current_score DESC) ranks FROM cfl_player ORDER BY ranks", nativeQuery = true)
 	List<CFLPlayer> findAllTeamPlayer();
 
 }

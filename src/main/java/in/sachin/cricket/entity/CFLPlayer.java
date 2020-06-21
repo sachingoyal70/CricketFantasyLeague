@@ -69,6 +69,22 @@ public class CFLPlayer {
 	@Column(name = "player_current_score", nullable = false)
 	private int currentScore;
 
+	private int ranks;
+
+	/**
+	 * @return the ranks
+	 */
+	public int getRanks() {
+		return ranks;
+	}
+
+	/**
+	 * @param ranks the ranks to set
+	 */
+	public void setRanks(int ranks) {
+		this.ranks = ranks;
+	}
+
 	/**
 	 * @return the id
 	 */
