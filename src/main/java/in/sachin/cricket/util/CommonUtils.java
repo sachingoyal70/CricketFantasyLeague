@@ -1,5 +1,6 @@
 package in.sachin.cricket.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,15 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 public class CommonUtils {
+
+	public static List<Integer> convertArrayToList(int[] array) {
+		List<Integer> intList = new ArrayList<Integer>(array.length);
+		for (int i : array) {
+			intList.add(i);
+		}
+		return intList;
+
+	}
 
 	public static boolean isTokenExpired(String token) {
 		boolean isExpired = true;

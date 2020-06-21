@@ -46,8 +46,8 @@ public class PlayerService {
 		return playerRepository.findAll();
 	}
 	
-	public CFLPlayer getPlayerInfo(String id) {
-		return playerRepository.findByPlayerId(Integer.parseInt(id));
+	public List<CFLPlayer> getPlayerInfo(List<Integer> id) {
+		return playerRepository.findAllTeamPlayer(id);
 	}
 
 }

@@ -14,10 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
+import in.sachin.cricket.util.CommonUtils;
 
 /**
  * @author sachingoyal
@@ -55,16 +57,17 @@ public class WelcomeController extends MasterController {
 	}
 
 	@RequestMapping(value = "/welcome/chooseteam", method = RequestMethod.POST)
-	public String postTeam(@Valid CFLTeam CFLTeam, BindingResult bindingResult, HttpServletRequest request,
+	public ModelAndView postTeam(@Valid CFLTeam CFLTeam, BindingResult bindingResult, HttpServletRequest request,
 			Model model) {
-		String teamPlayers = CFLTeam.getTeamPlayers();
-		String[] teamPlayerList = teamPlayers.split(",");
+		List<Integer> teamPlayers = CommonUtils.convertArrayToList(CFLTeam.getTeamPlayers());
+
+		List<CFLPlayer> teamPlayerList = playerService.getPlayerInfo(teamPlayers);
 		String email = request.getUserPrincipal().getName();
 
 		List<CFLTeamPlayers> cflTeamPlayers = new ArrayList<CFLTeamPlayers>();
 
-		for (int i = 0; i < teamPlayerList.length; i++) {
-			CFLPlayer player = playerService.getPlayerInfo(teamPlayerList[i]);
+		for (int i = 0; i < teamPlayerList.size(); i++) {
+			CFLPlayer player = teamPlayerList.get(i);
 			CFLTeamPlayers cflTeamPlayer = new CFLTeamPlayers();
 			cflTeamPlayer.setPlayerId(player.getPlayerId());
 			cflTeamPlayer.setName(player.getName());
@@ -82,8 +85,11 @@ public class WelcomeController extends MasterController {
 		CFLTeam.setUser(userService.findUserByEmail(email));
 		teamService.postTeam(CFLTeam);
 
-		model.addAttribute("user", userService.getFirstName(email));
-		return "welcome";
+		ModelAndView view = new ModelAndView();
+
+		view.setViewName("redirect:/welcome");
+
+		return view;
 
 	}
 

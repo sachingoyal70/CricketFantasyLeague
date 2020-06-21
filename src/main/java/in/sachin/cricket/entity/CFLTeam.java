@@ -47,7 +47,7 @@ public class CFLTeam {
 	private String teamName;
 
 	@Transient
-	private String teamPlayers;
+	private int[] teamPlayers;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_user")
@@ -139,14 +139,14 @@ public class CFLTeam {
 	/**
 	 * @return the teamPlayers
 	 */
-	public String getTeamPlayers() {
+	public int[] getTeamPlayers() {
 		return teamPlayers;
 	}
 
 	/**
 	 * @param teamPlayers the teamPlayers to set
 	 */
-	public void setTeamPlayers(String teamPlayers) {
+	public void setTeamPlayers(int[] teamPlayers) {
 		this.teamPlayers = teamPlayers;
 	}
 
