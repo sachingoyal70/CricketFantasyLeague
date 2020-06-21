@@ -3,7 +3,6 @@
  */
 package in.sachin.cricket.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,24 +27,13 @@ public class PlayerService {
 	}
 
 	public List<CFLPlayer> fetchTopPlayers() {
-		return playerRepository.findAll();
+		return playerRepository.findTopTeamPlayer();
 	}
 
 	public List<CFLPlayer> fetchAllPlayers() {
-
-		CFLPlayer team = new CFLPlayer();
-		team.setId(1);
-		team.setFours(4);
-		team.setRole("ALL");
-		team.setScore(100);
-		team.setPlayerPercentage("78%");
-		team.setRun(40);
-
-		List<CFLPlayer> c = new ArrayList<CFLPlayer>();
-		c.add(team);
 		return playerRepository.findAll();
 	}
-	
+
 	public List<CFLPlayer> getPlayerInfo(List<Integer> id) {
 		return playerRepository.findAllTeamPlayer(id);
 	}

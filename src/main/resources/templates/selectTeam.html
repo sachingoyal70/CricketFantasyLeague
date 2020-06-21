@@ -86,7 +86,7 @@ a:hover, a:visited, a:link, a:active {
 			</div>
 
 			<!-- Content Column -->
-			<div class="col-md-9">
+			<div th:if= "${teamStatus == 0}" class="col-md-9">
 				<form role="form" class="form form-vertical"
 					action="/welcome/chooseteam" id="teamSelectionForm"
 					method="post" th:object="${teamData}" data-toggle="validator">
@@ -175,6 +175,47 @@ a:hover, a:visited, a:link, a:active {
 				</form>
 
 			</div>
+			
+			
+			<!-- Content Column -->
+			<div th:if= "${teamStatus == 1}" class="col-md-9">
+				<div class="jumbotron">
+
+
+						<p>We are happy to have you as a part of WCFL.</p>
+						<p>Please contact below system administrator to get your team
+							activated.</p>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<td>Contact Person</td>
+										<td>Mail</td>
+										<td>Location</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jainendra Singh</td>
+										<td><a href="mailto:jainendra.x.singh@walgreens.com">jainendra.x.singh@walgreens.com</a></td>
+										<td>Onshore</td>
+									</tr>
+									<tr>
+										<td>Sachin Goyal</td>
+										<td><a href="mailto:sachin.goyal2@tcs.com">sachin.goyal2@tcs.com</a></td>
+										<td>Offshore</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<p>Please <a href="/welcome">Click Here</a> to view your selected team.</p>
+						
+						</div>
+			</div>
+						
+						
+			
 		</div>
 		<!-- /.row -->
 
@@ -351,6 +392,12 @@ a:hover, a:visited, a:link, a:active {
 
 		return nodes;
 	};
+</script>
+
+<script type="text/javascript">
+			if ( window.history.replaceState ) {
+			window.history.replaceState( null, null, window.location.href );
+			}
 </script>
 
 </body>

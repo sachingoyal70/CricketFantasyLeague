@@ -25,4 +25,7 @@ public interface PlayerRepository extends JpaRepository<CFLPlayer, Integer> {
 	@Query(value = "SELECT * FROM cfl_player WHERE player_id in (:ids)", nativeQuery = true)
 	List<CFLPlayer> findAllTeamPlayer(@Param("ids") List<Integer> id);
 
+	@Query(value = "SELECT * FROM cfl_player ORDER BY player_current_score DESC LIMIT 5", nativeQuery = true)
+	List<CFLPlayer> findTopTeamPlayer();
+
 }

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
+import in.sachin.cricket.util.CommonConstants;
 import in.sachin.cricket.util.CommonUtils;
 
 /**
@@ -50,9 +51,19 @@ public class WelcomeController extends MasterController {
 	 */
 	@RequestMapping(value = { "/welcome/chooseteam" }, method = RequestMethod.GET)
 	public String choseYourTeam(Model model, HttpServletRequest request) {
-		CFLTeam teamData = new CFLTeam();
-		model.addAttribute("playerList", playerService.fetchAllPlayers());
-		model.addAttribute("teamData", teamData);
+		String email = request.getUserPrincipal().getName();
+
+		int teamStatus = teamService.getTeamStatus(email);
+
+		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED) {
+			CFLTeam teamData = new CFLTeam();
+			model.addAttribute("playerList", playerService.fetchAllPlayers());
+			model.addAttribute("teamData", teamData);
+			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
+		} else {
+			model.addAttribute("teamStatus", CommonConstants.TEAM_SELECTED);
+		}
+
 		return "selectTeam";
 	}
 

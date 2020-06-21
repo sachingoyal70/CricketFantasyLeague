@@ -31,8 +31,8 @@ public class HomeController extends MasterController {
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String displayHomePage(Model model) {
 		try {
-			model.addAttribute("playerLeaderboard", playerService.fetchAllPlayers());
-			model.addAttribute("teamLeaderboard", teamService.fetchAllTeams());
+			model.addAttribute("playerLeaderboard", playerService.fetchTopPlayers());
+			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
 		} catch (Exception e) {
 			model.addAttribute("exp", "exp");
 		}
@@ -49,9 +49,8 @@ public class HomeController extends MasterController {
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String displayHomePageWithHomeUrl(Model model) {
 		try {
-			// TODO - Logic for top teams
-			model.addAttribute("playerLeaderboard", playerService.fetchAllPlayers());
-			model.addAttribute("teamLeaderboard", teamService.fetchAllTeams());
+			model.addAttribute("playerLeaderboard", playerService.fetchTopPlayers());
+			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
 		} catch (Exception e) {
 			model.addAttribute("exp", "exp");
 		}

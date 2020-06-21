@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.repository.TeamRepository;
+import in.sachin.cricket.util.CommonConstants;
 
 /**
  * @author sachingoyal
@@ -27,14 +28,31 @@ public class TeamService {
 	}
 
 	public List<CFLTeam> fetchTopTeams() {
-		return teamRepository.findAll();
+		return teamRepository.findTopTeamPlayer();
 	}
 
 	public List<CFLTeam> fetchAllTeams() {
 		return teamRepository.findAll();
 	}
+	
+	public List<CFLTeam> fetchAllActiveTeams() {
+		return teamRepository.findByTeamEnabled(1);
+	}
 
 	public void postTeam(CFLTeam team) {
 		teamRepository.save(team);
+	}
+
+	public int getTeamStatus(String user) {
+		int teamStatus = CommonConstants.TEAM_NOT_SELECTED;
+		CFLTeam team = teamRepository.findByOwner(user);
+		if (team != null) {
+			teamStatus = CommonConstants.TEAM_SELECTED;
+		}
+		return teamStatus;
+	}
+
+	public CFLTeam getTeam(int id) {
+		return teamRepository.findById(id);
 	}
 }
