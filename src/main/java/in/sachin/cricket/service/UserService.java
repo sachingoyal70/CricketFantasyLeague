@@ -53,4 +53,9 @@ public class UserService {
 		userRepository.save(user);
 	}
 
+	public String getFirstName(String email) {
+		User user = userRepository.findByEmail(email);
+		return user == null ? "" : CommonUtils.upperCaseFirst(user.getName());
+	}
+
 }

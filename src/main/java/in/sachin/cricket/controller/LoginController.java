@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,12 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import in.sachin.cricket.configurations.LoginRegisterMessages;
-import in.sachin.cricket.configurations.MessageProperties;
 import in.sachin.cricket.entity.User;
 import in.sachin.cricket.security.SecurityConstants;
-import in.sachin.cricket.service.EmailService;
-import in.sachin.cricket.service.UserService;
 import in.sachin.cricket.util.CommonUtils;
 
 /**
@@ -32,22 +26,7 @@ import in.sachin.cricket.util.CommonUtils;
  *
  */
 @Controller
-public class LoginController {
-
-	@Autowired
-	private UserService userService;
-
-	@Autowired
-	private LoginRegisterMessages loginregistermessageproperties;
-
-	@Autowired
-	private EmailService emailservice;
-
-	@Autowired
-	private MessageProperties messageproperties;
-
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+public class LoginController extends MasterController {
 
 	/**
 	 * This method is used to display the WCFL Registration page.
@@ -214,7 +193,8 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = { "/home/accountactivation/{email}/{token}" })
-	public ModelAndView view(@PathVariable("email") String email, @PathVariable("token") String token) throws IOException {
+	public ModelAndView view(@PathVariable("email") String email, @PathVariable("token") String token)
+			throws IOException {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("login");
 		User userExists = userService.findUserByEmail(email);

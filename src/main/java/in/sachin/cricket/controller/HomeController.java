@@ -5,7 +5,6 @@ package in.sachin.cricket.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import in.sachin.cricket.entity.CFLMessage;
 import in.sachin.cricket.entity.CFLNoticeBoard;
-import in.sachin.cricket.service.MessageService;
-import in.sachin.cricket.service.NoticeBoardService;
-import in.sachin.cricket.service.PlayerService;
-import in.sachin.cricket.service.TeamService;
 
 /**
  * @author sachingoyal
@@ -25,19 +20,7 @@ import in.sachin.cricket.service.TeamService;
  */
 
 @Controller
-public class HomeController {
-
-	@Autowired
-	TeamService teamService;
-
-	@Autowired
-	PlayerService playerService;
-
-	@Autowired
-	MessageService messageService;
-
-	@Autowired
-	NoticeBoardService noticeBoardService;
+public class HomeController extends MasterController {
 
 	/**
 	 * This method is used to display the WCFL home page.

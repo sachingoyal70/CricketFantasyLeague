@@ -5,7 +5,6 @@ package in.sachin.cricket.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
-import in.sachin.cricket.service.MessageService;
-import in.sachin.cricket.service.NoticeBoardService;
-import in.sachin.cricket.service.PlayerService;
-import in.sachin.cricket.service.TeamService;
 
 /**
  * @author sachingoyal
@@ -24,19 +19,7 @@ import in.sachin.cricket.service.TeamService;
  */
 
 @Controller
-public class LearderboardController {
-
-	@Autowired
-	TeamService teamService;
-
-	@Autowired
-	PlayerService playerService;
-
-	@Autowired
-	MessageService messageService;
-
-	@Autowired
-	NoticeBoardService noticeBoardService;
+public class LearderboardController extends MasterController {
 
 	@RequestMapping(value = "/home/leaderboard", method = RequestMethod.GET)
 	public String displayLeaderBoard(Model model) {
