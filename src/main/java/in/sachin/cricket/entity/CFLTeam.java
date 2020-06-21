@@ -3,6 +3,9 @@
  */
 package in.sachin.cricket.entity;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +13,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
@@ -30,30 +39,40 @@ public class CFLTeam {
 	@Column(name = "id")
 	private int id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "team_user")
-	private User user;
+	@Column(name = "team_owner", nullable = false)
+	private String owner;
 
-	@Column(name = "team_name")
+	@Column(name = "team_name", nullable = false)
 	private String teamName;
 
-	@Column(name = "team_players")
+	@Transient
 	private String teamPlayers;
 
-	@Column(name = "team_enabled")
+	@Column(name = "team_enabled", nullable = false)
 	private int teamEnabled;
 
-	@Column(name = "team_score")
+	@Column(name = "team_score", nullable = false)
 	private int teamScore;
 
-	@Column(name = "team_current_score")
+	@Column(name = "team_current_score", nullable = false)
 	private int teamCurrentScore;
 
-	@Column(name = "team_modified")
+	@Column(name = "team_modified", nullable = false)
 	private int teamModified;
 
-	@Column(name = "team_replaced_players")
-	private String teamReplacedPlayers;
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "team_creation_date", nullable = false, updatable = false)
+	private Date teamCreationDate;
+
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "team_last_modified", nullable = false)
+	private Date teamLastModified;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "team_players")
+	private List<CFLTeamPlayers> teamSelectedPlayers;
 
 	/**
 	 * @return the id
@@ -70,17 +89,17 @@ public class CFLTeam {
 	}
 
 	/**
-	 * @return the user
+	 * @return the owner
 	 */
-	public User getUser() {
-		return user;
+	public String getOwner() {
+		return owner;
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param owner the owner to set
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
 	/**
@@ -168,19 +187,45 @@ public class CFLTeam {
 	}
 
 	/**
-	 * @return the teamReplacedPlayers
+	 * @return the teamCreationDate
 	 */
-	public String getTeamReplacedPlayers() {
-		return teamReplacedPlayers;
+	public Date getTeamCreationDate() {
+		return teamCreationDate;
 	}
 
 	/**
-	 * @param teamReplacedPlayers the teamReplacedPlayers to set
+	 * @param teamCreationDate the teamCreationDate to set
 	 */
-	public void setTeamReplacedPlayers(String teamReplacedPlayers) {
-		this.teamReplacedPlayers = teamReplacedPlayers;
+	public void setTeamCreationDate(Date teamCreationDate) {
+		this.teamCreationDate = teamCreationDate;
 	}
-	
-	
+
+	/**
+	 * @return the teamLastModified
+	 */
+	public Date getTeamLastModified() {
+		return teamLastModified;
+	}
+
+	/**
+	 * @param teamLastModified the teamLastModified to set
+	 */
+	public void setTeamLastModified(Date teamLastModified) {
+		this.teamLastModified = teamLastModified;
+	}
+
+	/**
+	 * @return the teamSelectedPlayers
+	 */
+	public List<CFLTeamPlayers> getTeamSelectedPlayers() {
+		return teamSelectedPlayers;
+	}
+
+	/**
+	 * @param teamSelectedPlayers the teamSelectedPlayers to set
+	 */
+	public void setTeamSelectedPlayers(List<CFLTeamPlayers> teamSelectedPlayers) {
+		this.teamSelectedPlayers = teamSelectedPlayers;
+	}
 
 }

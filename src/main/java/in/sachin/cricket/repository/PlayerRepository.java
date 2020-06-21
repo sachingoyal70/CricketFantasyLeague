@@ -15,5 +15,7 @@ import in.sachin.cricket.entity.CFLPlayer;
 
 @Repository("playerRepository")
 public interface PlayerRepository extends JpaRepository<CFLPlayer, Integer>{
+	
+	CFLPlayer findByPlayerId(int id);
 
 }

@@ -19,55 +19,59 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "cfl_player")
-public class CFLPlayer {
+@Table(name = "cfl_team_player")
+public class CFLTeamPlayers {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "player_id", nullable = false, unique = true)
+	@Column(name = "player_id")
 	private int playerId;
 
-	@Column(name = "player_name", nullable = false)
+	@Column(name = "team_player_name")
 	private String name;
 
-	@Column(name = "player_team", nullable = false)
+	@Column(name = "team_player_team")
 	private String team;
 
-	@Column(name = "player_role", nullable = false)
+	@Column(name = "team_player_role")
 	private String role;
 
-	@Column(name = "player_value", nullable = false)
+	@Column(name = "team_player_value", nullable = false)
 	private int value;
 
-	@Column(name = "player_run", nullable = false)
+	@Column(name = "team_player_run", nullable = false)
 	private int run;
 
-	@Column(name = "player_fours", nullable = false)
+	@Column(name = "team_player_fours", nullable = false)
 	private int fours;
 
-	@Column(name = "player_sixes", nullable = false)
+	@Column(name = "team_player_sixes", nullable = false)
 	private int sixes;
 
-	@Column(name = "player_wicket", nullable = false)
+	@Column(name = "team_player_wicket", nullable = false)
 	private int wicket;
 
-	@Column(name = "player_score", nullable = false)
+	@Column(name = "team_player_score", nullable = false)
 	private int score;
 
-	@Column(name = "player_percentage")
+	@Column(name = "team_player_percentage")
 	private String playerPercentage;
 
-	@Column(name = "player_profile")
+	@Column(name = "team_player_profile")
 	private String playerProfile;
 
-	@Column(name = "player_image")
+	@Column(name = "team_player_image")
 	private String playerImage;
 
-	@Column(name = "player_current_score", nullable = false)
+	@Column(name = "team_player_current_score", nullable = false)
 	private int currentScore;
+	
+	@Column(name = "team_player_active", nullable = false)
+	private int active;
+	
 
 	/**
 	 * @return the id
@@ -277,6 +281,20 @@ public class CFLPlayer {
 	 */
 	public void setCurrentScore(int currentScore) {
 		this.currentScore = currentScore;
+	}
+
+	/**
+	 * @return the active
+	 */
+	public int getActive() {
+		return active;
+	}
+
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(int active) {
+		this.active = active;
 	}
 
 }

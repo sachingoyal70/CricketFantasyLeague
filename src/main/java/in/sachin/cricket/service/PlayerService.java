@@ -45,5 +45,9 @@ public class PlayerService {
 		c.add(team);
 		return playerRepository.findAll();
 	}
+	
+	public CFLPlayer getPlayerInfo(String id) {
+		return playerRepository.findByPlayerId(Integer.parseInt(id));
+	}
 
 }

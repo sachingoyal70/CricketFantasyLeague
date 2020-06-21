@@ -3,14 +3,21 @@
  */
 package in.sachin.cricket.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
+import in.sachin.cricket.entity.CFLTeamPlayers;
 
 /**
  * @author sachingoyal
@@ -32,7 +39,7 @@ public class WelcomeController extends MasterController {
 		model.addAttribute("user", userService.getFirstName(email));
 		return "welcome";
 	}
-	
+
 	/**
 	 * This method is used to display the WCFL welcome page.
 	 * 
@@ -42,9 +49,41 @@ public class WelcomeController extends MasterController {
 	@RequestMapping(value = { "/welcome/chooseteam" }, method = RequestMethod.GET)
 	public String choseYourTeam(Model model, HttpServletRequest request) {
 		CFLTeam teamData = new CFLTeam();
-        model.addAttribute("playerList", playerService.fetchAllPlayers());
-        model.addAttribute("teamData", teamData);
+		model.addAttribute("playerList", playerService.fetchAllPlayers());
+		model.addAttribute("teamData", teamData);
 		return "selectTeam";
+	}
+
+	@RequestMapping(value = "/welcome/chooseteam", method = RequestMethod.POST)
+	public String postTeam(@Valid CFLTeam CFLTeam, BindingResult bindingResult, HttpServletRequest request,
+			Model model) {
+		String teamPlayers = CFLTeam.getTeamPlayers();
+		String[] teamPlayerList = teamPlayers.split(",");
+
+		List<CFLTeamPlayers> cflTeamPlayers = new ArrayList<CFLTeamPlayers>();
+
+		for (int i = 0; i < teamPlayerList.length; i++) {
+			CFLPlayer player = playerService.getPlayerInfo(teamPlayerList[i]);
+			CFLTeamPlayers cflTeamPlayer = new CFLTeamPlayers();
+			cflTeamPlayer.setPlayerId(player.getPlayerId());
+			cflTeamPlayer.setName(player.getName());
+			cflTeamPlayer.setTeam(player.getTeam());
+			cflTeamPlayer.setRole(player.getRole());
+			cflTeamPlayer.setValue(player.getValue());
+			cflTeamPlayer.setPlayerPercentage(player.getPlayerPercentage());
+			cflTeamPlayer.setPlayerImage(player.getPlayerImage());
+			cflTeamPlayer.setPlayerProfile(player.getPlayerProfile());
+			cflTeamPlayers.add(cflTeamPlayer);
+		}
+
+		CFLTeam.setTeamSelectedPlayers(cflTeamPlayers);
+		CFLTeam.setOwner(request.getUserPrincipal().getName());
+		teamService.postTeam(CFLTeam);
+
+		String email = request.getUserPrincipal().getName();
+		model.addAttribute("user", userService.getFirstName(email));
+		return "welcome";
+
 	}
 
 }
