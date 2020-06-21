@@ -28,15 +28,11 @@ public class TeamService {
 	}
 
 	public List<CFLTeam> fetchTopTeams() {
-		return teamRepository.findTopTeamPlayer();
-	}
-
-	public List<CFLTeam> fetchAllTeams() {
-		return teamRepository.findAll();
+		return teamRepository.findTopTeam();
 	}
 	
 	public List<CFLTeam> fetchAllActiveTeams() {
-		return teamRepository.findByTeamEnabled(1);
+		return teamRepository.findAllTeam();
 	}
 
 	public void postTeam(CFLTeam team) {

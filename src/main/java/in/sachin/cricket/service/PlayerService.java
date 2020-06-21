@@ -31,7 +31,7 @@ public class PlayerService {
 	}
 
 	public List<CFLPlayer> fetchAllPlayers() {
-		return playerRepository.findAll();
+		return playerRepository.findAllTeamPlayer();
 	}
 
 	public List<CFLPlayer> getPlayerInfo(List<Integer> id) {

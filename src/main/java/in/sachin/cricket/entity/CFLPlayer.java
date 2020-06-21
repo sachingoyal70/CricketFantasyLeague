@@ -278,5 +278,4 @@ public class CFLPlayer {
 	public void setCurrentScore(int currentScore) {
 		this.currentScore = currentScore;
 	}
-
 }
