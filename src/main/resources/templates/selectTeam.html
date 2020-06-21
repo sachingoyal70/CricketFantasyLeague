@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+	<title>Cricket Fantasy League  -  Welcome</title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
+
+<style type="text/css">
+a:hover, a:visited, a:link, a:active {
+	text-decoration: none;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/welcome">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header"> Welcome [[${user}]],</h1>
+				<ol class="breadcrumb">
+					<li><a href="/welcome">Welcome</a></li>
+					<li class="active">Home</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column -->
+			<div class="col-md-3">
+				<div class="list-group">
+					<h4 align="center">Manager Area</h4>
+					<p align="center"><a href="/welcome" class="list-group-item">Home</a></p>
+					<p align="center"><a href="/welcome/chooseteam" class="list-group-item">Choose Team</a></p>
+					<p align="center"><a href="/welcome/modifyTeam" class="list-group-item">Modify Team</a></p>
+					<p align="center"><a href="/welcome/teamLeaderboard" class="list-group-item">Leader Board</a></p>
+					<p align="center"><a href="/welcome/changePwd" class="list-group-item">Change Password</a></p>
+					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
+
+				</div>
+
+
+			</div>
+
+			<!-- Content Column -->
+			<div class="col-md-9">
+				<sf:form role="form" class="form form-vertical"
+					action="/welcome/chooseteam" id="teamSelectionForm"
+					method="post" th:object="${teamData}" data-toggle="validator">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 align="center">Select Your Team</h4>
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+
+
+							<!-- /.table-responsive -->
+							<div class="well">
+								<div id="selectedPlayers">Your selected players will be
+									displayed here.</div>
+								<div id="totalBudget" style="color: red">Total Budget Used
+									: $ 0</div>
+								<div id="totalBAT" style="color: red">BAT : 0</div>
+								<div id="totalBWL" style="color: red">BWL : 0</div>
+								<div id="totalWK" style="color: red">WK : 0</div>
+								<div id="totalALL" style="color: red">ALL : 0</div>
+								<div id="teamBalance" style="font-weight: bold">You can
+									not submit your team until you are not selected exactly 11
+									players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK)
+									in $ 21.</div>
+								<br>
+
+
+
+								<div class="row">
+									<div class="col-sm-7 form-group">
+										<div class="table-responsive">
+											<table class="table">
+												<tr>
+													<td><label>Team Name : </label></td>
+													<td><input type="text" class="form-control"
+															placeholder="Enter Team Name" th:field="*{teamName}"
+															required="true" data-error="Please enter your team name" />
+														<div class="help-block with-errors"></div></td>
+													<td><button id="teamSelectionButton" type="submit"
+															class="btn btn-default" disabled="disabled">Submit</button></td>
+
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="table-responsive">
+								<table class="display" cellspacing="0" width="100%" id="example">
+									<thead>
+										<tr>
+											<th><p align="center">Select</th>
+											<th><p align="center">#</th>
+											<th><p align="center">Player Name</th>
+											<th><p align="center">Team</th>
+											<th><p align="center">Role</th>
+											<th><p align="center">Value ($)</th>
+											<th><p align="center">Player Selection</th>
+
+										</tr>
+									</thead>
+									<tbody>										
+										<tr data-th-each="searchResult : ${playerList}" align="center">
+										
+												<td align="center"><input type="checkbox" th:field="*{teamPlayers}"
+														th:value="${searchResult.playerId}" /></td>
+												
+												<td><a th:href="@{searchResult.profileLink}" target="_blank"> <img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
+														
+												<td data-th-text="${searchResult.name}"></td>
+												<td data-th-text="${searchResult.team}"></td>
+												<td data-th-text="${searchResult.role}"></td>
+												<td data-th-text="${searchResult.value}"></td>
+												<td data-th-text="${searchResult.playerPercentage}"></td>
+											</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- /.panel-body -->
+					</div>
+				</sf:form>
+
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/js/validator.js}"></script>
+
+	<script>
+		$('#teamSelectionForm').validator();
+	</script>
+	
+	<script>
+	$(function() {
+		var oTable = $("#example").dataTable();
+		$('input[type="checkbox"]', oTable.fnGetNodes())
+				.bind(
+						'change',
+						function() {
+							var selectedPlayers = '';
+							var sum = 0;
+							var teamBalance = '';
+							var role = '';
+							var batmen = 0;
+							var bowler = 0;
+							var wicket = 0;
+							var allrounder = 0;
+							var enabledbutton = true;
+							var count = 0;
+							var totalBudget = '';
+							$(oTable.fnGetNodes()).filter(
+									':has(:checkbox:checked)').each(
+									function() {
+
+										role = $(this).find("td").eq(4).html();
+										selectedPlayers += $(this).find("td")
+												.eq(2).html()
+												+ '(' + role + ')' + ', ';
+										sum = sum
+												+ parseInt($(this).find("td")
+														.eq(5).html());
+
+										if (role == 'BAT') {
+											batmen = batmen + 1;
+										}
+										if (role == 'BWL') {
+											bowler = bowler + 1;
+										}
+										if (role == 'WK') {
+											wicket = wicket + 1;
+										}
+										if (role == 'ALL') {
+											allrounder = allrounder + 1;
+										}
+
+										count = count + 1;
+
+									});
+							if (selectedPlayers.length > 0) {
+								selectedPlayers = 'Your selected players are : '
+										+ selectedPlayers.substring(0,
+												selectedPlayers.length - 2);
+							} else {
+								selectedPlayers = 'Your selected players will be displayed here';
+							}
+
+							if (count != 11) {
+								enabledbutton = false;
+							}
+
+							if (sum < 22) {
+								totalBudget = 'Total Budget Used: $ ' + sum;
+							} else {
+								totalBudget = 'Total Budget Used: $ ' + sum
+										+ '(Exceed Limit) ';
+							}
+
+							if (batmen == 5 && bowler == 5 && wicket == 1
+									&& allrounder == 0 && sum < 22) {
+								teamBalance = 'You can submit your team.';
+								enabledbutton = true;
+							} else if (batmen == 4 && bowler == 4
+									&& wicket == 1 && allrounder == 2
+									&& sum < 22) {
+								teamBalance = 'You can submit your team.';
+								enabledbutton = true;
+							} else {
+								teamBalance = 'You can not submit your team until you are not selected exactly 11 players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK) in $ 21.';
+								enabledbutton = false;
+							}
+
+							if (enabledbutton == false) {
+								$("#teamSelectionButton").attr("disabled",
+										"true");
+							} else {
+								$('#teamSelectionButton')
+										.removeAttr('disabled');
+							}
+
+							$('#selectedPlayers').html(selectedPlayers);
+							$('#totalBudget').html(totalBudget);
+							$('#totalBAT').html('BAT : ' + batmen);
+							$('#totalBWL').html('BWL : ' + bowler);
+							$('#totalWK').html('WK : ' + wicket);
+							$('#totalALL').html('ALL : ' + allrounder);
+							$('#teamBalance').html(teamBalance);
+						});
+
+	});
+</script>
+
+<script>
+	$(document).ready(function() {
+		oTable = $('#example').dataTable();
+		$('#teamSelectionForm').submit(function() {
+			$(oTable.fnGetHiddenNodes()).find('input:checked').appendTo(this);
+		});
+
+	});
+
+	var oTable = $("#example").dataTable();
+
+	$('#example tbody').on(
+			'click',
+			'tr',
+			function() {
+				$(this).removeClass('selected');
+				$(oTable.fnGetNodes()).filter(':has(:checkbox:checked)').each(
+						function() {
+							$(this).addClass('selected');
+						});
+
+			});
+</script>
+
+<script type="text/javascript">
+	jQuery.fn.dataTableExt.oApi.fnGetHiddenNodes = function(settings) {
+		var nodes;
+		var display = jQuery('tbody tr', settings.nTable);
+
+		if (jQuery.fn.dataTable.versionCheck) {
+			// DataTables 1.10
+			var api = new jQuery.fn.dataTable.Api(settings);
+			nodes = api.rows().nodes().toArray();
+		} else {
+			// 1.9-
+			nodes = this.oApi._fnGetTrNodes(settings);
+		}
+
+		/* Remove nodes which are being displayed */
+		for (var i = 0; i < display.length; i++) {
+			var iIndex = jQuery.inArray(display[i], nodes);
+
+			if (iIndex != -1) {
+				nodes.splice(iIndex, 1);
+			}
+		}
+
+		return nodes;
+	};
+</script>
+
+</body>
+
+</html>

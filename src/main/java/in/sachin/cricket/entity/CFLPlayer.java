@@ -27,6 +27,9 @@ public class CFLPlayer {
 	@Column(name = "id")
 	private int id;
 
+	@Column(name = "player_id")
+	private int playerId;
+
 	@Column(name = "player_name")
 	private String name;
 
@@ -36,22 +39,22 @@ public class CFLPlayer {
 	@Column(name = "player_role")
 	private String role;
 
-	@Column(name = "player_value")
+	@Column(name = "player_value", nullable = false)
 	private int value;
 
-	@Column(name = "player_run")
+	@Column(name = "player_run", nullable = false)
 	private int run;
 
-	@Column(name = "player_fours")
+	@Column(name = "player_fours", nullable = false)
 	private int fours;
 
-	@Column(name = "player_sixes")
+	@Column(name = "player_sixes", nullable = false)
 	private int sixes;
 
-	@Column(name = "player_wicket")
+	@Column(name = "player_wicket", nullable = false)
 	private int wicket;
 
-	@Column(name = "player_score")
+	@Column(name = "player_score", nullable = false)
 	private int score;
 
 	@Column(name = "player_percentage")
@@ -63,7 +66,7 @@ public class CFLPlayer {
 	@Column(name = "player_image")
 	private String playerImage;
 
-	@Column(name = "player_current_score")
+	@Column(name = "player_current_score", nullable = false)
 	private int currentScore;
 
 	/**
@@ -78,6 +81,20 @@ public class CFLPlayer {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the playerId
+	 */
+	public int getPlayerId() {
+		return playerId;
+	}
+
+	/**
+	 * @param playerId the playerId to set
+	 */
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
 	}
 
 	/**

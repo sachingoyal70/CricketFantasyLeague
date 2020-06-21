@@ -43,7 +43,7 @@ public class PlayerService {
 
 		List<CFLPlayer> c = new ArrayList<CFLPlayer>();
 		c.add(team);
-		return c;
+		return playerRepository.findAll();
 	}
 
 }
