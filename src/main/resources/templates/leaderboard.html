@@ -136,7 +136,7 @@
 											<tr data-th-each="searchResult : ${teamLeaderboard}" align="center">
 												<td data-th-text="${searchResult.id}"></td>
 												<td data-th-text="${searchResult.teamName}"></td>
-												<td data-th-text="${searchResult.user.name}"></td>
+												<td data-th-text="${searchResult.user.name} + ' ' + ${searchResult.user.lastName}"></td>
 												<td data-th-text="${searchResult.user.location}"></td>
 												<td data-th-text="${searchResult.teamScore}"></td>
 												<td data-th-text="${searchResult.teamCurrentScore}"></td>

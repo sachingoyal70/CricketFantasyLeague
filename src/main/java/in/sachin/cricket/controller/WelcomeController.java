@@ -59,6 +59,7 @@ public class WelcomeController extends MasterController {
 			Model model) {
 		String teamPlayers = CFLTeam.getTeamPlayers();
 		String[] teamPlayerList = teamPlayers.split(",");
+		String email = request.getUserPrincipal().getName();
 
 		List<CFLTeamPlayers> cflTeamPlayers = new ArrayList<CFLTeamPlayers>();
 
@@ -77,10 +78,10 @@ public class WelcomeController extends MasterController {
 		}
 
 		CFLTeam.setTeamSelectedPlayers(cflTeamPlayers);
-		CFLTeam.setOwner(request.getUserPrincipal().getName());
+		CFLTeam.setOwner(email);
+		CFLTeam.setUser(userService.findUserByEmail(email));
 		teamService.postTeam(CFLTeam);
 
-		String email = request.getUserPrincipal().getName();
 		model.addAttribute("user", userService.getFirstName(email));
 		return "welcome";
 

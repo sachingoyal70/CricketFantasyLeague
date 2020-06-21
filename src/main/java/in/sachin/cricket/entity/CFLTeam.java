@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,6 +48,10 @@ public class CFLTeam {
 
 	@Transient
 	private String teamPlayers;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "team_user")
+	private User user;
 
 	@Column(name = "team_enabled", nullable = false)
 	private int teamEnabled;
@@ -73,6 +78,7 @@ public class CFLTeam {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_players")
 	private List<CFLTeamPlayers> teamSelectedPlayers;
+	
 
 	/**
 	 * @return the id
@@ -93,6 +99,20 @@ public class CFLTeam {
 	 */
 	public String getOwner() {
 		return owner;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	/**
