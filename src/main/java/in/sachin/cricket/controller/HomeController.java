@@ -116,7 +116,7 @@ public class HomeController extends MasterController {
 		} catch (Exception e) {
 			model.addAttribute("exp", "exp");
 		}
-		return "noticeBoard";
+		return "noticeboard";
 	}
 
 }
