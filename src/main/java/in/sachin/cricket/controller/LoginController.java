@@ -169,7 +169,7 @@ public class LoginController extends MasterController {
 		User userExists = userService.findUserByEmail(user.getEmail());
 
 		if (userExists == null) {
-			modelAndView.setViewName("signingerror");
+			modelAndView.setViewName("signingError");
 			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
 		} else if (user.getSigningError() == SecurityConstants.RESEND_ACTIVATION_LINK) {
 			userExists.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
