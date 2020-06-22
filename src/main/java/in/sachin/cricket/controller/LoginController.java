@@ -187,8 +187,6 @@ public class LoginController extends MasterController {
 				userService.updateUser(userExists);
 				modelAndView.addObject("message", loginregistermessageproperties.getAccountAlreadyActive());
 				modelAndView.setViewName("login");
-				emailservice.sendEmail(userExists, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
-						messageproperties.getAcctactivationBody());
 			}
 		} else {
 			String newPassword = CommonUtils.generateCommonTextPassword();
