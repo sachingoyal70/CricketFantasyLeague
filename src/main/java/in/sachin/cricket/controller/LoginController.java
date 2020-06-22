@@ -172,12 +172,24 @@ public class LoginController extends MasterController {
 			modelAndView.setViewName("signingError");
 			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
 		} else if (user.getSigningError() == SecurityConstants.RESEND_ACTIVATION_LINK) {
+			if(userExists.getActive()==0)
+			{
 			userExists.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
 			userService.updateUser(userExists);
 			modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
 			modelAndView.setViewName("login");
 			emailservice.sendEmail(userExists, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
 					messageproperties.getAcctactivationBody());
+			}
+			else
+			{
+				userExists.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
+				userService.updateUser(userExists);
+				modelAndView.addObject("message", loginregistermessageproperties.getAccountAlreadyActive());
+				modelAndView.setViewName("login");
+				emailservice.sendEmail(userExists, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
+						messageproperties.getAcctactivationBody());
+			}
 		} else {
 			String newPassword = CommonUtils.generateCommonTextPassword();
 			modelAndView.addObject("message", loginregistermessageproperties.getNewPasswordSentMessage());

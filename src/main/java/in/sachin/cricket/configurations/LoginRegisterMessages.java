@@ -22,6 +22,7 @@ public class LoginRegisterMessages {
 	private String securityAnsNotMatch;
 	private String incorrectSecAnswer;
 	private String passwordResetSuccess;
+	private String accountAlreadyActive;
 
 	/**
 	 * @return the inCorrectLoginMessage
@@ -203,6 +204,20 @@ public class LoginRegisterMessages {
 	 */
 	public void setPasswordResetSuccess(String passwordResetSuccess) {
 		this.passwordResetSuccess = passwordResetSuccess;
+	}
+
+	/**
+	 * @return the accountAlreadyActive
+	 */
+	public String getAccountAlreadyActive() {
+		return accountAlreadyActive;
+	}
+
+	/**
+	 * @param accountAlreadyActive the accountAlreadyActive to set
+	 */
+	public void setAccountAlreadyActive(String accountAlreadyActive) {
+		this.accountAlreadyActive = accountAlreadyActive;
 	}
 
 }
