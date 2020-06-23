@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.sachin.cricket.entity.User;
 import in.sachin.cricket.security.SecurityConstants;
+import in.sachin.cricket.util.CommonConstants;
 import in.sachin.cricket.util.CommonUtils;
 
 /**
@@ -172,21 +173,15 @@ public class LoginController extends MasterController {
 			modelAndView.setViewName("signingError");
 			modelAndView.addObject("message", loginregistermessageproperties.getUserNotFoundMessage());
 		} else if (user.getSigningError() == SecurityConstants.RESEND_ACTIVATION_LINK) {
-			if(userExists.getActive()==0)
-			{
-			userExists.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
-			userService.updateUser(userExists);
-			modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
 			modelAndView.setViewName("login");
-			emailservice.sendEmail(userExists, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
-					messageproperties.getAcctactivationBody());
-			}
-			else
-			{
+			if (userExists.getActive() == CommonConstants.ACCOUNT_INACTIVE) {
 				userExists.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
 				userService.updateUser(userExists);
+				modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
+				emailservice.sendEmail(userExists, messageproperties.getEmailFrom(),
+						messageproperties.getAcctactivationSubject(), messageproperties.getAcctactivationBody());
+			} else {
 				modelAndView.addObject("message", loginregistermessageproperties.getAccountAlreadyActive());
-				modelAndView.setViewName("login");
 			}
 		} else {
 			String newPassword = CommonUtils.generateCommonTextPassword();
