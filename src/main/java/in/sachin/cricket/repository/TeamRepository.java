@@ -25,7 +25,7 @@ public interface TeamRepository extends JpaRepository<CFLTeam, Integer> {
 
 	List<CFLTeam> findByTeamEnabled(int enabled);
 
-	@Query(value = "SELECT id,team_owner,team_name,team_user,team_enabled,team_score,team_current_score,team_modified,team_creation_date,team_last_modified, RANK() OVER(ORDER BY team_current_score DESC) ranks FROM cfl_team WHERE team_enabled = 1 ORDER BY ranks DESC LIMIT 5", nativeQuery = true)
+	@Query(value = "SELECT id,team_owner,team_name,team_user,team_enabled,team_score,team_current_score,team_modified,team_creation_date,team_last_modified, RANK() OVER(ORDER BY team_current_score DESC) ranks FROM cfl_team WHERE team_enabled = 1 ORDER BY ranks LIMIT 5", nativeQuery = true)
 	List<CFLTeam> findTopTeam();
 	
 	@Query(value = "SELECT id,team_owner,team_name,team_user,team_enabled,team_score,team_current_score,team_modified,team_creation_date,team_last_modified, RANK() OVER(ORDER BY team_current_score DESC) ranks FROM cfl_team WHERE team_enabled = 1 ORDER BY ranks", nativeQuery = true)
