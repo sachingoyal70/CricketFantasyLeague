@@ -13,4 +13,6 @@ public class CommonConstants {
 
 	public static final int TEAM_SELECTED = 1;
 
+	public static final int ACCOUNT_INACTIVE = 0;
+
 }
