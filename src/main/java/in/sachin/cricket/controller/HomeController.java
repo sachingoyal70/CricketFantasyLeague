@@ -99,6 +99,16 @@ public class HomeController extends MasterController {
 		return "testimonial";
 	}
 
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public String display403Page(Model model) {
+		return "403";
+	}
+
 	@RequestMapping(value = "/home/noticeboard", method = RequestMethod.GET)
 	public String displayNoticeBoard(Model model) {
 		try {
