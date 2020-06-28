@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.sachin.cricket.entity.CFLMessage;
 import in.sachin.cricket.entity.CFLNoticeBoard;
@@ -29,15 +30,9 @@ public class HomeController extends MasterController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public String displayHomePage(Model model) {
-		try {
-			model.addAttribute("playerLeaderboard", playerService.fetchTopPlayers());
-			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
-		} catch (Exception e) {
-			model.addAttribute("exp", "exp");
-		}
-
-		return "home";
+	public ModelAndView displayHomePage(Model model) {
+		ModelAndView homePage = new ModelAndView("redirect:/home");
+		return homePage;
 	}
 
 	/**
