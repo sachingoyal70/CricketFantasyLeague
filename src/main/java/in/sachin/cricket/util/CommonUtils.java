@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.text.RandomStringGenerator;
 
+import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.security.SecurityConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,6 +23,17 @@ public class CommonUtils {
 		}
 		return intList;
 
+	}
+
+	public static int getTeamStatus(CFLTeam team) {
+		int teamStatus = CommonConstants.TEAM_NOT_SELECTED;
+		if (team != null) {
+			teamStatus = CommonConstants.TEAM_SELECTED;
+			if (team.getTeamEnabled() == CommonConstants.TEAM_ENABLED) {
+				teamStatus = CommonConstants.TEAM_APPROVED;
+			}
+		}
+		return teamStatus;
 	}
 
 	public static boolean isTokenExpired(String token) {

@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	<title>Cricket Fantasy League  -  Welcome</title>
+	<title>Cricket Fantasy League  -  Old Players</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
@@ -61,7 +61,7 @@ a:hover, a:visited, a:link, a:active {
 				<h1 class="page-header"> Welcome [[${user}]],</h1>
 				<ol class="breadcrumb">
 					<li><a href="/welcome">Welcome</a></li>
-					<li class="active">Home</li>
+					<li class="active">Old Players</li>
 				</ol>
 			</div>
 		</div>
@@ -103,8 +103,7 @@ a:hover, a:visited, a:link, a:active {
 			
 			<div th:if= "${teamStatus == 1}"  class="col-md-9">
 				<div class="jumbotron">
-				<p align="center">Your current team score : NA</p>
-						<p align="center">Your current team rank : NA</p>
+	
 
 						<p align="center">Your team is still not activated. Please
 							contact below system administrator to get your team activated.</p>
@@ -138,16 +137,10 @@ a:hover, a:visited, a:link, a:active {
 				
 				<div th:if= "${teamStatus == 2}" class="col-md-9">
 				
-				<div class="jumbotron">
-				<p align="center">Your current team score : [[${teamDetails.teamCurrentScore}]]</p>
-						<p align="center">Your current team rank : [[${teamDetails.ranks}]]</p>
-					
-					</div>
-				
 				
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 align="center">[[${teamDetails.teamName}]]</h4>
+						<h4 align="center">[[${teamDetails.teamName}]] - Old Players</h4>
 					</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
@@ -164,13 +157,11 @@ a:hover, a:visited, a:link, a:active {
 										<th><p align="center">Fours</p></th>
 										<th><p align="center">Sixes</p></th>
 										<th><p align="center">Wickets</p></th>
-										<th><p align="center">Today's Points</p></th>
-										<th><p align="center">Current Points</p></th>
-
+										<th><p align="center">Total Team Points</p></th>
 									</tr>
 								</thead>
 								<tbody>
-										<tr th:if="${searchResult.inactive == 0}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
+										<tr th:if="${searchResult.inactive == 1}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
 											
 											<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
 											<td data-th-text="${searchResult.name}"></td>
@@ -180,7 +171,6 @@ a:hover, a:visited, a:link, a:active {
 											<td data-th-text="${searchResult.sixes}"></td>
 											<td data-th-text="${searchResult.wicket}"></td>
 											<td data-th-text="${searchResult.score}"></td>
-											<td data-th-text="${searchResult.currentScore}"></td>
 
 										</tr>
 
@@ -218,6 +208,15 @@ a:hover, a:visited, a:link, a:active {
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable({
+				"deferRender" : true,
+				"scrollX" : true			
+			});
+		});
+	</script>
+	
+	<script>
+		$(document).ready(function() {
+			$('#example1').DataTable({
 				"deferRender" : true,
 				"scrollX" : true			
 			});

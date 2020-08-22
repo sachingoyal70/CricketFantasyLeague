@@ -39,8 +39,47 @@ public class WelcomeController extends MasterController {
 	@RequestMapping(value = { "/welcome" }, method = RequestMethod.GET)
 	public String displayWelcomePage(Model model, HttpServletRequest request) {
 		String email = request.getUserPrincipal().getName();
-		model.addAttribute("user", userService.getFirstName(email));
+		CFLTeam team = teamService.getTeam(email);
+		int teamStatus = CommonUtils.getTeamStatus(team);
+
+		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED) {
+			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
+			model.addAttribute("user", userService.getFirstName(email));
+		} else if (teamStatus == CommonConstants.TEAM_SELECTED) {
+			model.addAttribute("user", userService.getFirstName(email));
+			model.addAttribute("teamStatus", CommonConstants.TEAM_SELECTED);
+		} else {
+			model.addAttribute("user", userService.getFirstName(email));
+			model.addAttribute("teamDetails", team);
+			model.addAttribute("teamStatus", CommonConstants.TEAM_APPROVED);
+		}
 		return "welcome";
+	}
+	
+	/**
+	 * This method is used to display the WCFL welcome page.
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/welcome/oldplayers" }, method = RequestMethod.GET)
+	public String displayOldPlayers(Model model, HttpServletRequest request) {
+		String email = request.getUserPrincipal().getName();
+		CFLTeam team = teamService.getTeam(email);
+		int teamStatus = CommonUtils.getTeamStatus(team);
+
+		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED) {
+			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
+			model.addAttribute("user", userService.getFirstName(email));
+		} else if (teamStatus == CommonConstants.TEAM_SELECTED) {
+			model.addAttribute("user", userService.getFirstName(email));
+			model.addAttribute("teamStatus", CommonConstants.TEAM_SELECTED);
+		} else {
+			model.addAttribute("user", userService.getFirstName(email));
+			model.addAttribute("teamDetails", team);
+			model.addAttribute("teamStatus", CommonConstants.TEAM_APPROVED);
+		}
+		return "substitutePlayers";
 	}
 
 	/**
@@ -53,7 +92,7 @@ public class WelcomeController extends MasterController {
 	public String choseYourTeam(Model model, HttpServletRequest request) {
 		String email = request.getUserPrincipal().getName();
 
-		int teamStatus = teamService.getTeamStatus(email);
+		int teamStatus = CommonUtils.getTeamStatus(teamService.getTeam(email));
 
 		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED) {
 			CFLTeam teamData = new CFLTeam();
