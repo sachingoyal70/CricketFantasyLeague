@@ -138,7 +138,7 @@
 									</tr>
 								</thead>
 								<tbody>
-										<tr th:if="${searchResult.active == 0}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
+										<tr th:if="${searchResult.inactive == 0}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
 											
 											<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
 											<td data-th-text="${searchResult.name}"></td>
@@ -191,7 +191,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:if="${searchResult.active == 1}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
+									<tr th:if="${searchResult.inactive == 1}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
 											<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
 											<td data-th-text="${searchResult.name}"></td>
 											<td data-th-text="${searchResult.team}"></td>
@@ -199,7 +199,7 @@
 											<td data-th-text="${searchResult.fours}"></td>
 											<td data-th-text="${searchResult.sixes}"></td>
 											<td data-th-text="${searchResult.wicket}"></td>
-											<td data-th-text="${searchResult.currentScore}"></td>
+											<td data-th-text="${searchResult.score}"></td>
 
 										</tr>
 

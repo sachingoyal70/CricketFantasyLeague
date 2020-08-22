@@ -69,8 +69,8 @@ public class CFLTeamPlayers {
 	@Column(name = "team_player_current_score", nullable = false)
 	private int currentScore;
 	
-	@Column(name = "team_player_active", nullable = false)
-	private int active;
+	@Column(name = "team_player_inactive", nullable = false)
+	private int inactive;
 	
 
 	/**
@@ -284,17 +284,17 @@ public class CFLTeamPlayers {
 	}
 
 	/**
-	 * @return the active
+	 * @return the inactive
 	 */
-	public int getActive() {
-		return active;
+	public int getInactive() {
+		return inactive;
 	}
 
 	/**
-	 * @param active the active to set
+	 * @param inactive the inactive to set
 	 */
-	public void setActive(int active) {
-		this.active = active;
+	public void setInactive(int inactive) {
+		this.inactive = inactive;
 	}
 
 }

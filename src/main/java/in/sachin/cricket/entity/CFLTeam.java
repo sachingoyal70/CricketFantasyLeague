@@ -40,7 +40,7 @@ public class CFLTeam {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "team_owner", nullable = false, unique = true)
+	@Column(name = "team_owner", nullable = false)
 	private String owner;
 
 	@Column(name = "team_name", nullable = false)
