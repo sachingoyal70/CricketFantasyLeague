@@ -19,6 +19,7 @@ import in.sachin.cricket.entity.CFLTeam;
 @Repository("teamRepository")
 public interface TeamRepository extends JpaRepository<CFLTeam, Integer> {
 
+	@Query(value = "SELECT id,team_owner,team_name,team_user,team_enabled,team_score,team_current_score,team_modified,team_creation_date,team_last_modified, RANK() OVER(ORDER BY team_current_score DESC) ranks FROM cfl_team WHERE team_enabled = 1 AND team_owner = ?1 ORDER BY ranks",nativeQuery = true)
 	CFLTeam findByOwner(String ownerEmail);
 
 	CFLTeam findById(int id);
