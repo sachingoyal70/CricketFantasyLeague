@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.text.RandomStringGenerator;
@@ -23,6 +24,10 @@ public class CommonUtils {
 		}
 		return intList;
 
+	}
+	
+	public static String getUniquekey() {
+		return UUID.randomUUID().toString();
 	}
 
 	public static int getTeamStatus(CFLTeam team) {

@@ -38,4 +38,7 @@ public class PlayerService {
 		return playerRepository.findAllTeamPlayer(id);
 	}
 
+	public void updatePlayers(List<CFLPlayer> cflPlayers) {
+		playerRepository.saveAll(cflPlayers);
+	}
 }

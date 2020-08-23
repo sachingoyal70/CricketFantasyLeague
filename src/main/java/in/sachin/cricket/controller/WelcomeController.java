@@ -9,9 +9,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +31,9 @@ import in.sachin.cricket.util.CommonUtils;
 
 @Controller
 public class WelcomeController extends MasterController {
+
+	@Value("${key}")
+	private String key;
 
 	/**
 	 * This method is used to display the WCFL welcome page.
@@ -55,7 +60,7 @@ public class WelcomeController extends MasterController {
 		}
 		return "welcome";
 	}
-	
+
 	/**
 	 * This method is used to display the WCFL welcome page.
 	 * 
@@ -141,6 +146,31 @@ public class WelcomeController extends MasterController {
 
 		return view;
 
+	}
+
+	/**
+	 * This method is used to display the WCFL welcome page.
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/welcome/activateteam/{ourKey}" }, method = RequestMethod.GET)
+	public ModelAndView activateTeam(@PathVariable("ourKey") String ourKey, Model model, HttpServletRequest request) {
+		String email = request.getUserPrincipal().getName();
+
+		CFLTeam team = teamService.getTeam(email);
+		int teamStatus = CommonUtils.getTeamStatus(team);
+
+		if (teamStatus == CommonConstants.TEAM_SELECTED && key.equals(ourKey)) {
+			team.setTeamEnabled(1);
+			teamService.postTeam(team);
+		}
+
+		ModelAndView view = new ModelAndView();
+
+		view.setViewName("redirect:/welcome");
+
+		return view;
 	}
 
 }

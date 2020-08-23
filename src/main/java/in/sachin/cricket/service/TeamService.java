@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.sachin.cricket.entity.CFLTeam;
+import in.sachin.cricket.repository.TeamPlayerRepository;
 import in.sachin.cricket.repository.TeamRepository;
 
 /**
@@ -21,9 +22,12 @@ public class TeamService {
 
 	private TeamRepository teamRepository;
 
+	private TeamPlayerRepository teamPlayerRepository;
+
 	@Autowired
-	public TeamService(TeamRepository teamRepository) {
+	public TeamService(TeamRepository teamRepository, TeamPlayerRepository teamPlayerRepository) {
 		this.teamRepository = teamRepository;
+		this.teamPlayerRepository = teamPlayerRepository;
 	}
 
 	public List<CFLTeam> fetchTopTeams() {
@@ -44,5 +48,13 @@ public class TeamService {
 
 	public CFLTeam getTeam(String user) {
 		return teamRepository.findByOwner(user);
+	}
+
+	public int teamCount() {
+		return teamRepository.getTeamCount();
+	}
+
+	public int getTeamPlayer(int playerId) {
+		return teamPlayerRepository.findByPlayerIdAndInactive(playerId, 0).size();
 	}
 }
