@@ -36,7 +36,7 @@ public class WelcomeController extends MasterController {
 	private String key;
 
 	/**
-	 * This method is used to display the WCFL welcome page.
+	 * This method is used to display the CFL welcome page.
 	 * 
 	 * @param model
 	 * @return
@@ -62,7 +62,7 @@ public class WelcomeController extends MasterController {
 	}
 
 	/**
-	 * This method is used to display the WCFL welcome page.
+	 * This method is used to display the CFL welcome page.
 	 * 
 	 * @param model
 	 * @return
@@ -85,7 +85,7 @@ public class WelcomeController extends MasterController {
 	}
 
 	/**
-	 * This method is used to display the WCFL welcome page.
+	 * This method is used to display the CFL welcome page.
 	 * 
 	 * @param model
 	 * @return
@@ -147,7 +147,7 @@ public class WelcomeController extends MasterController {
 	}
 
 	/**
-	 * This method is used to display the WCFL welcome page.
+	 * This method is used to display the CFL welcome page.
 	 * 
 	 * @param model
 	 * @return

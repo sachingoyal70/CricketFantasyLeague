@@ -30,7 +30,7 @@ import in.sachin.cricket.util.CommonUtils;
 public class TeamModifyController extends MasterController {
 
 	/**
-	 * This method is used to display the WCFL home page.
+	 * This method is used to display the CFL home page.
 	 * 
 	 * @param model
 	 * @return

@@ -24,7 +24,7 @@ import in.sachin.cricket.entity.CFLNoticeBoard;
 public class HomeController extends MasterController {
 
 	/**
-	 * This method is used to display the WCFL home page.
+	 * This method is used to display the CFL home page.
 	 * 
 	 * @param model
 	 * @return
@@ -36,7 +36,7 @@ public class HomeController extends MasterController {
 	}
 
 	/**
-	 * This method is used to display the WCFL home page.
+	 * This method is used to display the CFL home page.
 	 * 
 	 * @param model
 	 * @return
