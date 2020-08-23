@@ -28,6 +28,7 @@ public class UpdatePlayerPercentageSchedular extends MasterController {
 			double percentage = 0;
 			if (teamCount > 0) {
 				percentage = (playerCount * 100) / teamCount;
+				percentage = (double) Math.round(percentage * 100) / 100;
 			}
 			player.setPlayerPercentage(String.valueOf(percentage) + '%');
 		}
