@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+	<title>Cricket Fantasy League  -  Welcome</title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
+
+<style type="text/css">
+a:hover, a:visited, a:link, a:active {
+	text-decoration: none;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/welcome">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Team Modify</h1>
+				<ol class="breadcrumb">
+					<li><a href="/welcome">Welcome</a></li>
+					<li class="active">Team Modify</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column -->
+			<div class="col-md-3">
+				<div class="list-group">
+					<h4 align="center">Manager Area</h4>
+					<p align="center"><a href="/welcome" class="list-group-item">Home</a></p>
+					<p align="center"><a href="/welcome/chooseteam" class="list-group-item">Choose Team</a></p>
+					<p align="center"><a href="/welcome/modifyteam" class="list-group-item">Modify Team</a></p>
+					<p align="center"><a href="/welcome/oldplayers" class="list-group-item">Old Players</a></p>
+					<p align="center"><a href="/welcome/teamLeaderboard" class="list-group-item">Leader Board</a></p>
+					<p align="center"><a href="/welcome/changePwd" class="list-group-item">Change Password</a></p>
+					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
+
+				</div>
+
+
+			</div>
+
+			<div th:if= "${teamStatus == 0}" class="col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 align="center">Team Substitution</h4>
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<!-- /.table-responsive -->
+
+						<div class="jumbotron">
+
+								<p>Currently you are not eligible for team modification.
+									Below are some reasons :-</p>
+
+								<ul>
+									<li>You have already modified your team.
+									<li>Your team is not activated.
+									<li>You are no substitution left.
+									<li>Current date time does not lie in team modification time window. 
+								</ul>
+							
+						</div>
+
+
+					</div>
+					<!-- /.panel-body -->
+				</div>
+
+			</div>
+			
+			
+			<!-- Content Column -->
+			<div th:if= "${teamStatus == 2}" class="col-md-9">
+
+				<form role="form" class="form form-vertical" action="/welcome/modifyteam"
+					id="teamChangeForm" method="post" th:object="${teamData}" data-toggle="validator">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 align="center">Your Selected Team</h4>
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+
+
+							<div class="well">
+								<div style="font-weight: bold">Important Instruction :-</div>
+								<div>1. You can substitute 2 of their incumbent players
+									with new players.</div>
+								<div>2. You can use your total budget to replace the
+									players with same player role.</div>
+								<div>3. You will not loose any point for the replaced
+									players and new players will start earning from their future
+									matches only.</div>
+								<br>
+
+								<div>
+									<b>Select a maximum of two players from your team that you
+										want to replace.</b>
+								</div>
+
+							</div>
+
+
+							<div class="table-responsive">
+								<table class="table table-hover" id="example">
+									<thead>
+										<tr align="center">
+											<th><p align="center">Select</th>
+											<th><p align="center">#</th>
+
+											<th><p align="center">Player Name</p></th>
+											<th><p align="center">Team
+												<p></th>
+											<th><p align="center">Role
+												<p></th>
+											<th><p align="center">Value ($)</p></th>
+
+											<th><p align="center">Total Points</p></th>
+											<th><p align="center">Player Selection</p></th>
+
+										</tr>
+									</thead>
+									<tbody>
+											<tr th:if="${searchResult.inactive == 0}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
+											
+											<td align="center"><input type="checkbox" th:field="*{teamPlayers}"
+														th:value="${searchResult.playerId}" /></td>
+						
+											<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
+											<td data-th-text="${searchResult.name}"></td>
+											<td data-th-text="${searchResult.team}"></td>
+											<td data-th-text="${searchResult.role}"></td>
+											<td data-th-text="${searchResult.value}"></td>
+											<td data-th-text="${searchResult.score}"></td>
+											<td data-th-text="${searchResult.playerPercentage}"></td>
+
+										</tr>
+										
+
+									</tbody>
+								</table>
+							</div>
+							<button id="teamChangeButton" type="submit"
+								class="btn btn-default" disabled="disabled">Next</button>
+							<!-- /.table-responsive -->
+						</div>
+
+
+						<!-- /.panel-body -->
+					</div>
+
+
+				</form>
+
+			</div>
+						
+						
+			
+		</div>
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/js/validator.js}"></script>
+
+	<script>
+		$('#teamChangeForm').validator();
+	</script>
+	
+	<script>
+		$(document).ready(
+				function() {
+					oTable = $('#example').dataTable();
+					$('#teamChangeForm').submit(
+							function() {
+								$(oTable.fnGetHiddenNodes()).find(
+										'input:checked').appendTo(this);
+							});
+
+				});
+
+		var oTable = $("#example").dataTable();
+
+		$('#example tbody').on(
+				'click',
+				'tr',
+				function() {
+					$(this).removeClass('selected');
+					$(oTable.fnGetNodes()).filter(':has(:checkbox:checked)')
+							.each(function() {
+								$(this).addClass('selected');
+							});
+
+				});
+	</script>
+
+	<script type="text/javascript">
+		jQuery.fn.dataTableExt.oApi.fnGetHiddenNodes = function(settings) {
+			var nodes;
+			var display = jQuery('tbody tr', settings.nTable);
+
+			if (jQuery.fn.dataTable.versionCheck) {
+				// DataTables 1.10
+				var api = new jQuery.fn.dataTable.Api(settings);
+				nodes = api.rows().nodes().toArray();
+			} else {
+				// 1.9-
+				nodes = this.oApi._fnGetTrNodes(settings);
+			}
+
+			/* Remove nodes which are being displayed */
+			for (var i = 0; i < display.length; i++) {
+				var iIndex = jQuery.inArray(display[i], nodes);
+
+				if (iIndex != -1) {
+					nodes.splice(iIndex, 1);
+				}
+			}
+
+			return nodes;
+		};
+	</script>
+
+	<script>
+		$(function() {
+			var oTable = $("#example").dataTable();
+			$('input[type="checkbox"]', oTable.fnGetNodes()).bind(
+					'change',
+					function() {
+						var count = 0;
+						$(oTable.fnGetNodes())
+								.filter(':has(:checkbox:checked)').each(
+										function() {
+											count = count + 1;
+										});
+
+						if (count == 1 || count == 2) {
+							$('#teamChangeButton').removeAttr('disabled');
+						} else {
+							$("#teamChangeButton").attr("disabled", "true");
+						}
+
+					});
+
+		});
+	</script>
+
+<script type="text/javascript">
+			if ( window.history.replaceState ) {
+			window.history.replaceState( null, null, window.location.href );
+			}
+</script>
+
+</body>
+
+</html>
