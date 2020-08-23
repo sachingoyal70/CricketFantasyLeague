@@ -164,6 +164,9 @@ public class WelcomeController extends MasterController {
 		if (teamStatus == CommonConstants.TEAM_SELECTED && key.equals(ourKey)) {
 			team.setTeamEnabled(1);
 			teamService.postTeam(team);
+			emailservice.teamActivation(email, messageproperties.getEmailFrom(),
+					messageproperties.getActiveTeamSubject(), messageproperties.getAcctactivationBody());
+
 		}
 
 		ModelAndView view = new ModelAndView();

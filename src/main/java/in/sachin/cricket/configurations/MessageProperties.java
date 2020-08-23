@@ -14,6 +14,8 @@ public class MessageProperties {
 	private String AcctactivationBody;
 	private String forgetPasswordSubject;
 	private String forgetPasswordBody;
+	private String activeTeamSubject;
+	private String activeTeamBody;
 	/**
 	 * @return the emailFrom
 	 */
@@ -74,8 +76,29 @@ public class MessageProperties {
 	public void setForgetPasswordBody(String forgetPasswordBody) {
 		this.forgetPasswordBody = forgetPasswordBody;
 	}
-	
-	
-	
+	/**
+	 * @return the activeTeamSubject
+	 */
+	public String getActiveTeamSubject() {
+		return activeTeamSubject;
+	}
+	/**
+	 * @param activeTeamSubject the activeTeamSubject to set
+	 */
+	public void setActiveTeamSubject(String activeTeamSubject) {
+		this.activeTeamSubject = activeTeamSubject;
+	}
+	/**
+	 * @return the activeTeamBody
+	 */
+	public String getActiveTeamBody() {
+		return activeTeamBody;
+	}
+	/**
+	 * @param activeTeamBody the activeTeamBody to set
+	 */
+	public void setActiveTeamBody(String activeTeamBody) {
+		this.activeTeamBody = activeTeamBody;
+	}
 
 }
