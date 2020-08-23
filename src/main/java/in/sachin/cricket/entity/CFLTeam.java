@@ -48,7 +48,7 @@ public class CFLTeam {
 
 	@Transient
 	private int[] teamPlayers;
-	
+
 	@Transient
 	private int[] newPlayers;
 
@@ -83,6 +83,9 @@ public class CFLTeam {
 	private List<CFLTeamPlayers> teamSelectedPlayers;
 
 	private int ranks;
+
+	@Column(name = "team_substitution_left", nullable = false)
+	private int substution;
 
 	/**
 	 * @return the ranks
@@ -278,6 +281,20 @@ public class CFLTeam {
 	 */
 	public void setTeamSelectedPlayers(List<CFLTeamPlayers> teamSelectedPlayers) {
 		this.teamSelectedPlayers = teamSelectedPlayers;
+	}
+
+	/**
+	 * @return the substution
+	 */
+	public int getSubstution() {
+		return substution;
+	}
+
+	/**
+	 * @param substution the substution to set
+	 */
+	public void setSubstution(int substution) {
+		this.substution = substution;
 	}
 
 }

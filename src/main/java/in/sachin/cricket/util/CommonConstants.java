@@ -20,5 +20,8 @@ public class CommonConstants {
 	public static final int TEAM_ENABLED = 1;
 	
 	public static final int TOTAL_TEAM_BUDGET = 21;
+	
+	public static final int TEAM_TOTAL_SUBSTITUTION = 50;
+	
 
 }

@@ -43,10 +43,13 @@ public class TeamModifyController extends MasterController {
 
 		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED || teamStatus == CommonConstants.TEAM_SELECTED) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
+		} else if (team.getSubstution() <= 0) {
+			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else {
 			model.addAttribute("teamDetails", team);
 			CFLTeam teamData = new CFLTeam();
 			model.addAttribute("teamData", teamData);
+			model.addAttribute("sub", team.getSubstution());
 			model.addAttribute("teamStatus", CommonConstants.TEAM_APPROVED);
 		}
 		return "modifyTeam";
@@ -153,7 +156,7 @@ public class TeamModifyController extends MasterController {
 		}
 
 		if (newTeamPlayers != null && newTeamPlayers.size() > 0) {
-			
+
 			List<CFLPlayer> teamPlayerList = playerService.getPlayerInfo(newTeamPlayers);
 			for (int i = 0; i < teamPlayerList.size(); i++) {
 				CFLPlayer player = teamPlayerList.get(i);
@@ -170,6 +173,8 @@ public class TeamModifyController extends MasterController {
 			}
 
 		}
+
+		team.setSubstution(team.getSubstution() - teamPlayers.size());
 
 		teamService.postTeam(team);
 
