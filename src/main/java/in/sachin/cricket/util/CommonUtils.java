@@ -25,7 +25,16 @@ public class CommonUtils {
 		return intList;
 
 	}
-	
+
+	public static List<String> convertArrayToList(String[] array) {
+		List<String> intList = new ArrayList<String>(array.length);
+		for (String i : array) {
+			intList.add(i);
+		}
+		return intList;
+
+	}
+
 	public static String getUniquekey() {
 		return UUID.randomUUID().toString();
 	}

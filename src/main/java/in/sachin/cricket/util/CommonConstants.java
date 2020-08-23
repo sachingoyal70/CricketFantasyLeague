@@ -18,5 +18,7 @@ public class CommonConstants {
 	public static final int ACCOUNT_INACTIVE = 0;
 	
 	public static final int TEAM_ENABLED = 1;
+	
+	public static final int TOTAL_TEAM_BUDGET = 21;
 
 }

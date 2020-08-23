@@ -48,6 +48,9 @@ public class CFLTeam {
 
 	@Transient
 	private int[] teamPlayers;
+	
+	@Transient
+	private int[] newPlayers;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_user")
@@ -163,6 +166,20 @@ public class CFLTeam {
 	 */
 	public void setTeamPlayers(int[] teamPlayers) {
 		this.teamPlayers = teamPlayers;
+	}
+
+	/**
+	 * @return the newPlayers
+	 */
+	public int[] getNewPlayers() {
+		return newPlayers;
+	}
+
+	/**
+	 * @param newPlayers the newPlayers to set
+	 */
+	public void setNewPlayers(int[] newPlayers) {
+		this.newPlayers = newPlayers;
 	}
 
 	/**

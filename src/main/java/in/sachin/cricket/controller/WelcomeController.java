@@ -75,12 +75,9 @@ public class WelcomeController extends MasterController {
 
 		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
-			model.addAttribute("user", userService.getFirstName(email));
 		} else if (teamStatus == CommonConstants.TEAM_SELECTED) {
-			model.addAttribute("user", userService.getFirstName(email));
 			model.addAttribute("teamStatus", CommonConstants.TEAM_SELECTED);
 		} else {
-			model.addAttribute("user", userService.getFirstName(email));
 			model.addAttribute("teamDetails", team);
 			model.addAttribute("teamStatus", CommonConstants.TEAM_APPROVED);
 		}
@@ -165,7 +162,7 @@ public class WelcomeController extends MasterController {
 			team.setTeamEnabled(1);
 			teamService.postTeam(team);
 			emailservice.teamActivation(email, messageproperties.getEmailFrom(),
-					messageproperties.getActiveTeamSubject(), messageproperties.getAcctactivationBody());
+					messageproperties.getActiveTeamSubject(), messageproperties.getActiveTeamBody());
 
 		}
 

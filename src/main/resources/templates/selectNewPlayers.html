@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	<title>Cricket Fantasy League  -  Welcome</title>
+	<title>Cricket Fantasy League  -  Team Players Substitution</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
@@ -58,10 +58,10 @@ a:hover, a:visited, a:link, a:active {
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Team Selection</h1>
+				<h1 class="page-header">Team Modify</h1>
 				<ol class="breadcrumb">
 					<li><a href="/welcome">Welcome</a></li>
-					<li class="active">Team Selection</li>
+					<li class="active">Team Modify</li>
 				</ol>
 			</div>
 		</div>
@@ -85,16 +85,22 @@ a:hover, a:visited, a:link, a:active {
 
 
 			</div>
-
-			<!-- Content Column -->
-			<div th:if= "${teamStatus == 0}" class="col-md-9">
+			
+			
+			
+		
+				
+		<!-- Content Column -->
+			<div class="col-md-9">
 				<form role="form" class="form form-vertical"
-					action="/welcome/chooseteam" id="teamSelectionForm"
+					action="/welcome/updateteam" id="teamSelectionForm"
 					method="post" th:object="${teamData}" data-toggle="validator">
+
+					<input type="hidden" th:field="*{teamPlayers}"/>
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 align="center">Select Your Team</h4>
+							<h4 align="center">Select New Team Players</h4>
 						</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
@@ -102,40 +108,27 @@ a:hover, a:visited, a:link, a:active {
 
 							<!-- /.table-responsive -->
 							<div class="well">
-								<div id="selectedPlayers">Your selected players will be
-									displayed here.</div>
+								<div style="font-weight: bold">You are replacing
+									[[${replacedPlayerName}]].</div>
+								<br>
+								<div id="selectedPlayers">Your new selected players will
+									be displayed here.</div>
+									
 								<div id="totalBudget" style="color: red">Total Budget Used
 									: $ 0</div>
 								<div id="totalBAT" style="color: red">BAT : 0</div>
 								<div id="totalBWL" style="color: red">BWL : 0</div>
 								<div id="totalWK" style="color: red">WK : 0</div>
 								<div id="totalALL" style="color: red">ALL : 0</div>
+
+								<br>
 								<div id="teamBalance" style="font-weight: bold">You can
-									not submit your team until you are not selected exactly 11
-									players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK)
-									in $ 21.</div>
+									select [[${batsmen}]] BAT, [[${bowler}]] BWL, [[${allrounder}]] ALL and
+								 [[${wicketkeeper}]] WK in $ [[${totalBudget}]].</div>
 								<br>
 
-
-
-								<div class="row">
-									<div class="col-sm-7 form-group">
-										<div class="table-responsive">
-											<table class="table">
-												<tr>
-													<td><label>Team Name : </label></td>
-													<td><input type="text" class="form-control"
-															placeholder="Enter Team Name" th:field="*{teamName}"
-															required="true" data-error="Please enter your team name" />
-														<div class="help-block with-errors"></div></td>
-													<td><button id="teamSelectionButton" type="submit"
-															class="btn btn-default" disabled="disabled">Submit</button></td>
-
-												</tr>
-											</table>
-										</div>
-									</div>
-								</div>
+								<button id="teamSelectionButton" type="submit"
+									class="btn btn-default" disabled="disabled">Submit</button>
 
 							</div>
 
@@ -143,20 +136,20 @@ a:hover, a:visited, a:link, a:active {
 								<table class="display" cellspacing="0" width="100%" id="example">
 									<thead>
 										<tr>
-											<th><p align="center">Select</th>
-											<th><p align="center">#</th>
+											<th><p align="center">Select</p></th>
+											<th><p align="center">#</p></th>
 											<th><p align="center">Player Name</th>
-											<th><p align="center">Team</th>
-											<th><p align="center">Role</th>
-											<th><p align="center">Value ($)</th>
-											<th><p align="center">Player's Selection</th>
-
+											<th><p align="center">Team</p></th>
+											<th><p align="center">Role</p></th>
+											<th><p align="center">Value ($)</p></th>
+											<th><p align="center">Score</p></th>
+											<th><p align="center">Player Selection</p></th>
 										</tr>
 									</thead>
-									<tbody>										
+									<tbody>
 										<tr data-th-each="searchResult : ${playerList}" align="center">
 										
-												<td align="center"><input type="checkbox" th:field="*{teamPlayers}"
+												<td align="center"><input type="checkbox" th:field="*{newPlayers}"
 														th:value="${searchResult.playerId}" /></td>
 												
 												<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"> <img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
@@ -165,6 +158,7 @@ a:hover, a:visited, a:link, a:active {
 												<td data-th-text="${searchResult.team}"></td>
 												<td data-th-text="${searchResult.role}"></td>
 												<td data-th-text="${searchResult.value}"></td>
+												<td data-th-text="${searchResult.score}"></td>
 												<td data-th-text="${searchResult.playerPercentage}"></td>
 											</tr>
 									</tbody>
@@ -175,23 +169,8 @@ a:hover, a:visited, a:link, a:active {
 					</div>
 				</form>
 
-			</div>
-			
-			
-			<!-- Content Column -->
-			<div th:if= "${teamStatus == 1}" class="col-md-9">
-				<div class="jumbotron">
-
-
-						<p>We are happy to have you as a part of WCFL.</p>
-
-						<p>Please <a href="/welcome">Click Here</a> to view your selected team.</p>
-						
-						</div>
-			</div>
-			
-						
-						
+			</div>		
+		
 			
 		</div>
 		<!-- /.row -->
@@ -215,13 +194,15 @@ a:hover, a:visited, a:link, a:active {
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
 	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
-	<script th:src="@{/js/validator.js}"></script>
+	<script th:src="@{/resources/js/validator.js}"></script>
 
 	<script>
 		$('#teamSelectionForm').validator();
 	</script>
-	
-	<script>
+
+</body>
+
+<script>
 	$(function() {
 		var oTable = $("#example").dataTable();
 		$('input[type="checkbox"]', oTable.fnGetNodes())
@@ -238,6 +219,12 @@ a:hover, a:visited, a:link, a:active {
 							var allrounder = 0;
 							var enabledbutton = true;
 							var count = 0;
+							var totalPlayers = [[${totalPlayers}]];
+							var totalBatsmen = [[${batsmen}]];
+							var totalBowler = [[${bowler}]];
+							var totalall = [[${allrounder}]];
+							var totalwk = [[${wicketkeeper}]];
+							var totalavbudget = [[${totalBudget}]];
 							var totalBudget = '';
 							$(oTable.fnGetNodes()).filter(
 									':has(:checkbox:checked)').each(
@@ -267,36 +254,33 @@ a:hover, a:visited, a:link, a:active {
 										count = count + 1;
 
 									});
+							
+							
 							if (selectedPlayers.length > 0) {
-								selectedPlayers = 'Your selected players are : '
+								selectedPlayers = 'Your new selected players are : '
 										+ selectedPlayers.substring(0,
 												selectedPlayers.length - 2);
 							} else {
 								selectedPlayers = 'Your selected players will be displayed here';
 							}
 
-							if (count != 11) {
+							if (count != totalPlayers) {
 								enabledbutton = false;
 							}
 
-							if (sum < 22) {
+							if (sum <= totalavbudget) {
 								totalBudget = 'Total Budget Used: $ ' + sum;
 							} else {
 								totalBudget = 'Total Budget Used: $ ' + sum
 										+ '(Exceed Limit) ';
 							}
 
-							if (batmen == 5 && bowler == 5 && wicket == 1
-									&& allrounder == 0 && sum < 22) {
-								teamBalance = 'You can submit your team.';
+							if (batmen == totalBatsmen && bowler == totalBowler && wicket == totalwk
+									&& allrounder == totalall && sum <= totalavbudget) {
+								teamBalance = 'You can submit your new team.';
 								enabledbutton = true;
-							} else if (batmen == 4 && bowler == 4
-									&& wicket == 1 && allrounder == 2
-									&& sum < 22) {
-								teamBalance = 'You can submit your team.';
-								enabledbutton = true;
-							} else {
-								teamBalance = 'You can not submit your team until you are not selected exactly 11 players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK) in $ 21.';
+							}else {
+								teamBalance = 'You can select [[${batsmen}]] BAT, [[${bowler}]] BWL, [[${allrounder}]] ALL and 	[[${wicketkeeper}]] WK in $ [[${totalBudget}]].';
 								enabledbutton = false;
 							}
 
@@ -369,12 +353,6 @@ a:hover, a:visited, a:link, a:active {
 
 		return nodes;
 	};
-</script>
-
-<script type="text/javascript">
-			if ( window.history.replaceState ) {
-			window.history.replaceState( null, null, window.location.href );
-			}
 </script>
 
 </body>

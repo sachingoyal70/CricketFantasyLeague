@@ -38,7 +38,15 @@ public class PlayerService {
 		return playerRepository.findAllTeamPlayer(id);
 	}
 
+	public List<CFLPlayer> getPlayerInfo(List<Integer> id, List<String> role) {
+		return playerRepository.findAllTeamPlayerforModify(id, role);
+	}
+
 	public void updatePlayers(List<CFLPlayer> cflPlayers) {
 		playerRepository.saveAll(cflPlayers);
+	}
+
+	public CFLPlayer findByPlayerId(int id) {
+		return playerRepository.findByPlayerId(id);
 	}
 }
