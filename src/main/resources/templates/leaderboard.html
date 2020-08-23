@@ -129,6 +129,7 @@
 											<th><p align="center">Location</p></th>
 											<th><p align="center">Today's Points</p></th>
 											<th><p align="center">Current Points</p></th>
+											<th><p align="center">Substitution Left</p></th>
 											<th><p align="center">Team Details</p></th>
 										</tr>
 									</thead>
@@ -140,6 +141,7 @@
 												<td data-th-text="${searchResult.user.location}"></td>
 												<td data-th-text="${searchResult.teamScore}"></td>
 												<td data-th-text="${searchResult.teamCurrentScore}"></td>
+												<td data-th-text="${searchResult.substution}"></td>
 												<td><a
 													th:href="@{/home/teamDetails/__${searchResult.id}__}">Click
 														Here</a></td>

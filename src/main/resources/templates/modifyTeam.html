@@ -132,7 +132,7 @@ a:hover, a:visited, a:link, a:active {
 
 							<div class="well">
 								<div style="font-weight: bold">Important Instruction :-</div>
-								<div>1. You can substitute 2 of their incumbent players
+								<div>1. You can substitute [[${sub}]] of their incumbent players
 									with new players.</div>
 								<div>2. You can use your total budget to replace the
 									players with same player role.</div>
@@ -142,7 +142,7 @@ a:hover, a:visited, a:link, a:active {
 								<br>
 
 								<div>
-									<b>Select a maximum of two players from your team that you
+									<b>Select a maximum of [[${sub}]] players from your team that you
 										want to replace.</b>
 								</div>
 
@@ -299,7 +299,7 @@ a:hover, a:visited, a:link, a:active {
 											count = count + 1;
 										});
 
-						if (count == 1 || count == 2) {
+						if (count != 0 && count <= [[${sub}]]) {
 							$('#teamChangeButton').removeAttr('disabled');
 						} else {
 							$("#teamChangeButton").attr("disabled", "true");

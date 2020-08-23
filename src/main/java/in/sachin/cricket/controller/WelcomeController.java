@@ -135,6 +135,7 @@ public class WelcomeController extends MasterController {
 		CFLTeam.setTeamSelectedPlayers(cflTeamPlayers);
 		CFLTeam.setOwner(email);
 		CFLTeam.setUser(userService.findUserByEmail(email));
+		CFLTeam.setSubstution(CommonConstants.TEAM_TOTAL_SUBSTITUTION);
 		teamService.postTeam(CFLTeam);
 
 		ModelAndView view = new ModelAndView();
