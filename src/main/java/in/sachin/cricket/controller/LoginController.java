@@ -30,7 +30,7 @@ import in.sachin.cricket.util.CommonUtils;
 public class LoginController extends MasterController {
 
 	/**
-	 * This method is used to display the WCFL Registration page.
+	 * This method is used to display the CFL Registration page.
 	 * 
 	 * @param model
 	 * @return
