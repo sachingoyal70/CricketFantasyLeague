@@ -41,12 +41,12 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 
 	@Scheduled(fixedRate = 600000)
 	public void updateLiveData() {
-	//	WCFLMatchDataResponse data = getRestTemplate().getForObject(
-	//			"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
-	//			WCFLMatchDataResponse.class);
-	//	if (data != null) {
-	//		updateScores(data);
-	//	}
+		WCFLMatchDataResponse data = getRestTemplate().getForObject(
+				"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
+				WCFLMatchDataResponse.class);
+		if (data != null) {
+			updateScores(data);
+		}
 	}
 
 	/**
@@ -62,11 +62,11 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		List<CFLTeamPlayers> teamPlayers = teamService.findAllTeamPlayer(playerIds);
 
 		for (CFLPlayer player : players) {
+
 			if (scores.containsKey(player.getPlayerId())) {
 				int[] scoreArray = scores.get(player.getPlayerId());
 				int score = scoreArray[0] + scoreArray[1] + 2 * scoreArray[2] + 20 * scoreArray[3];
-				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] * 20 + scoreArray[3] / 3 * 25
-						+ scoreArray[5] * 20 + scoreArray[4];
+				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4];
 				player.setCurrentScore(player.getScore() + score + bonusPoints);
 				player.setTodayScore(score + bonusPoints);
 			}
@@ -77,14 +77,13 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 			if (scores.containsKey(player.getPlayerId()) && player.getInactive() == 0) {
 				int[] scoreArray = scores.get(player.getPlayerId());
 				int score = scoreArray[0] + scoreArray[1] + 2 * scoreArray[2] + 20 * scoreArray[3];
-				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] * 20 + scoreArray[3] / 3 * 25
-						+ scoreArray[5] * 20 + scoreArray[4];
+				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4];
 				player.setCurrentScore(player.getScore() + score + bonusPoints);
 				player.setTodayScore(score + bonusPoints);
 			}
 		}
 
-		teamService.savePlayerList(teamPlayers);
+		teamService.updatePlayerList(teamPlayers);
 
 	}
 
