@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.sachin.cricket.entity.CFLTeam;
+import in.sachin.cricket.entity.CFLTeamPlayers;
 import in.sachin.cricket.repository.TeamPlayerRepository;
 import in.sachin.cricket.repository.TeamRepository;
 
@@ -56,5 +57,13 @@ public class TeamService {
 
 	public int getTeamPlayer(int playerId) {
 		return teamPlayerRepository.findByPlayerIdAndInactive(playerId, 0).size();
+	}
+
+	public List<CFLTeamPlayers> findAllTeamPlayer(List<Integer> ids) {
+		return teamPlayerRepository.findAllTeamPlayer(ids);
+	}
+
+	public void savePlayerList(List<CFLTeamPlayers> playerList) {
+		teamPlayerRepository.saveAll(playerList);
 	}
 }

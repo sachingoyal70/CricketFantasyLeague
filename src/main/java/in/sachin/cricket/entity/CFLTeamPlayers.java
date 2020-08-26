@@ -57,9 +57,6 @@ public class CFLTeamPlayers {
 	@Column(name = "team_player_score", nullable = false)
 	private int score;
 
-	@Column(name = "team_player_percentage")
-	private String playerPercentage;
-
 	@Column(name = "team_player_profile")
 	private String playerProfile;
 
@@ -68,10 +65,15 @@ public class CFLTeamPlayers {
 
 	@Column(name = "team_player_current_score", nullable = false)
 	private int currentScore;
-	
+
+	@Column(name = "team_player_today_score", nullable = false)
+	private int todayScore;
+
+	@Column(name = "team_player_bonus_score", nullable = false)
+	private int bonusScore;
+
 	@Column(name = "team_player_inactive", nullable = false)
 	private int inactive;
-	
 
 	/**
 	 * @return the id
@@ -228,20 +230,6 @@ public class CFLTeamPlayers {
 	}
 
 	/**
-	 * @return the playerPercentage
-	 */
-	public String getPlayerPercentage() {
-		return playerPercentage;
-	}
-
-	/**
-	 * @param playerPercentage the playerPercentage to set
-	 */
-	public void setPlayerPercentage(String playerPercentage) {
-		this.playerPercentage = playerPercentage;
-	}
-
-	/**
 	 * @return the playerProfile
 	 */
 	public String getPlayerProfile() {
@@ -284,6 +272,20 @@ public class CFLTeamPlayers {
 	}
 
 	/**
+	 * @return the todayScore
+	 */
+	public int getTodayScore() {
+		return todayScore;
+	}
+
+	/**
+	 * @param todayScore the todayScore to set
+	 */
+	public void setTodayScore(int todayScore) {
+		this.todayScore = todayScore;
+	}
+
+	/**
 	 * @return the inactive
 	 */
 	public int getInactive() {
@@ -295,6 +297,20 @@ public class CFLTeamPlayers {
 	 */
 	public void setInactive(int inactive) {
 		this.inactive = inactive;
+	}
+
+	/**
+	 * @return the bonusScore
+	 */
+	public int getBonusScore() {
+		return bonusScore;
+	}
+
+	/**
+	 * @param bonusScore the bonusScore to set
+	 */
+	public void setBonusScore(int bonusScore) {
+		this.bonusScore = bonusScore;
 	}
 
 }
