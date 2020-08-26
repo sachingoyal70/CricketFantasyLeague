@@ -63,7 +63,7 @@ public class TeamService {
 		return teamPlayerRepository.findAllTeamPlayer(ids);
 	}
 
-	public void savePlayerList(List<CFLTeamPlayers> playerList) {
+	public void updatePlayerList(List<CFLTeamPlayers> playerList) {
 		teamPlayerRepository.saveAll(playerList);
 	}
 }
