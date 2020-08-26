@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import in.sachin.cricket.controller.MasterController;
 import in.sachin.cricket.entity.CFLPlayer;
+import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
 import in.sachin.cricket.scoreupdate.modal.Batting;
 import in.sachin.cricket.scoreupdate.modal.Bowling;
@@ -41,12 +42,12 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 
 	@Scheduled(fixedRate = 600000)
 	public void updateLiveData() {
-	//	WCFLMatchDataResponse data = getRestTemplate().getForObject(
-	//			"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
-	//			WCFLMatchDataResponse.class);
-	//	if (data != null) {
-	//		updateScores(data);
-	//	}
+//		WCFLMatchDataResponse data = getRestTemplate().getForObject(
+		//			"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
+		//			WCFLMatchDataResponse.class);
+		//	if (data != null) {
+		//		updateScores(data);
+		//	}
 	}
 
 	/**
@@ -95,6 +96,19 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		}
 
 		teamService.updatePlayerList(teamPlayers);
+
+		List<CFLTeam> cflTeam = teamService.getAllTeams();
+
+		for (CFLTeam team : cflTeam) {
+			List<CFLTeamPlayers> player = team.getTeamSelectedPlayers();
+			int currentScore = 0;
+			for (CFLTeamPlayers teamPlayer : player) {
+				currentScore = currentScore + teamPlayer.getCurrentScore();
+			}
+			team.setTeamCurrentScore(currentScore);
+		}
+
+		teamService.updateTeamsScore(cflTeam);
 
 	}
 

@@ -66,4 +66,12 @@ public class TeamService {
 	public void updatePlayerList(List<CFLTeamPlayers> playerList) {
 		teamPlayerRepository.saveAll(playerList);
 	}
+
+	public List<CFLTeam> getAllTeams() {
+		return teamRepository.findAll();
+	}
+
+	public void updateTeamsScore(List<CFLTeam> teams) {
+		teamRepository.saveAll(teams);
+	}
 }
