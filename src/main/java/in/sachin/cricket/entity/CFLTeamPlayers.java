@@ -75,6 +75,21 @@ public class CFLTeamPlayers {
 	@Column(name = "team_player_inactive", nullable = false)
 	private int inactive;
 
+	@Column(name = "team_current_player_run", nullable = false)
+	private int currentRun;
+
+	@Column(name = "team_current_player_fours", nullable = false)
+	private int currentFours;
+
+	@Column(name = "team_current_player_sixes", nullable = false)
+	private int currentSixes;
+
+	@Column(name = "team_current_player_wicket", nullable = false)
+	private int currentWicket;
+
+	@Column(name = "team_current_player_bonus_score", nullable = false)
+	private int currentBonusScore;
+
 	/**
 	 * @return the id
 	 */
@@ -311,6 +326,76 @@ public class CFLTeamPlayers {
 	 */
 	public void setBonusScore(int bonusScore) {
 		this.bonusScore = bonusScore;
+	}
+
+	/**
+	 * @return the currentRun
+	 */
+	public int getCurrentRun() {
+		return currentRun;
+	}
+
+	/**
+	 * @param currentRun the currentRun to set
+	 */
+	public void setCurrentRun(int currentRun) {
+		this.currentRun = currentRun;
+	}
+
+	/**
+	 * @return the currentFours
+	 */
+	public int getCurrentFours() {
+		return currentFours;
+	}
+
+	/**
+	 * @param currentFours the currentFours to set
+	 */
+	public void setCurrentFours(int currentFours) {
+		this.currentFours = currentFours;
+	}
+
+	/**
+	 * @return the currentSixes
+	 */
+	public int getCurrentSixes() {
+		return currentSixes;
+	}
+
+	/**
+	 * @param currentSixes the currentSixes to set
+	 */
+	public void setCurrentSixes(int currentSixes) {
+		this.currentSixes = currentSixes;
+	}
+
+	/**
+	 * @return the currentWicket
+	 */
+	public int getCurrentWicket() {
+		return currentWicket;
+	}
+
+	/**
+	 * @param currentWicket the currentWicket to set
+	 */
+	public void setCurrentWicket(int currentWicket) {
+		this.currentWicket = currentWicket;
+	}
+
+	/**
+	 * @return the currentBonusScore
+	 */
+	public int getCurrentBonusScore() {
+		return currentBonusScore;
+	}
+
+	/**
+	 * @param currentBonusScore the currentBonusScore to set
+	 */
+	public void setCurrentBonusScore(int currentBonusScore) {
+		this.currentBonusScore = currentBonusScore;
 	}
 
 }
