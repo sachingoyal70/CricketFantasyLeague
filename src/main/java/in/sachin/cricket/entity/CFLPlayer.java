@@ -69,6 +69,12 @@ public class CFLPlayer {
 	@Column(name = "player_current_score", nullable = false)
 	private int currentScore;
 
+	@Column(name = "player_today_score", nullable = false)
+	private int todayScore;
+
+	@Column(name = "player_bonus_score", nullable = false)
+	private int bonusScore;
+
 	private int ranks;
 
 	/**
@@ -282,6 +288,20 @@ public class CFLPlayer {
 	}
 
 	/**
+	 * @return the todayScore
+	 */
+	public int getTodayScore() {
+		return todayScore;
+	}
+
+	/**
+	 * @param todayScore the todayScore to set
+	 */
+	public void setTodayScore(int todayScore) {
+		this.todayScore = todayScore;
+	}
+
+	/**
 	 * @return the currentScore
 	 */
 	public int getCurrentScore() {
@@ -294,4 +314,19 @@ public class CFLPlayer {
 	public void setCurrentScore(int currentScore) {
 		this.currentScore = currentScore;
 	}
+
+	/**
+	 * @return the bonusScore
+	 */
+	public int getBonusScore() {
+		return bonusScore;
+	}
+
+	/**
+	 * @param bonusScore the bonusScore to set
+	 */
+	public void setBonusScore(int bonusScore) {
+		this.bonusScore = bonusScore;
+	}
+
 }

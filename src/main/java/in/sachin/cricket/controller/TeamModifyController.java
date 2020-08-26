@@ -166,7 +166,6 @@ public class TeamModifyController extends MasterController {
 				cflTeamPlayer.setTeam(player.getTeam());
 				cflTeamPlayer.setRole(player.getRole());
 				cflTeamPlayer.setValue(player.getValue());
-				cflTeamPlayer.setPlayerPercentage(player.getPlayerPercentage());
 				cflTeamPlayer.setPlayerImage(player.getPlayerImage());
 				cflTeamPlayer.setPlayerProfile(player.getPlayerProfile());
 				team.getTeamSelectedPlayers().add(cflTeamPlayer);
