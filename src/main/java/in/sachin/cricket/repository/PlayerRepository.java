@@ -25,10 +25,10 @@ public interface PlayerRepository extends JpaRepository<CFLPlayer, Integer> {
 	@Query(value = "SELECT * FROM cfl_player WHERE player_id in (:ids)", nativeQuery = true)
 	List<CFLPlayer> findAllTeamPlayer(@Param("ids") List<Integer> id);
 
-	@Query(value = "SELECT id,player_id,player_name,player_team,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score,player_today_score,player_bonus_score, RANK() OVER(ORDER BY player_current_score DESC) ranks FROM cfl_player ORDER BY ranks LIMIT 5", nativeQuery = true)
+	@Query(value = "SELECT id,player_id,player_name,player_team,player_current_run,player_current_fours,player_current_sixes,player_current_wicket,player_current_bonus_score,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score,player_today_score,player_bonus_score, RANK() OVER(ORDER BY player_current_score DESC) ranks FROM cfl_player ORDER BY ranks LIMIT 5", nativeQuery = true)
 	List<CFLPlayer> findTopTeamPlayer();
 
-	@Query(value = "SELECT id,player_id,player_name,player_team,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score,player_today_score,player_bonus_score, RANK() OVER(ORDER BY player_current_score DESC) ranks FROM cfl_player ORDER BY ranks", nativeQuery = true)
+	@Query(value = "SELECT id,player_id,player_name,player_team,player_current_run,player_current_fours,player_current_sixes,player_current_wicket,player_current_bonus_score,player_role,player_value,player_run,player_fours,player_sixes,player_wicket,player_score,player_percentage,player_profile,player_image,player_current_score,player_today_score,player_bonus_score, RANK() OVER(ORDER BY player_current_score DESC) ranks FROM cfl_player ORDER BY ranks", nativeQuery = true)
 	List<CFLPlayer> findAllTeamPlayer();
 
 	@Query(value = "SELECT * FROM cfl_player WHERE player_id not in (:ids) and player_role in (:roles)", nativeQuery = true)

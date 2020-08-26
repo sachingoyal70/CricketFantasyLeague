@@ -69,6 +69,12 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4];
 				player.setCurrentScore(player.getScore() + score + bonusPoints);
 				player.setTodayScore(score + bonusPoints);
+				player.setCurrentRun(player.getRun() + scoreArray[0]);
+				player.setCurrentFours(player.getFours() + scoreArray[1]);
+				player.setCurrentSixes(player.getSixes() + scoreArray[2]);
+				player.setCurrentWicket(player.getWicket() + scoreArray[3]);
+				player.setCurrentBonusScore(player.getBonusScore() + bonusPoints);
+
 			}
 		}
 		playerService.updatePlayers(players);
@@ -80,6 +86,11 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4];
 				player.setCurrentScore(player.getScore() + score + bonusPoints);
 				player.setTodayScore(score + bonusPoints);
+				player.setCurrentRun(player.getRun() + scoreArray[0]);
+				player.setCurrentFours(player.getFours() + scoreArray[1]);
+				player.setCurrentSixes(player.getSixes() + scoreArray[2]);
+				player.setCurrentWicket(player.getWicket() + scoreArray[3]);
+				player.setCurrentBonusScore(player.getBonusScore() + bonusPoints);
 			}
 		}
 
