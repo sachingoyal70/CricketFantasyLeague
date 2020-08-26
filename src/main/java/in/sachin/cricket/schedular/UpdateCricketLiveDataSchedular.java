@@ -41,12 +41,12 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 
 	@Scheduled(fixedRate = 600000)
 	public void updateLiveData() {
-		WCFLMatchDataResponse data = getRestTemplate().getForObject(
-				"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
-				WCFLMatchDataResponse.class);
-		if (data != null) {
-			updateScores(data);
-		}
+	//	WCFLMatchDataResponse data = getRestTemplate().getForObject(
+	//			"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
+	//			WCFLMatchDataResponse.class);
+	//	if (data != null) {
+	//		updateScores(data);
+	//	}
 	}
 
 	/**
