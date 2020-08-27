@@ -46,12 +46,12 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		// "https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
 		// WCFLMatchDataResponse.class);
 
-//		WCFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
-//				WCFLMatchDataResponse.class);
+		WCFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
+				WCFLMatchDataResponse.class);
 
-//		if (data != null) {
-//			updateScores(data);
-//		}
+		if (data != null && data.getData() != null && data.getData().getMatchStarted()) {
+			updateScores(data);
+		}
 	}
 
 	/**
