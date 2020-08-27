@@ -18,7 +18,7 @@ import in.sachin.cricket.entity.CFLPlayer;
 @Component
 public class UpdatePlayerPercentageSchedular extends MasterController {
 
-	@Scheduled(fixedRate = 600000)
+	@Scheduled(cron = "0 0/15 * * * ?")
 	public void scheduleTaskWithFixedRate() {
 		List<CFLPlayer> players = playerService.fetchAllPlayers();
 		int teamCount = teamService.teamCount();
