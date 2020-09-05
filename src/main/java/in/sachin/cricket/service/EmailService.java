@@ -77,5 +77,22 @@ public class EmailService {
 		}
 
 	}
+	
+	/**
+	 * This method will send compose and send the message
+	 */
+	public void testJob(String email, String emailFrom, String subject, String body) {
+		MimeMessage message = mailSender.createMimeMessage();
+		try {
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			message.setFrom(new InternetAddress(emailFrom, "CFL Admin"));
+			message.setSubject(subject);
+			message.setContent(body, "text/html");
+			mailSender.send(message);
+		} catch (Exception e) {
+
+		}
+
+	}
 
 }

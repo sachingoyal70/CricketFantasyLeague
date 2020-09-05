@@ -18,7 +18,8 @@ public class UpdateCricketScoreSchedular extends MasterController {
 	
 	@Scheduled(cron = "0 00 06 * * ?")
 	public void updateMatchScoreData() {
-		System.out.println("updateMatchScoreData()");
+		emailservice.testJob("sachingoyal70@gmail.com", messageproperties.getEmailFrom(),
+				"Run updateMatchScoreData()","Run updateMatchScoreData()");
 	}
 
 }
