@@ -45,7 +45,7 @@ public class TeamModifyController extends MasterController {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else if (team.getSubstution() <= 0) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
-		} else if (!CommonUtils.isValidateModificationDate()) {
+		} else if (!CommonUtils.validateDate() || !CommonUtils.isValidateModificationDate()) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else {
 			model.addAttribute("teamDetails", team);
@@ -103,7 +103,6 @@ public class TeamModifyController extends MasterController {
 
 		int totalTeamValue = CommonConstants.TOTAL_TEAM_BUDGET;
 		for (CFLTeamPlayers player : team.getTeamSelectedPlayers()) {
-
 			if (player.getInactive() == 0) {
 				teamPlayers.add(player.getPlayerId());
 				totalTeamValue = totalTeamValue - player.getValue();
