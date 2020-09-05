@@ -19,7 +19,12 @@ import in.sachin.cricket.entity.CFLPlayer;
 public class UpdatePlayerPercentageSchedular extends MasterController {
 
 	@Scheduled(cron = "0 0/15 * * * ?")
-	public void scheduleTaskWithFixedRate() {
+	public void updatePlayerPercentage() {
+		
+		emailservice.testJob("sachingoyal70@gmail.com", messageproperties.getEmailFrom(),
+				"Run updatePlayerPercentage()","Run updatePlayerPercentage()");
+		
+		
 		List<CFLPlayer> players = playerService.fetchAllPlayers();
 		int teamCount = teamService.teamCount();
 

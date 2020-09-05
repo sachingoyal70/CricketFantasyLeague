@@ -40,8 +40,12 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		return restTemplate;
 	}
 
-	@Scheduled(fixedRate = 600000)
+	@Scheduled(cron = "0 0/15 16-23 * * ?")
 	public void updateLiveData() {
+		
+		emailservice.testJob("sachingoyal70@gmail.com", messageproperties.getEmailFrom(),
+				"Run updateLiveData()","Run updateLiveData()");
+		
 		// WCFLMatchDataResponse data = getRestTemplate().getForObject(
 		// "https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
 		// WCFLMatchDataResponse.class);
