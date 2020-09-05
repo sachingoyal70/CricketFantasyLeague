@@ -173,7 +173,9 @@ public class TeamModifyController extends MasterController {
 
 		}
 
-		team.setSubstution(team.getSubstution() - teamPlayers.size());
+		if (!CommonUtils.validateDate()) {
+			team.setSubstution(team.getSubstution() - teamPlayers.size());
+		}
 
 		teamService.postTeam(team);
 

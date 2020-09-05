@@ -1,9 +1,12 @@
 package in.sachin.cricket.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -126,6 +129,60 @@ public class CommonUtils {
 		array[0] = Character.toUpperCase(array[0]);
 		// Return string.
 		return new String(array);
+	}
+
+	public static boolean validateDate() {
+		boolean isValid = false;
+
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Date cflStartDate = sdf.parse(CommonConstants.CFL_2020_START_DATE);
+
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+			sd.setTimeZone(TimeZone.getTimeZone("IST"));
+
+			Date currentDate = sdf.parse(sd.format(new Date()));
+
+			if (currentDate.before(cflStartDate)) {
+				isValid = true;
+			} else if (currentDate.equals(cflStartDate) && isModificationAllowed()) {
+				isValid = true;
+			} else {
+				isValid = false;
+			}
+		} catch (Exception e) {
+
+		}
+
+		return isValid;
+	}
+
+	public static boolean isModificationAllowed() throws ParseException {
+
+		boolean valid = false;
+
+		SimpleDateFormat sd = new SimpleDateFormat("HH:mm:ss");
+		sd.setTimeZone(TimeZone.getTimeZone("IST"));
+
+		Date date = new Date();
+
+		// Start Time
+		Date inTime = new SimpleDateFormat("HH:mm:ss").parse(CommonConstants.TEAM_REGISTRATION_CLOSE_TIME);
+
+		// Current Time
+		Date checkTime = new SimpleDateFormat("HH:mm:ss").parse(sd.format(date));
+
+		if (checkTime.before(inTime)) {
+			valid = true;
+		}
+
+		return valid;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(validateDate());
+
 	}
 
 }
