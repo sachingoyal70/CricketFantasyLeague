@@ -46,15 +46,16 @@ public class WelcomeController extends MasterController {
 		String email = request.getUserPrincipal().getName();
 		CFLTeam team = teamService.getTeam(email);
 		int teamStatus = CommonUtils.getTeamStatus(team);
-
+		model.addAttribute("user", userService.getFirstName(email));
 		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
-			model.addAttribute("user", userService.getFirstName(email));
 		} else if (teamStatus == CommonConstants.TEAM_SELECTED) {
-			model.addAttribute("user", userService.getFirstName(email));
-			model.addAttribute("teamStatus", CommonConstants.TEAM_SELECTED);
+			if (CommonUtils.validateDate()) {
+				model.addAttribute("teamStatus", CommonConstants.TEAM_SELECTED);
+			} else {
+				model.addAttribute("teamStatus", CommonConstants.REGISTRATION_CLOSED);
+			}
 		} else {
-			model.addAttribute("user", userService.getFirstName(email));
 			model.addAttribute("teamDetails", team);
 			model.addAttribute("teamStatus", CommonConstants.TEAM_APPROVED);
 		}
