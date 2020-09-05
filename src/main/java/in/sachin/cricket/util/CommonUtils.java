@@ -137,7 +137,7 @@ public class CommonUtils {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-			Date cflStartDate = sdf.parse(CommonConstants.CFL_2020_START_DATE);
+			Date cflStartDate = sdf.parse(CommonConstants.TEAM_REGISTRATION_CLOSE_DATE);
 
 			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 			sd.setTimeZone(TimeZone.getTimeZone("IST"));
@@ -180,9 +180,56 @@ public class CommonUtils {
 		return valid;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(validateDate());
+	public static boolean isValidateModificationDate() {
+		boolean isValid = false;
 
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Date cflStartDate = sdf.parse(CommonConstants.TEAM_MODIFICATION_START_DATE);
+
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+			sd.setTimeZone(TimeZone.getTimeZone("IST"));
+
+			Date currentDate = sdf.parse(sd.format(new Date()));
+
+			if (currentDate.after(cflStartDate) && isValidateModificationTime()) {
+				isValid = true;
+			} else if (currentDate.equals(cflStartDate) && isValidateModificationTime()) {
+				isValid = true;
+			} else {
+				isValid = false;
+			}
+		} catch (Exception e) {
+
+		}
+
+		return isValid;
+	}
+
+	public static boolean isValidateModificationTime() throws ParseException {
+
+		boolean valid = false;
+
+		SimpleDateFormat sd = new SimpleDateFormat("HH:mm:ss");
+		sd.setTimeZone(TimeZone.getTimeZone("IST"));
+
+		Date date = new Date();
+
+		// Start Time
+		Date inTime = new SimpleDateFormat("HH:mm:ss").parse(CommonConstants.TEAM_MODIFICATION_START_TIME);
+
+		// End Time
+		Date outTime = new SimpleDateFormat("HH:mm:ss").parse(CommonConstants.TEAM_MODIFICATION_END_TIME);
+
+		// Current Time
+		Date checkTime = new SimpleDateFormat("HH:mm:ss").parse(sd.format(date));
+
+		if (checkTime.after(inTime) && checkTime.before(outTime)) {
+			valid = true;
+		}
+
+		return valid;
 	}
 
 }
