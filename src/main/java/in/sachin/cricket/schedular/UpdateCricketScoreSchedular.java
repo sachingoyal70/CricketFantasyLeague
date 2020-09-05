@@ -16,7 +16,7 @@ import in.sachin.cricket.controller.MasterController;
 @Component
 public class UpdateCricketScoreSchedular extends MasterController {
 	
-	@Scheduled(cron = "0 00 06 * * ?")
+	@Scheduled(cron = "0 07 06 * * ?" , zone="IST")
 	public void updateMatchScoreData() {
 		emailservice.testJob("sachingoyal70@gmail.com", messageproperties.getEmailFrom(),
 				"Run updateMatchScoreData()","Run updateMatchScoreData()");
