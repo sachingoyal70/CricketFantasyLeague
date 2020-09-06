@@ -107,10 +107,13 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		for (CFLTeam team : cflTeam) {
 			List<CFLTeamPlayers> player = team.getTeamSelectedPlayers();
 			int currentScore = 0;
+			int todayScore = 0;
 			for (CFLTeamPlayers teamPlayer : player) {
 				currentScore = currentScore + teamPlayer.getCurrentScore();
+				todayScore = todayScore + teamPlayer.getTodayScore();
 			}
 			team.setTeamCurrentScore(currentScore);
+			team.setTeamTodayScore(todayScore);
 		}
 
 		teamService.updateTeamsScore(cflTeam);
