@@ -26,7 +26,11 @@ a:hover, a:visited, a:link, a:active {
 </head>
 
 <body>
-
+<div id="pageloader">
+					<img
+						th:src="@{/images/loader.gif}"
+						alt="processing..." />
+				</div>
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
@@ -352,6 +356,12 @@ a:hover, a:visited, a:link, a:active {
 
 		return nodes;
 	};
+	
+	$(document).ready(function(){
+		  $("#teamSelectionForm").on("submit", function(){
+		    $("#pageloader").fadeIn();
+		  });//submit
+		});
 </script>
 
 </body>
