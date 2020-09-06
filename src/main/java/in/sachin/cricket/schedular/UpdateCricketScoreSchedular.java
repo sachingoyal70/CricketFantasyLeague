@@ -122,6 +122,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 			}
 			team.setTeamScore(score);
 			team.setTeamCurrentScore(team.getTeamScore());
+			team.setTeamTodayScore(0);
 		}
 
 		teamService.updateTeamsScore(cflTeam);
