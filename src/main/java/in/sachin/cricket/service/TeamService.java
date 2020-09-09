@@ -92,4 +92,12 @@ public class TeamService {
 	public void updateMyLeaderboard(CFLMyLeaderboard team) {
 		myleaderboardRepository.save(team);
 	}
+
+	public void updateMyLeaderboard(List<CFLMyLeaderboard> teams) {
+		myleaderboardRepository.saveAll(teams);
+	}
+	
+	public void deleteMyLeaderBoardTeam(CFLMyLeaderboard team) {
+		myleaderboardRepository.delete(team);
+	}
 }
