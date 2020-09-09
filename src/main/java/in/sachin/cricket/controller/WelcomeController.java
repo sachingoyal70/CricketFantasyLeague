@@ -95,6 +95,7 @@ public class WelcomeController extends MasterController {
 				usr.setPassword(user.getPassword());
 				userService.updateUserPassword(usr);
 				model.addAttribute("msg", "Password reset successfully!");
+				model.addAttribute("success", 1);
 			}
 		}
 
