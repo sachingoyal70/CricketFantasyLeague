@@ -8,35 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	<title>Cricket Fantasy League  -  Change Password</title>
+	<title>Cricket Fantasy League  -  My Leadeboard</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/modern-business.css}" rel="stylesheet">
 <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
-
-<style>
-.error {
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #a94442;
-	background-color: #f2dede;
-	border-color: #ebccd1;
-}
-
-.msg {
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #31708f;
-	background-color: #d9edf7;
-	border-color: #bce8f1;
-}
-</style>
+<link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
 
 </head>
 
@@ -73,10 +52,10 @@
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Change Password</h1>
+				<h1 class="page-header">My Leaderboard</h1>
 				<ol class="breadcrumb">
 					<li><a href="/welcome">Welcome</a></li>
-					<li class="active">Change Password</li>
+					<li class="active">My Leaderboard</li>
 				</ol>
 			</div>
 		</div>
@@ -106,61 +85,81 @@
 			<!-- Content Column -->
 			<div class="col-md-9">
 					<form role="form" name="resetPasswordForm"
-						class="form form-vertical" action="/welcome/changepwd"
+						class="form form-vertical" action="/welcome/myleaderboard"
 						method="post"
-						data-toggle="validator" th:object="${user}">
+						data-toggle="validator" th:object="${myLeaderboard}">
 						<br>
 						<br>
 						<br>
 						<table align="center">
 
 							<tr>
-								<td align="center" colspan='2'>
-										<div  th:if= "${success == 0}" class="error">[[${error}]]</div>
+								<td><b>Select Team : </b></td>
+								<td><select class="form-control" th:field="*{friendTeamid}">
+        							<option value="0">Select Team</option>
+     					  		 	<option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.teamName}"></option>
+    								</select></td>
+							
+								<td>
+								
+											
+											<button type="submit" class="btn btn-primary">Add to My Leaderboard</button>
 									
-										<div  th:if= "${success == 1}" class="msg">[[${msg}]]</div>
-								</td>
-							</tr>
-
-							<tr>
-								<td><b>New Password : </b></td>
-								<td><input type="password" th:field="*{password}"
-										placeholder="Enter Password" class="form-control"
-										data-minlength="6" required="true"
-										data-error="Please enter password minimum of 6 characters" />
-									<div class="help-block with-errors"></div></td>
-							</tr>
-							<tr>
-								<td><br> <b>Confirm New Password : </b></td>
-								<td><br> <input type="password" th:field="*{confirmPassword}"
-										path="confirmPassword" placeholder="Enter confirm password"
-										class="form-control" required="true"
-										data-error="Please enter your confirm password" />
-									<div class="help-block with-errors"></div></td>
-							</tr>
-							<tr>
-								<td align="center" colspan='2'>
-									<div class="control-group">
-										<label></label>
-										<div class="controls">
-											<br>
-											<button type="submit" class="btn btn-primary">Reset
-												Password</button>
-										</div>
-									</div>
+									
 
 								</td>
 							</tr>
 						</table>
 					</form>
 
-					<br>
-					<br>
-					<p align="center">Note :- Please enter your new password
-						(minimum of 6 characters)</p>
-
-
 </div>
+
+
+<div class="col-md-9">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 align="center">My Leaderboard</h4>
+						</div>
+
+						<div class="panel-body">
+
+							<div class="table-responsive">
+								<table id="example" class="display" cellspacing="0" width="100%">
+									<thead>
+										<tr align="center">
+											<th><p align="center">Rank</p></th>
+
+											<th><p align="center">Team Name
+												<p></th>
+											<th><p align="center">Team Owner</p></th>
+											<th><p align="center">Today's Points</p></th>
+											<th><p align="center">Total Points</p></th>
+											<th><p align="center">Substitution Left</p></th>
+											<th><p align="center">Delete Team</p></th>
+										</tr>
+									</thead>
+									<tbody>
+											<tr data-th-each="searchResult,iterator : ${teamLeaderboard}" align="center">
+												<td data-th-text="${iterator.index+1}"></td>
+												<td data-th-text="${searchResult.teamName}"></td>
+												<td data-th-text="${searchResult.user.name} + ' ' + ${searchResult.user.lastName}"></td>
+												<td data-th-text="${searchResult.teamTodayScore}"></td>
+												<td data-th-text="${searchResult.teamCurrentScore}"></td>
+												<td data-th-text="${searchResult.substution}"></td>
+												<td><a
+													th:href="@{/welcome/deleteteam/__${searchResult.id}__}">Click
+														Here</a></td>
+											</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
 
 			
 		</div>
@@ -184,10 +183,15 @@
 	<script th:src="@{/js/jquery.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
-	<script th:src="@{/js/validator.js}"></script>
-
+	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+	
 	<script>
-		$('#resetPasswordForm').validator();
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"deferRender" : true,
+				"scrollX" : true			
+			});
+		});
 	</script>
 
 </body>

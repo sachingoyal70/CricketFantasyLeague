@@ -8,8 +8,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.sachin.cricket.entity.CFLMyLeaderboard;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
+import in.sachin.cricket.repository.MyLeaderBoardRepository;
 import in.sachin.cricket.repository.TeamPlayerRepository;
 import in.sachin.cricket.repository.TeamRepository;
 
@@ -25,10 +27,14 @@ public class TeamService {
 
 	private TeamPlayerRepository teamPlayerRepository;
 
+	private MyLeaderBoardRepository myleaderboardRepository;
+
 	@Autowired
-	public TeamService(TeamRepository teamRepository, TeamPlayerRepository teamPlayerRepository) {
+	public TeamService(TeamRepository teamRepository, TeamPlayerRepository teamPlayerRepository,
+			MyLeaderBoardRepository myleaderboardRepository) {
 		this.teamRepository = teamRepository;
 		this.teamPlayerRepository = teamPlayerRepository;
+		this.myleaderboardRepository = myleaderboardRepository;
 	}
 
 	public List<CFLTeam> fetchTopTeams() {
@@ -71,7 +77,27 @@ public class TeamService {
 		return teamRepository.findAll();
 	}
 
+	public List<CFLTeam> getMyLeaderboardTeams(List<Integer> id) {
+		return teamRepository.getMyLeaderBoardTeam(id);
+	}
+
 	public void updateTeamsScore(List<CFLTeam> teams) {
 		teamRepository.saveAll(teams);
+	}
+
+	public List<CFLMyLeaderboard> getLederboardTeam(String email) {
+		return myleaderboardRepository.findByEmail(email);
+	}
+
+	public void updateMyLeaderboard(CFLMyLeaderboard team) {
+		myleaderboardRepository.save(team);
+	}
+
+	public void updateMyLeaderboard(List<CFLMyLeaderboard> teams) {
+		myleaderboardRepository.saveAll(teams);
+	}
+	
+	public void deleteMyLeaderBoardTeam(CFLMyLeaderboard team) {
+		myleaderboardRepository.delete(team);
 	}
 }

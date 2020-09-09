@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import in.sachin.cricket.entity.CFLMyLeaderboard;
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
@@ -95,6 +96,7 @@ public class WelcomeController extends MasterController {
 				usr.setPassword(user.getPassword());
 				userService.updateUserPassword(usr);
 				model.addAttribute("msg", "Password reset successfully!");
+				model.addAttribute("success", 1);
 			}
 		}
 
@@ -212,6 +214,73 @@ public class WelcomeController extends MasterController {
 		view.setViewName("redirect:/welcome");
 
 		return view;
+	}
+
+	@RequestMapping(value = "/welcome/myleaderboard", method = RequestMethod.GET)
+	public String myLeaderBoard(Model model, HttpServletRequest request) {
+		String email = request.getUserPrincipal().getName();
+		List<CFLTeam> teams = teamService.fetchAllActiveTeams();
+		model.addAttribute("teams", teams);
+		CFLMyLeaderboard team = new CFLMyLeaderboard();
+		team.setEmail(email);
+		model.addAttribute("myLeaderboard", team);
+
+		List<CFLMyLeaderboard> myTeams = teamService.getLederboardTeam(email);
+
+		List<CFLTeam> myLeaderboardTeams = new ArrayList<CFLTeam>();
+
+		if (myTeams != null && !myTeams.isEmpty()) {
+
+			List<Integer> abc = new ArrayList<Integer>();
+
+			for (CFLMyLeaderboard t : myTeams) {
+				abc.add(t.getFriendTeamid());
+			}
+
+			myLeaderboardTeams = teamService.getMyLeaderboardTeams(abc);
+		}
+
+		model.addAttribute("teamLeaderboard",
+				myLeaderboardTeams == null ? new ArrayList<CFLTeam>() : myLeaderboardTeams);
+
+		return "myleaderboard";
+	}
+
+	@RequestMapping(value = "/welcome/myleaderboard", method = RequestMethod.POST)
+	public ModelAndView myLeaderBoardUpdate(@Valid CFLMyLeaderboard team, BindingResult bindingResult,
+			HttpServletRequest request, Model model) {
+		String email = request.getUserPrincipal().getName();
+
+		if (team != null && team.getFriendTeamid() != 0) {
+			team.setEmail(email);
+			teamService.updateMyLeaderboard(team);
+		}
+
+		ModelAndView view = new ModelAndView();
+
+		view.setViewName("redirect:/welcome/myleaderboard");
+
+		return view;
+
+	}
+
+	@RequestMapping(value = { "/welcome/deleteteam/{id}" })
+	public ModelAndView showTeamDetails(@PathVariable("id") int id, Model modelm, HttpServletRequest request) {
+		String email = request.getUserPrincipal().getName();
+		List<CFLMyLeaderboard> myTeams = teamService.getLederboardTeam(email);
+		ModelAndView view = new ModelAndView();
+		if (myTeams != null && !myTeams.isEmpty()) {
+			for (CFLMyLeaderboard t : myTeams) {
+				if (t.getFriendTeamid() == id) {
+					teamService.deleteMyLeaderBoardTeam(t);
+				}
+			}
+
+		}
+
+		view.setViewName("redirect:/welcome/myleaderboard");
+		return view;
+
 	}
 
 }

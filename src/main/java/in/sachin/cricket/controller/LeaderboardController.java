@@ -46,7 +46,7 @@ public class LeaderboardController extends MasterController {
 
 	// @RequestMapping(value = "/home/previousleaderboard", method =
 	// RequestMethod.GET)
-	// public String displayPreviousLeaderBoard(Model model) {
+	// public String displayPreviousLeaderBoard(Model mod"el) {
 	// return "previousLeaderboard";
 //	}
 
