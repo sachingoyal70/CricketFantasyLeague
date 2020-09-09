@@ -44,10 +44,11 @@ public class LeaderboardController extends MasterController {
 		return "playerLeaderboard";
 	}
 
-	@RequestMapping(value = "/home/previousleaderboard", method = RequestMethod.GET)
-	public String displayPreviousLeaderBoard(Model model) {
-		return "previousLeaderboard";
-	}
+	// @RequestMapping(value = "/home/previousleaderboard", method =
+	// RequestMethod.GET)
+	// public String displayPreviousLeaderBoard(Model model) {
+	// return "previousLeaderboard";
+//	}
 
 	@RequestMapping(value = { "/home/teamDetails/{id}" })
 	public String showTeamDetails(@PathVariable("id") int id, Model model) {
