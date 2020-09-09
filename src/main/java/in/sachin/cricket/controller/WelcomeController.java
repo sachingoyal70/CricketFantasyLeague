@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
+import in.sachin.cricket.entity.User;
 import in.sachin.cricket.util.CommonConstants;
 import in.sachin.cricket.util.CommonUtils;
 
@@ -60,6 +61,45 @@ public class WelcomeController extends MasterController {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_APPROVED);
 		}
 		return "welcome";
+	}
+
+	/**
+	 * This method is used to display the CFL welcome page.
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/welcome/changepwd" }, method = RequestMethod.GET)
+	public String ChangePwd(Model model, HttpServletRequest request) {
+		model.addAttribute("user", new User());
+		model.addAttribute("success", 2);
+		return "changePwd";
+	}
+
+	@RequestMapping(value = "/welcome/changepwd", method = RequestMethod.POST)
+	public String udpdatePassword(@Valid User user, BindingResult bindingResult, HttpServletRequest request,
+			Model model) {
+
+		if (user.getPassword() == null || user.getPassword().trim().equals("")) {
+			model.addAttribute("user", new User());
+			model.addAttribute("success", 0);
+			model.addAttribute("error", "Please enter the password");
+		} else {
+			if (!user.getPassword().trim().equals(user.getConfirmPassword())) {
+				model.addAttribute("user", new User());
+				model.addAttribute("success", 0);
+				model.addAttribute("error", "password and confirm password did not match!");
+			} else {
+				String email = request.getUserPrincipal().getName();
+				User usr = userService.findUserByEmail(email);
+				usr.setPassword(user.getPassword());
+				userService.updateUserPassword(usr);
+				model.addAttribute("msg", "Password reset successfully!");
+			}
+		}
+
+		return "changePwd";
+
 	}
 
 	/**
