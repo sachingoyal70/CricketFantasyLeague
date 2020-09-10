@@ -21,7 +21,7 @@ import in.sachin.cricket.scoreupdate.modal.Bowling;
 import in.sachin.cricket.scoreupdate.modal.Data;
 import in.sachin.cricket.scoreupdate.modal.Score_;
 import in.sachin.cricket.scoreupdate.modal.Score__;
-import in.sachin.cricket.scoreupdate.modal.WCFLMatchDataResponse;
+import in.sachin.cricket.scoreupdate.modal.CFLMatchDataResponse;
 
 /**
  * @author sachingoyal
@@ -43,8 +43,8 @@ public class UpdateCricketScoreSchedular extends MasterController {
 	@Scheduled(cron = "0 07 06 * * ?", zone = "IST")
 	public void updateMatchScoreData() {
 
-		WCFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
-				WCFLMatchDataResponse.class);
+		CFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
+				CFLMatchDataResponse.class);
 
 		if (data != null && data.getData() != null) {
 			updateScores(data);
@@ -55,7 +55,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 	 * 
 	 * @param matchdata
 	 */
-	public void updateScores(final WCFLMatchDataResponse matchdata) {
+	public void updateScores(final CFLMatchDataResponse matchdata) {
 		final Map<Integer, int[]> scores = getScoresToUpdate(matchdata);
 
 		List<Integer> playerIds = new ArrayList<Integer>(scores.keySet());
@@ -112,7 +112,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 
 		teamService.updatePlayerList(teamPlayers);
 
-		List<CFLTeam> cflTeam = teamService.getAllTeams();
+		List<CFLTeam> cflTeam = teamService.fetchAllTeams();
 
 		for (CFLTeam team : cflTeam) {
 			List<CFLTeamPlayers> player = team.getTeamSelectedPlayers();
@@ -134,7 +134,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 	 * @param matchdata
 	 * @return
 	 */
-	public Map<Integer, int[]> getScoresToUpdate(final WCFLMatchDataResponse matchdata) {
+	public Map<Integer, int[]> getScoresToUpdate(final CFLMatchDataResponse matchdata) {
 		final Map<Integer, int[]> scoresMap = new HashMap<Integer, int[]>();
 		int[] scoresData = null;
 		final Data data = matchdata.getData();
