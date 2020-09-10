@@ -42,6 +42,10 @@ public class TeamService {
 	}
 
 	public List<CFLTeam> fetchAllActiveTeams() {
+		return teamRepository.findAllActiveTeam();
+	}
+
+	public List<CFLTeam> fetchAllTeams() {
 		return teamRepository.findAllTeam();
 	}
 
@@ -96,7 +100,7 @@ public class TeamService {
 	public void updateMyLeaderboard(List<CFLMyLeaderboard> teams) {
 		myleaderboardRepository.saveAll(teams);
 	}
-	
+
 	public void deleteMyLeaderBoardTeam(CFLMyLeaderboard team) {
 		myleaderboardRepository.delete(team);
 	}

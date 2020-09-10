@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import in.sachin.cricket.configurations.LoginRegisterMessages;
 import in.sachin.cricket.configurations.MessageProperties;
+import in.sachin.cricket.service.CFLMatchesService;
 import in.sachin.cricket.service.EmailService;
 import in.sachin.cricket.service.MessageService;
 import in.sachin.cricket.service.NoticeBoardService;
@@ -50,4 +51,7 @@ public class MasterController {
 
 	@Autowired
 	protected BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	protected CFLMatchesService matchService;
 }

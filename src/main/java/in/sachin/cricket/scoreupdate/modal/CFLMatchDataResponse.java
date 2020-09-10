@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "dateTimeGMT", "data", "type", "cache3", "creditsLeft", "v", "ttl", "provider" })
-public class WCFLMatchDataResponse {
+public class CFLMatchDataResponse {
 	@JsonProperty("dateTimeGMT")
 	private String dateTimeGMT;
 	@JsonProperty("data")
@@ -35,7 +35,7 @@ public class WCFLMatchDataResponse {
 	@JsonIgnore
 	private Map<String, Object> additionalProperties;
 
-	public WCFLMatchDataResponse() {
+	public CFLMatchDataResponse() {
 		this.additionalProperties = new HashMap<String, Object>();
 	}
 
