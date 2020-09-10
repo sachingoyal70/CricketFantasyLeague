@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.sachin.cricket.entity.CFLMessage;
 import in.sachin.cricket.entity.CFLNoticeBoard;
@@ -23,25 +24,19 @@ import in.sachin.cricket.entity.CFLNoticeBoard;
 public class HomeController extends MasterController {
 
 	/**
-	 * This method is used to display the WCFL home page.
+	 * This method is used to display the CFL home page.
 	 * 
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public String displayHomePage(Model model) {
-		try {
-			model.addAttribute("playerLeaderboard", playerService.fetchTopPlayers());
-			model.addAttribute("teamLeaderboard", teamService.fetchTopTeams());
-		} catch (Exception e) {
-			model.addAttribute("exp", "exp");
-		}
-
-		return "home";
+	public ModelAndView displayHomePage(Model model) {
+		ModelAndView homePage = new ModelAndView("redirect:/home");
+		return homePage;
 	}
 
 	/**
-	 * This method is used to display the WCFL home page.
+	 * This method is used to display the CFL home page.
 	 * 
 	 * @param model
 	 * @return
@@ -102,6 +97,16 @@ public class HomeController extends MasterController {
 	@RequestMapping(value = "/home/testimonial", method = RequestMethod.GET)
 	public String displayGallary(Model model) {
 		return "testimonial";
+	}
+
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public String display403Page(Model model) {
+		return "403";
 	}
 
 	@RequestMapping(value = "/home/noticeboard", method = RequestMethod.GET)

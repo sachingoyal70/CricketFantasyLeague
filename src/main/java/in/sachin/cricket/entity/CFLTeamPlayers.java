@@ -57,9 +57,6 @@ public class CFLTeamPlayers {
 	@Column(name = "team_player_score", nullable = false)
 	private int score;
 
-	@Column(name = "team_player_percentage")
-	private String playerPercentage;
-
 	@Column(name = "team_player_profile")
 	private String playerProfile;
 
@@ -68,10 +65,30 @@ public class CFLTeamPlayers {
 
 	@Column(name = "team_player_current_score", nullable = false)
 	private int currentScore;
-	
-	@Column(name = "team_player_active", nullable = false)
-	private int active;
-	
+
+	@Column(name = "team_player_today_score", nullable = false)
+	private int todayScore;
+
+	@Column(name = "team_player_bonus_score", nullable = false)
+	private int bonusScore;
+
+	@Column(name = "team_player_inactive", nullable = false)
+	private int inactive;
+
+	@Column(name = "team_current_player_run", nullable = false)
+	private int currentRun;
+
+	@Column(name = "team_current_player_fours", nullable = false)
+	private int currentFours;
+
+	@Column(name = "team_current_player_sixes", nullable = false)
+	private int currentSixes;
+
+	@Column(name = "team_current_player_wicket", nullable = false)
+	private int currentWicket;
+
+	@Column(name = "team_current_player_bonus_score", nullable = false)
+	private int currentBonusScore;
 
 	/**
 	 * @return the id
@@ -228,20 +245,6 @@ public class CFLTeamPlayers {
 	}
 
 	/**
-	 * @return the playerPercentage
-	 */
-	public String getPlayerPercentage() {
-		return playerPercentage;
-	}
-
-	/**
-	 * @param playerPercentage the playerPercentage to set
-	 */
-	public void setPlayerPercentage(String playerPercentage) {
-		this.playerPercentage = playerPercentage;
-	}
-
-	/**
 	 * @return the playerProfile
 	 */
 	public String getPlayerProfile() {
@@ -284,17 +287,115 @@ public class CFLTeamPlayers {
 	}
 
 	/**
-	 * @return the active
+	 * @return the todayScore
 	 */
-	public int getActive() {
-		return active;
+	public int getTodayScore() {
+		return todayScore;
 	}
 
 	/**
-	 * @param active the active to set
+	 * @param todayScore the todayScore to set
 	 */
-	public void setActive(int active) {
-		this.active = active;
+	public void setTodayScore(int todayScore) {
+		this.todayScore = todayScore;
+	}
+
+	/**
+	 * @return the inactive
+	 */
+	public int getInactive() {
+		return inactive;
+	}
+
+	/**
+	 * @param inactive the inactive to set
+	 */
+	public void setInactive(int inactive) {
+		this.inactive = inactive;
+	}
+
+	/**
+	 * @return the bonusScore
+	 */
+	public int getBonusScore() {
+		return bonusScore;
+	}
+
+	/**
+	 * @param bonusScore the bonusScore to set
+	 */
+	public void setBonusScore(int bonusScore) {
+		this.bonusScore = bonusScore;
+	}
+
+	/**
+	 * @return the currentRun
+	 */
+	public int getCurrentRun() {
+		return currentRun;
+	}
+
+	/**
+	 * @param currentRun the currentRun to set
+	 */
+	public void setCurrentRun(int currentRun) {
+		this.currentRun = currentRun;
+	}
+
+	/**
+	 * @return the currentFours
+	 */
+	public int getCurrentFours() {
+		return currentFours;
+	}
+
+	/**
+	 * @param currentFours the currentFours to set
+	 */
+	public void setCurrentFours(int currentFours) {
+		this.currentFours = currentFours;
+	}
+
+	/**
+	 * @return the currentSixes
+	 */
+	public int getCurrentSixes() {
+		return currentSixes;
+	}
+
+	/**
+	 * @param currentSixes the currentSixes to set
+	 */
+	public void setCurrentSixes(int currentSixes) {
+		this.currentSixes = currentSixes;
+	}
+
+	/**
+	 * @return the currentWicket
+	 */
+	public int getCurrentWicket() {
+		return currentWicket;
+	}
+
+	/**
+	 * @param currentWicket the currentWicket to set
+	 */
+	public void setCurrentWicket(int currentWicket) {
+		this.currentWicket = currentWicket;
+	}
+
+	/**
+	 * @return the currentBonusScore
+	 */
+	public int getCurrentBonusScore() {
+		return currentBonusScore;
+	}
+
+	/**
+	 * @param currentBonusScore the currentBonusScore to set
+	 */
+	public void setCurrentBonusScore(int currentBonusScore) {
+		this.currentBonusScore = currentBonusScore;
 	}
 
 }

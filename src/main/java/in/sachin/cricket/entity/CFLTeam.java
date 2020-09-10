@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class CFLTeam {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "team_owner", nullable = false, unique = true)
+	@Column(name = "team_owner", nullable = false)
 	private String owner;
 
 	@Column(name = "team_name", nullable = false)
@@ -48,6 +49,9 @@ public class CFLTeam {
 
 	@Transient
 	private int[] teamPlayers;
+
+	@Transient
+	private int[] newPlayers;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_user")
@@ -75,11 +79,19 @@ public class CFLTeam {
 	@Column(name = "team_last_modified", nullable = false)
 	private Date teamLastModified;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "team_players")
 	private List<CFLTeamPlayers> teamSelectedPlayers;
 
 	private int ranks;
+
+	@Column(name = "team_substitution_left", nullable = false)
+	private int substution;
+	
+	@Column(name = "team_today_score", nullable = false)
+	private int teamTodayScore;
+	
+	
 
 	/**
 	 * @return the ranks
@@ -163,6 +175,20 @@ public class CFLTeam {
 	 */
 	public void setTeamPlayers(int[] teamPlayers) {
 		this.teamPlayers = teamPlayers;
+	}
+
+	/**
+	 * @return the newPlayers
+	 */
+	public int[] getNewPlayers() {
+		return newPlayers;
+	}
+
+	/**
+	 * @param newPlayers the newPlayers to set
+	 */
+	public void setNewPlayers(int[] newPlayers) {
+		this.newPlayers = newPlayers;
 	}
 
 	/**
@@ -261,6 +287,34 @@ public class CFLTeam {
 	 */
 	public void setTeamSelectedPlayers(List<CFLTeamPlayers> teamSelectedPlayers) {
 		this.teamSelectedPlayers = teamSelectedPlayers;
+	}
+
+	/**
+	 * @return the substution
+	 */
+	public int getSubstution() {
+		return substution;
+	}
+
+	/**
+	 * @param substution the substution to set
+	 */
+	public void setSubstution(int substution) {
+		this.substution = substution;
+	}
+
+	/**
+	 * @return the teamTodayScore
+	 */
+	public int getTeamTodayScore() {
+		return teamTodayScore;
+	}
+
+	/**
+	 * @param teamTodayScore the teamTodayScore to set
+	 */
+	public void setTeamTodayScore(int teamTodayScore) {
+		this.teamTodayScore = teamTodayScore;
 	}
 
 }

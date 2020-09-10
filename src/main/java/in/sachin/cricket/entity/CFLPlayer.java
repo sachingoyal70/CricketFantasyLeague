@@ -56,6 +56,9 @@ public class CFLPlayer {
 
 	@Column(name = "player_score", nullable = false)
 	private int score;
+	
+	@Column(name = "player_bonus_score", nullable = false)
+	private int bonusScore;
 
 	@Column(name = "player_percentage")
 	private String playerPercentage;
@@ -69,7 +72,25 @@ public class CFLPlayer {
 	@Column(name = "player_current_score", nullable = false)
 	private int currentScore;
 
+	@Column(name = "player_today_score", nullable = false)
+	private int todayScore;
+
 	private int ranks;
+	
+	@Column(name = "player_current_run", nullable = false)
+	private int currentRun;
+
+	@Column(name = "player_current_fours", nullable = false)
+	private int currentFours;
+
+	@Column(name = "player_current_sixes", nullable = false)
+	private int currentSixes;
+
+	@Column(name = "player_current_wicket", nullable = false)
+	private int currentWicket;
+	
+	@Column(name = "player_current_bonus_score", nullable = false)
+	private int currentBonusScore;
 
 	/**
 	 * @return the ranks
@@ -282,6 +303,20 @@ public class CFLPlayer {
 	}
 
 	/**
+	 * @return the todayScore
+	 */
+	public int getTodayScore() {
+		return todayScore;
+	}
+
+	/**
+	 * @param todayScore the todayScore to set
+	 */
+	public void setTodayScore(int todayScore) {
+		this.todayScore = todayScore;
+	}
+
+	/**
 	 * @return the currentScore
 	 */
 	public int getCurrentScore() {
@@ -294,4 +329,89 @@ public class CFLPlayer {
 	public void setCurrentScore(int currentScore) {
 		this.currentScore = currentScore;
 	}
+
+	/**
+	 * @return the bonusScore
+	 */
+	public int getBonusScore() {
+		return bonusScore;
+	}
+
+	/**
+	 * @param bonusScore the bonusScore to set
+	 */
+	public void setBonusScore(int bonusScore) {
+		this.bonusScore = bonusScore;
+	}
+
+	/**
+	 * @return the currentRun
+	 */
+	public int getCurrentRun() {
+		return currentRun;
+	}
+
+	/**
+	 * @param currentRun the currentRun to set
+	 */
+	public void setCurrentRun(int currentRun) {
+		this.currentRun = currentRun;
+	}
+
+	/**
+	 * @return the currentFours
+	 */
+	public int getCurrentFours() {
+		return currentFours;
+	}
+
+	/**
+	 * @param currentFours the currentFours to set
+	 */
+	public void setCurrentFours(int currentFours) {
+		this.currentFours = currentFours;
+	}
+
+	/**
+	 * @return the currentSixes
+	 */
+	public int getCurrentSixes() {
+		return currentSixes;
+	}
+
+	/**
+	 * @param currentSixes the currentSixes to set
+	 */
+	public void setCurrentSixes(int currentSixes) {
+		this.currentSixes = currentSixes;
+	}
+
+	/**
+	 * @return the currentWicket
+	 */
+	public int getCurrentWicket() {
+		return currentWicket;
+	}
+
+	/**
+	 * @param currentWicket the currentWicket to set
+	 */
+	public void setCurrentWicket(int currentWicket) {
+		this.currentWicket = currentWicket;
+	}
+
+	/**
+	 * @return the currentBonusScore
+	 */
+	public int getCurrentBonusScore() {
+		return currentBonusScore;
+	}
+
+	/**
+	 * @param currentBonusScore the currentBonusScore to set
+	 */
+	public void setCurrentBonusScore(int currentBonusScore) {
+		this.currentBonusScore = currentBonusScore;
+	}
+
 }
