@@ -71,7 +71,7 @@
 				<h1 class="page-header">Player Leader Board</h1>
 				<ol class="breadcrumb">
 					<li><a href="/home">Home</a></li>
-					<li class="active">Player Leader Boards</li>
+					<li class="active">Player Leader Board</li>
 				</ol>
 			</div>
 		</div>
@@ -130,7 +130,7 @@
 									<tbody>
 											<tr data-th-each="searchResult : ${playerLeaderboard}" align="center">
 												<td data-th-text="${searchResult.ranks}"></td>
-												<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
+												<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="100px" height="100px"></a></td>
 												<td data-th-text="${searchResult.name}"></td>
 												<td data-th-text="${searchResult.team}"></td>
 												<td data-th-text="${searchResult.role}"></td>
