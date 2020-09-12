@@ -130,7 +130,7 @@ a:hover, a:visited, a:link, a:active {
 												<tr>
 													<td><label>Team Name : </label></td>
 													<td><input type="text" class="form-control"
-															placeholder="Enter Team Name" th:field="*{teamName}" onchange="checkTeam()"
+															placeholder="Enter Team Name" th:field="*{teamName}" onkeyup="checkTeam()"
 															required="true" data-error="Please enter your team name" />
 														<div class="help-block with-errors"></div></td>
 													<td><button id="teamSelectionButton" type="submit"
