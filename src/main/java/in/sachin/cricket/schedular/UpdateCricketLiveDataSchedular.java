@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import in.sachin.cricket.controller.MasterController;
+import in.sachin.cricket.entity.CFLMatches;
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
@@ -21,7 +22,8 @@ import in.sachin.cricket.scoreupdate.modal.Bowling;
 import in.sachin.cricket.scoreupdate.modal.Data;
 import in.sachin.cricket.scoreupdate.modal.Score_;
 import in.sachin.cricket.scoreupdate.modal.Score__;
-import in.sachin.cricket.scoreupdate.modal.WCFLMatchDataResponse;
+import in.sachin.cricket.scoreupdate.modal.CFLMatchDataResponse;
+import in.sachin.cricket.util.CommonUtils;
 
 /**
  * @author sachingoyal
@@ -40,18 +42,24 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		return restTemplate;
 	}
 
-	@Scheduled(cron = "0 0/15 16-23 * * ?", zone = "IST")
+	@Scheduled(cron = "0 0/5 16-23 * * ?", zone = "IST")
 	public void updateLiveData() {
+		try {
+			List<CFLMatches> matches = matchService.getLiveMatches(CommonUtils.getDate());
 
-		// WCFLMatchDataResponse data = getRestTemplate().getForObject(
-		// "https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
-		// WCFLMatchDataResponse.class);
+			for (CFLMatches match : matches) {
+				CFLMatchDataResponse data = getRestTemplate().getForObject(
+						"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id="
+								+ match.getMatchId(),
+						CFLMatchDataResponse.class);
 
-		WCFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
-				WCFLMatchDataResponse.class);
+				if (data != null && data.getData() != null && data.getData().getMatchStarted()) {
+					updateScores(data);
+				}
+			}
 
-		if (data != null && data.getData() != null && data.getData().getMatchStarted()) {
-			updateScores(data);
+		} catch (Exception e) {
+
 		}
 	}
 
@@ -59,7 +67,7 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 	 * 
 	 * @param matchdata
 	 */
-	public void updateScores(final WCFLMatchDataResponse matchdata) {
+	public void updateScores(final CFLMatchDataResponse matchdata) {
 		final Map<Integer, int[]> scores = getScoresToUpdate(matchdata);
 
 		List<Integer> playerIds = new ArrayList<Integer>(scores.keySet());
@@ -102,15 +110,18 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 
 		teamService.updatePlayerList(teamPlayers);
 
-		List<CFLTeam> cflTeam = teamService.getAllTeams();
+		List<CFLTeam> cflTeam = teamService.fetchAllTeams();
 
 		for (CFLTeam team : cflTeam) {
 			List<CFLTeamPlayers> player = team.getTeamSelectedPlayers();
 			int currentScore = 0;
+			int todayScore = 0;
 			for (CFLTeamPlayers teamPlayer : player) {
 				currentScore = currentScore + teamPlayer.getCurrentScore();
+				todayScore = todayScore + teamPlayer.getTodayScore();
 			}
 			team.setTeamCurrentScore(currentScore);
+			team.setTeamTodayScore(todayScore);
 		}
 
 		teamService.updateTeamsScore(cflTeam);
@@ -122,7 +133,7 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 	 * @param matchdata
 	 * @return
 	 */
-	public Map<Integer, int[]> getScoresToUpdate(final WCFLMatchDataResponse matchdata) {
+	public Map<Integer, int[]> getScoresToUpdate(final CFLMatchDataResponse matchdata) {
 		final Map<Integer, int[]> scoresMap = new HashMap<Integer, int[]>();
 		int[] scoresData = null;
 		final Data data = matchdata.getData();

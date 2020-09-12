@@ -45,8 +45,6 @@
 		<ul class="dropdown-menu">
 			<li><a href="/home/leaderboard">Team Leader Board</a></li>
 			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
-			<li><a href="/home/previousleaderboard">Previous Year Boards</a></li>
-
 		</ul></li>
 
 	<li><a href="/home/howtoplay">How to Play</a></li>
@@ -101,12 +99,6 @@
 							Leader board</a>
 					</p>
 
-					<p align="center">
-
-						<a href="/home/previousleaderboard" class="list-group-item">Previous
-							Year Boards</a>
-					</p>
-
 				</div>
 			</div>
 				<div th:if= "${exp == null}" class="col-md-9">
@@ -126,7 +118,6 @@
 											<th><p align="center">Team Name
 												<p></th>
 											<th><p align="center">Team Owner</p></th>
-											<th><p align="center">Location</p></th>
 											<th><p align="center">Today's Points</p></th>
 											<th><p align="center">Total Points</p></th>
 											<th><p align="center">Substitution Left</p></th>
@@ -138,8 +129,7 @@
 												<td data-th-text="${searchResult.ranks}"></td>
 												<td data-th-text="${searchResult.teamName}"></td>
 												<td data-th-text="${searchResult.user.name} + ' ' + ${searchResult.user.lastName}"></td>
-												<td data-th-text="${searchResult.user.location}"></td>
-												<td data-th-text="${searchResult.teamScore}"></td>
+												<td data-th-text="${searchResult.teamTodayScore}"></td>
 												<td data-th-text="${searchResult.teamCurrentScore}"></td>
 												<td data-th-text="${searchResult.substution}"></td>
 												<td><a

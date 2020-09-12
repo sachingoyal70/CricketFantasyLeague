@@ -87,6 +87,11 @@ public class CFLTeam {
 
 	@Column(name = "team_substitution_left", nullable = false)
 	private int substution;
+	
+	@Column(name = "team_today_score", nullable = false)
+	private int teamTodayScore;
+	
+	
 
 	/**
 	 * @return the ranks
@@ -296,6 +301,20 @@ public class CFLTeam {
 	 */
 	public void setSubstution(int substution) {
 		this.substution = substution;
+	}
+
+	/**
+	 * @return the teamTodayScore
+	 */
+	public int getTeamTodayScore() {
+		return teamTodayScore;
+	}
+
+	/**
+	 * @param teamTodayScore the teamTodayScore to set
+	 */
+	public void setTeamTodayScore(int teamTodayScore) {
+		this.teamTodayScore = teamTodayScore;
 	}
 
 }

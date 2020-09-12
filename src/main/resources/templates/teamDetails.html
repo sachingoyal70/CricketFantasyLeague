@@ -45,8 +45,6 @@
 		<ul class="dropdown-menu">
 			<li><a href="/home/leaderboard">Team Leader Board</a></li>
 			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
-			<li><a href="/home/previousleaderboard">Previous Year Boards</a></li>
-
 		</ul></li>
 
 	<li><a href="/home/howtoplay">How to Play</a></li>
@@ -100,12 +98,6 @@
 					<p align="center">
 						<a href="/home/playerleaderboard" class="list-group-item">Player
 							Leader board</a>
-					</p>
-
-					<p align="center">
-
-						<a href="/home/previousleaderboard" class="list-group-item">Previous
-							Year Boards</a>
 					</p>
 
 				</div>
@@ -188,6 +180,7 @@
 										<th><p align="center">Fours</p></th>
 										<th><p align="center">Sixes</p></th>
 										<th><p align="center">Wickets</p></th>
+										<th><p align="center">Bonus Points</p></th>
 										<th><p align="center">Total Team Points</p></th>
 
 									</tr>
@@ -201,6 +194,7 @@
 											<td data-th-text="${searchResult.fours}"></td>
 											<td data-th-text="${searchResult.sixes}"></td>
 											<td data-th-text="${searchResult.wicket}"></td>
+											<td data-th-text="${searchResult.bonusScore}"></td>
 											<td data-th-text="${searchResult.score}"></td>
 
 										</tr>

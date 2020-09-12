@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	<title>Cricket Fantasy League  -  Old Players</title>
+	<title>Cricket Fantasy League  -  My Leaderboard</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
@@ -16,12 +16,6 @@
 <link th:href="@{/css/modern-business.css}" rel="stylesheet">
 <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
 <link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
-
-<style type="text/css">
-a:hover, a:visited, a:link, a:active {
-	text-decoration: none;
-}
-</style>
 
 </head>
 
@@ -58,10 +52,10 @@ a:hover, a:visited, a:link, a:active {
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header"> Old Players</h1>
+				<h1 class="page-header">My Leaderboard</h1>
 				<ol class="breadcrumb">
 					<li><a href="/welcome">Welcome</a></li>
-					<li class="active">Old Players</li>
+					<li class="active">My Leaderboard</li>
 				</ol>
 			</div>
 		</div>
@@ -85,81 +79,88 @@ a:hover, a:visited, a:link, a:active {
 
 
 			</div>
+			
+			
+			
 			<!-- Content Column -->
-			<div th:if= "${teamStatus == 0}"class="col-md-9">
-			
-				<h2 align="center">Fantasize the World of Cricket with CFL</h2>
-				<div class="jumbotron">
-						<p align="center">Play the Cricket fantasy league with your
-							team.</p>
-						<p align="center">
-							You don't have a team it yet ? Let me help to <a
-								href="/welcome/chooseteam">get you there.</a>
-						</p>
-				</div>
-				
-			</div>
-			
-			
-			<div th:if= "${teamStatus == 1}"  class="col-md-9">
-				<div class="jumbotron">
-				<p align="center">Your current team score : NA</p>
-						<p align="center">Your current team rank : NA</p>
+			<div class="col-md-9">
+					<form role="form" name="resetPasswordForm"
+						class="form form-vertical" action="/welcome/myleaderboard"
+						method="post"
+						data-toggle="validator" th:object="${myLeaderboard}">
+						<br>
+						<br>
+						<br>
+						<table align="center">
 
-						<p align="center">Your team is still not activated. Please <a href="/welcome">Click Here</a> to get your team activated. </p>
+							<tr>
+								<td><b>Select Team : </b></td>
+								<td><select class="form-control" th:field="*{friendTeamid}">
+        							<option value="0">Select Team</option>
+     					  		 	<option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.teamName}"></option>
+    								</select></td>
 							
-					</div>
-			</div>
-				
-				<div th:if= "${teamStatus == 2}" class="col-md-9">
-				
-				
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 align="center">[[${teamDetails.teamName}]] - Old Players</h4>
-					</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<div class="table-responsive">
-							<table id="example" cellspacing="0" width="100%" class="table table-hover">
-								<thead>
-									<tr align="center">
-										<th><p align="center">#</p></th>
-
-										<th><p align="center">Player Name</p></th>
-										<th><p align="center">Team
-											<p></th>
-										<th><p align="center">Runs</p></th>
-										<th><p align="center">Fours</p></th>
-										<th><p align="center">Sixes</p></th>
-										<th><p align="center">Wickets</p></th>
-										<th><p align="center">Bonus Points</p></th>
-										<th><p align="center">Player Team Points</p></th>
-									</tr>
-								</thead>
-								<tbody>
-										<tr th:if="${searchResult.inactive == 1}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
+								<td>
+								
 											
-											<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
-											<td data-th-text="${searchResult.name}"></td>
-											<td data-th-text="${searchResult.team}"></td>
-											<td data-th-text="${searchResult.run}"></td>
-											<td data-th-text="${searchResult.fours}"></td>
-											<td data-th-text="${searchResult.sixes}"></td>
-											<td data-th-text="${searchResult.wicket}"></td>
-											<td data-th-text="${searchResult.bonusScore}"></td>
-											<td data-th-text="${searchResult.score}"></td>
+											<button type="submit" class="btn btn-primary">Add to My Leaderboard</button>
+									
+									
 
-										</tr>
+								</td>
+							</tr>
+						</table>
+					</form>
 
-								</tbody>
-							</table>
+</div>
+
+
+<div class="col-md-9">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 align="center">My Leaderboard</h4>
 						</div>
-						<!-- /.table-responsive -->
+
+						<div class="panel-body">
+
+							<div class="table-responsive">
+								<table id="example" class="display" cellspacing="0" width="100%">
+									<thead>
+										<tr align="center">
+											<th><p align="center">Rank</p></th>
+
+											<th><p align="center">Team Name
+												<p></th>
+											<th><p align="center">Team Owner</p></th>
+											<th><p align="center">Today's Points</p></th>
+											<th><p align="center">Total Points</p></th>
+											<th><p align="center">Substitution Left</p></th>
+											<th><p align="center">Delete Team</p></th>
+										</tr>
+									</thead>
+									<tbody>
+											<tr data-th-each="searchResult,iterator : ${teamLeaderboard}" align="center">
+												<td data-th-text="${iterator.index+1}"></td>
+												<td data-th-text="${searchResult.teamName}"></td>
+												<td data-th-text="${searchResult.user.name} + ' ' + ${searchResult.user.lastName}"></td>
+												<td data-th-text="${searchResult.teamTodayScore}"></td>
+												<td data-th-text="${searchResult.teamCurrentScore}"></td>
+												<td data-th-text="${searchResult.substution}"></td>
+												<td><a
+													th:href="@{/welcome/deleteteam/__${searchResult.id}__}">Click
+														Here</a></td>
+											</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
 					</div>
-					<!-- /.panel-body -->
+
 				</div>
-			</div>
+
 			
 		</div>
 		<!-- /.row -->
@@ -183,6 +184,7 @@ a:hover, a:visited, a:link, a:active {
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
 	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+	
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable({

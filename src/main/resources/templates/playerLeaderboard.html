@@ -45,8 +45,6 @@
 		<ul class="dropdown-menu">
 			<li><a href="/home/leaderboard">Team Leader Board</a></li>
 			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
-			<li><a href="/home/previousleaderboard">Previous Year Boards</a></li>
-
 		</ul></li>
 
 	<li><a href="/home/howtoplay">How to Play</a></li>
@@ -73,7 +71,7 @@
 				<h1 class="page-header">Player Leader Board</h1>
 				<ol class="breadcrumb">
 					<li><a href="/home">Home</a></li>
-					<li class="active">Player Leader Boards</li>
+					<li class="active">Player Leader Board</li>
 				</ol>
 			</div>
 		</div>
@@ -99,12 +97,6 @@
 					<p align="center">
 						<a href="/home/playerleaderboard" class="list-group-item">Player
 							Leader board</a>
-					</p>
-
-					<p align="center">
-
-						<a href="/home/previousleaderboard" class="list-group-item">Previous
-							Year Boards</a>
 					</p>
 
 				</div>
@@ -138,7 +130,7 @@
 									<tbody>
 											<tr data-th-each="searchResult : ${playerLeaderboard}" align="center">
 												<td data-th-text="${searchResult.ranks}"></td>
-												<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
+												<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="100px" height="100px"></a></td>
 												<td data-th-text="${searchResult.name}"></td>
 												<td data-th-text="${searchResult.team}"></td>
 												<td data-th-text="${searchResult.role}"></td>
