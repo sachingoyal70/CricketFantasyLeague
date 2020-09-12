@@ -232,4 +232,10 @@ public class CommonUtils {
 		return valid;
 	}
 
+	public static String getDate() throws ParseException {
+		final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		format.setTimeZone(TimeZone.getTimeZone("IST"));
+		return format.format(new Date());
+	}
+
 }

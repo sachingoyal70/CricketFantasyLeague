@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+	<title>Cricket Fantasy League  -  Change Password</title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+<style>
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/welcome">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Change Password</h1>
+				<ol class="breadcrumb">
+					<li><a href="/welcome">Welcome</a></li>
+					<li class="active">Change Password</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column -->
+			<div class="col-md-3">
+				<div class="list-group">
+					<h4 align="center">Manager Area</h4>
+					<p align="center"><a href="/welcome" class="list-group-item">Home</a></p>
+					<p align="center"><a href="/welcome/chooseteam" class="list-group-item">Choose Team</a></p>
+					<p align="center"><a href="/welcome/modifyteam" class="list-group-item">Modify Team</a></p>
+					<p align="center"><a href="/welcome/oldplayers" class="list-group-item">Old Players</a></p>
+					<p align="center"><a href="/welcome/myleaderboard" class="list-group-item">My Leaderboard</a></p>
+					<p align="center"><a href="/welcome/changepwd" class="list-group-item">Change Password</a></p>
+					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
+
+				</div>
+
+
+			</div>
+			
+			
+			
+			<!-- Content Column -->
+			<div class="col-md-9">
+					<form role="form" name="resetPasswordForm"
+						class="form form-vertical" action="/welcome/changepwd"
+						method="post"
+						data-toggle="validator" th:object="${user}">
+						<br>
+						<br>
+						<br>
+						<table align="center">
+
+							<tr>
+								<td align="center" colspan='2'>
+										<div  th:if= "${success == 0}" class="error">[[${error}]]</div>
+									
+										<div  th:if= "${success == 1}" class="msg">[[${msg}]]</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td><b>New Password : </b></td>
+								<td><input type="password" th:field="*{password}"
+										placeholder="Enter Password" class="form-control"
+										data-minlength="6" required="true"
+										data-error="Please enter password minimum of 6 characters" />
+									<div class="help-block with-errors"></div></td>
+							</tr>
+							<tr>
+								<td><br> <b>Confirm New Password : </b></td>
+								<td><br> <input type="password" th:field="*{confirmPassword}"
+										path="confirmPassword" placeholder="Enter confirm password"
+										class="form-control" required="true"
+										data-error="Please enter your confirm password" />
+									<div class="help-block with-errors"></div></td>
+							</tr>
+							<tr>
+								<td align="center" colspan='2'>
+									<div class="control-group">
+										<label></label>
+										<div class="controls">
+											<br>
+											<button type="submit" class="btn btn-primary">Reset
+												Password</button>
+										</div>
+									</div>
+
+								</td>
+							</tr>
+						</table>
+					</form>
+
+					<br>
+					<br>
+					<p align="center">Note :- Please enter your new password
+						(minimum of 6 characters)</p>
+
+
+</div>
+
+			
+		</div>
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
+	<script th:src="@{/js/validator.js}"></script>
+
+	<script>
+		$('#resetPasswordForm').validator();
+	</script>
+
+</body>
+
+</html>

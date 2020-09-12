@@ -26,6 +26,9 @@ public class CFLMatches {
 	@Column(name = "id")
 	private int id;
 
+	@Column(name = "match_id")
+	private int matchId;
+
 	@Column(name = "match_date")
 	private String matchDate;
 
@@ -37,6 +40,9 @@ public class CFLMatches {
 
 	@Column(name = "team_two")
 	private String team2;
+
+	@Column(name = "match_score")
+	private String cricketScore;
 
 	/**
 	 * @return the id
@@ -50,6 +56,20 @@ public class CFLMatches {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the matchId
+	 */
+	public int getMatchId() {
+		return matchId;
+	}
+
+	/**
+	 * @param matchId the matchId to set
+	 */
+	public void setMatchId(int matchId) {
+		this.matchId = matchId;
 	}
 
 	/**
@@ -106,6 +126,20 @@ public class CFLMatches {
 	 */
 	public void setTeam2(String team2) {
 		this.team2 = team2;
+	}
+
+	/**
+	 * @return the cricketScore
+	 */
+	public String getCricketScore() {
+		return cricketScore;
+	}
+
+	/**
+	 * @param cricketScore the cricketScore to set
+	 */
+	public void setCricketScore(String cricketScore) {
+		this.cricketScore = cricketScore;
 	}
 
 }
