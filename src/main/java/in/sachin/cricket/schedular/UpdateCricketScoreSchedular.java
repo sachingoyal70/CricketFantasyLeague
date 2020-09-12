@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import in.sachin.cricket.controller.MasterController;
+import in.sachin.cricket.entity.CFLMatches;
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
@@ -21,6 +22,7 @@ import in.sachin.cricket.scoreupdate.modal.Bowling;
 import in.sachin.cricket.scoreupdate.modal.Data;
 import in.sachin.cricket.scoreupdate.modal.Score_;
 import in.sachin.cricket.scoreupdate.modal.Score__;
+import in.sachin.cricket.util.CommonUtils;
 import in.sachin.cricket.scoreupdate.modal.CFLMatchDataResponse;
 
 /**
@@ -43,11 +45,22 @@ public class UpdateCricketScoreSchedular extends MasterController {
 	@Scheduled(cron = "0 07 06 * * ?", zone = "IST")
 	public void updateMatchScoreData() {
 
-		CFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
-				CFLMatchDataResponse.class);
+		try {
+			List<CFLMatches> matches = matchService.getPreviousMatches(CommonUtils.getDate());
 
-		if (data != null && data.getData() != null) {
-			updateScores(data);
+			for (CFLMatches match : matches) {
+				CFLMatchDataResponse data = getRestTemplate().getForObject(
+						"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id="
+								+ match.getMatchId(),
+						CFLMatchDataResponse.class);
+
+				if (data != null && data.getData() != null) {
+					updateScores(data);
+				}
+			}
+
+		} catch (Exception e) {
+
 		}
 	}
 

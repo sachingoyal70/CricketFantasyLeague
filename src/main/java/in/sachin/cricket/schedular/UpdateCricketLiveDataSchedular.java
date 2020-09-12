@@ -61,13 +61,6 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		} catch (Exception e) {
 
 		}
-		
-		CFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
-				CFLMatchDataResponse.class);
-
-		if (data != null && data.getData() != null) {
-			updateScores(data);
-		}
 	}
 
 	/**
