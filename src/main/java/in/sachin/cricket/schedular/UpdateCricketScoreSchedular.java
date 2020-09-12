@@ -42,8 +42,6 @@ public class UpdateCricketScoreSchedular extends MasterController {
 
 	@Scheduled(cron = "0 07 06 * * ?", zone = "IST")
 	public void updateMatchScoreData() {
-		emailservice.testJob("sachingoyal70@gmail.com", messageproperties.getEmailFrom(), "Run updateMatchScoreData()",
-				"Run updateMatchScoreData()");
 
 		WCFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
 				WCFLMatchDataResponse.class);
@@ -79,6 +77,13 @@ public class UpdateCricketScoreSchedular extends MasterController {
 				player.setWicket(player.getWicket() + scoreArray[3]);
 				player.setBonusScore(player.getBonusScore() + bonusPoints);
 
+				player.setCurrentScore(player.getScore());
+				player.setCurrentRun(player.getRun());
+				player.setCurrentFours(player.getFours());
+				player.setCurrentSixes(player.getSixes());
+				player.setCurrentWicket(player.getWicket());
+				player.setCurrentBonusScore(player.getBonusScore());
+
 			}
 		}
 		playerService.updatePlayers(players);
@@ -95,6 +100,13 @@ public class UpdateCricketScoreSchedular extends MasterController {
 				player.setSixes(player.getSixes() + scoreArray[2]);
 				player.setWicket(player.getWicket() + scoreArray[3]);
 				player.setBonusScore(player.getBonusScore() + bonusPoints);
+
+				player.setCurrentScore(player.getScore());
+				player.setCurrentRun(player.getRun());
+				player.setCurrentFours(player.getFours());
+				player.setCurrentSixes(player.getSixes());
+				player.setCurrentWicket(player.getWicket());
+				player.setCurrentBonusScore(player.getBonusScore());
 			}
 		}
 
@@ -109,6 +121,8 @@ public class UpdateCricketScoreSchedular extends MasterController {
 				score = score + teamPlayer.getScore();
 			}
 			team.setTeamScore(score);
+			team.setTeamCurrentScore(team.getTeamScore());
+			team.setTeamTodayScore(0);
 		}
 
 		teamService.updateTeamsScore(cflTeam);

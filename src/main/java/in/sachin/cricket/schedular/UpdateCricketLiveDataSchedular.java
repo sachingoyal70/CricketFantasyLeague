@@ -43,9 +43,6 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 	@Scheduled(cron = "0 0/15 16-23 * * ?", zone = "IST")
 	public void updateLiveData() {
 
-		emailservice.testJob("sachingoyal70@gmail.com", messageproperties.getEmailFrom(), "Run updateLiveData()",
-				"Run updateLiveData()");
-
 		// WCFLMatchDataResponse data = getRestTemplate().getForObject(
 		// "https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id=1228928",
 		// WCFLMatchDataResponse.class);
@@ -110,10 +107,13 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		for (CFLTeam team : cflTeam) {
 			List<CFLTeamPlayers> player = team.getTeamSelectedPlayers();
 			int currentScore = 0;
+			int todayScore = 0;
 			for (CFLTeamPlayers teamPlayer : player) {
 				currentScore = currentScore + teamPlayer.getCurrentScore();
+				todayScore = todayScore + teamPlayer.getTodayScore();
 			}
 			team.setTeamCurrentScore(currentScore);
+			team.setTeamTodayScore(todayScore);
 		}
 
 		teamService.updateTeamsScore(cflTeam);
