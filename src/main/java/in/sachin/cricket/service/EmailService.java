@@ -77,7 +77,26 @@ public class EmailService {
 		}
 
 	}
-	
+
+	/**
+	 * This method will send compose and send the message
+	 */
+	public void contactUsEmail(String email, String emailFrom, String subject, String body, String name,
+			String replyToEmail) {
+		MimeMessage message = mailSender.createMimeMessage();
+		try {
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			message.setFrom(new InternetAddress(emailFrom, name));
+			message.setReplyTo(new InternetAddress[] { new InternetAddress(replyToEmail) });
+			message.setSubject(subject);
+			message.setContent(body, "text/html");
+			mailSender.send(message);
+		} catch (Exception e) {
+
+		}
+
+	}
+
 	/**
 	 * This method will send compose and send the message
 	 */
