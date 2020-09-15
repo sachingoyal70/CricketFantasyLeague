@@ -79,7 +79,7 @@ public class TeamModifyController extends MasterController {
 			String role = player.getRole();
 			roles.add(role);
 			int playerValue = player.getValue();
-			oldPlayers = player.getName() + ",";
+			oldPlayers = oldPlayers + player.getName() + ",";
 			if ("BAT".equalsIgnoreCase(role)) {
 				batsmen++;
 				totalPlayers++;
