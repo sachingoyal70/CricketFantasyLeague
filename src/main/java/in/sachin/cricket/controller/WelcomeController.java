@@ -282,5 +282,27 @@ public class WelcomeController extends MasterController {
 		return view;
 
 	}
+	
+	@RequestMapping(value = "/welcome/playerleaderboard", method = RequestMethod.GET)
+	public String displayPlayerLeaderBoard(Model model) {
+		try {
+			List<CFLPlayer> playerLeaderboard = playerService.fetchAllPlayers();
+			model.addAttribute("playerLeaderboard", playerLeaderboard);
+		} catch (Exception e) {
+			model.addAttribute("exp", "exp");
+		}
+		return "welcomePlayerleaderboard";
+	}
+	
+	@RequestMapping(value = "/welcome/teamleaderboard", method = RequestMethod.GET)
+	public String displayLeaderBoard(Model model) {
+		try {
+			List<CFLTeam> teamLeaderboard = teamService.fetchAllActiveTeams();
+			model.addAttribute("teamLeaderboard", teamLeaderboard);
+		} catch (Exception e) {
+			model.addAttribute("exp", "exp");
+		}
+		return "welcomeleaderboard";
+	}
 
 }
