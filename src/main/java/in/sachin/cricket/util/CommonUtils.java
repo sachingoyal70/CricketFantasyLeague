@@ -195,8 +195,6 @@ public class CommonUtils {
 
 			if (currentDate.after(cflStartDate) && isValidateModificationTime()) {
 				isValid = true;
-			} else if (currentDate.equals(cflStartDate) && isValidateModificationTime()) {
-				isValid = true;
 			} else {
 				isValid = false;
 			}

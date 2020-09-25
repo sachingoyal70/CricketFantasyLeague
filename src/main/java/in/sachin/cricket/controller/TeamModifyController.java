@@ -45,7 +45,7 @@ public class TeamModifyController extends MasterController {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else if (team.getSubstution() <= 0) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
-		} else if (!CommonUtils.validateDate()) {
+		} else if (!CommonUtils.isValidateModificationDate()) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else {
 			model.addAttribute("teamDetails", team);
@@ -174,11 +174,11 @@ public class TeamModifyController extends MasterController {
 
 		}
 
-		if (!CommonUtils.validateDate()) {
-			team.setSubstution(team.getSubstution() - teamPlayers.size());
-		}
+		team.setSubstution(team.getSubstution() - teamPlayers.size());
 
-		teamService.postTeam(team);
+		if (CommonUtils.isValidateModificationDate()) {
+			teamService.postTeam(team);
+		}
 
 		ModelAndView view = new ModelAndView();
 
