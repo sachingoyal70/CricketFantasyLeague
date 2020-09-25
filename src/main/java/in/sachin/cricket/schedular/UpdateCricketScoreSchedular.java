@@ -42,7 +42,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 		return restTemplate;
 	}
 
-	@Scheduled(cron = "0 07 06 * * ?", zone = "IST")
+	@Scheduled(cron = "0 07 02 * * ?", zone = "IST")
 	public void updateMatchScoreData() {
 
 		try {
