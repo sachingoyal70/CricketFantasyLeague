@@ -53,7 +53,8 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 								+ match.getMatchId(),
 						CFLMatchDataResponse.class);
 
-				if (data != null && data.getData() != null && data.getData().getMatchStarted()) {
+				if (data != null && data.getData() != null && data.getData().getMatchStarted() != null
+						&& data.getData().getMatchStarted()) {
 					updateScores(data);
 				}
 			}
