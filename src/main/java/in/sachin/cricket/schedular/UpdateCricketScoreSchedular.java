@@ -56,12 +56,21 @@ public class UpdateCricketScoreSchedular extends MasterController {
 
 				if (data != null && data.getData() != null) {
 					updateScores(data);
+
 				}
 			}
+
+			// Logic To Correct Rank
+			updateRank();
 
 		} catch (Exception e) {
 
 		}
+	}
+
+	public void updateRank() {
+		List<CFLTeam> updteTeamRank = teamService.fetchAllTeams();
+		teamService.updateTeamsScore(updteTeamRank);
 	}
 
 	/**
