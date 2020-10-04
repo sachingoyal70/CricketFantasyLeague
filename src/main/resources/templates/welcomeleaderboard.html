@@ -104,6 +104,7 @@
 											<th><p align="center">Today's Points</p></th>
 											<th><p align="center">Total Points</p></th>
 											<th><p align="center">Substitution Left</p></th>
+											<th><p align="center">Team Details</p></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -114,6 +115,9 @@
 												<td data-th-text="${searchResult.teamTodayScore}"></td>
 												<td data-th-text="${searchResult.teamCurrentScore}"></td>
 												<td data-th-text="${searchResult.substution}"></td>
+												<td><a
+													th:href="@{/home/teamDetails/__${searchResult.id}__}" target="_blank">Click
+														Here</a></td>
 											</tr>
 
 									</tbody>
