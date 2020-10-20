@@ -128,6 +128,14 @@ a:hover, a:visited, a:link, a:active {
 				
 				<div th:if= "${teamStatus == 2}" class="col-md-9">
 				
+				<marquee direction="left" onmouseover="this.stop();"
+						onmouseout="this.start();" scrollamount="4">
+						<b style="color: red"><font size="4">Regarding Techincal Issue ! <a href="/home/announcement">Click Here for
+								details </a></font>
+						</b>
+					</marquee> 
+				
+				
 				<div class="jumbotron">
 				<p align="center">Your current team score : [[${teamDetails.teamCurrentScore}]]</p>
 						<p align="center">Your current team rank : [[${teamDetails.ranks}]]</p>
