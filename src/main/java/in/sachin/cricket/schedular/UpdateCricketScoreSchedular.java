@@ -50,7 +50,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 
 			for (CFLMatches match : matches) {
 				CFLMatchDataResponse data = getRestTemplate().getForObject(
-						"https://cricapi.com/api/fantasySummary?apikey=ttINSyqS9ZP4lxxtvozNgB6GhsP2&unique_id="
+						"https://cricapi.com/api/fantasySummary?apikey=gQ68PpzHK9QOb5EvOCFDaCEswtn2&unique_id="
 								+ match.getMatchId(),
 						CFLMatchDataResponse.class);
 
