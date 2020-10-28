@@ -202,7 +202,7 @@ public class CommonUtils {
 
 		}
 
-		return isValid;
+		return false;
 	}
 
 	public static boolean isValidateModificationTime() throws ParseException {
