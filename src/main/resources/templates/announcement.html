@@ -43,8 +43,6 @@
 		<ul class="dropdown-menu">
 			<li><a href="/home/leaderboard">Team Leader Board</a></li>
 			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
-			<li><a href="/home/previousleaderboard">Previous Year Board</a></li>
-
 		</ul></li>
 
 	<li><a href="/home/howtoplay">How to Play</a></li>
@@ -78,13 +76,18 @@
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-md-6">
-				<h3>CFL - Team Players Substitution</h3>
+				<h3>CFL - Technical Issue</h3>
 				<p>Dear Team Owners,</p>
 				<p>
-					We now announce the second team players SUBSTITUTION in CFL.
-					'Modify Team' option will be enabled as per below timings :-
+					Due to the technical issues that encountered with the third party API we're currently disabling the team modifications functionality. 
+Due to this the live points systems and the normal points will not be reflected for each team.
+
+The issue occurred on 28th October'20. We're working hard to resolve this issue. We'll notify you guys in case of updates.
+
+In case the issue is not resolved the winner will be announced based on the current team rankings.
 				</p>
-				<b>Offshore :- June 13th (06:00 AM IST) to June 13th (11:30 PM IST)</b>
+	
+	<!--  		<b>Offshore :- June 13th (06:00 AM IST) to June 13th (11:30 PM IST)</b>
 				
 				<p>
 					<b>Onshore :- June 12th (07:30 PM CST) to June 13th (01:00 PM CST)</b>
@@ -99,7 +102,7 @@
 					<li>You will not loose any point for the replaced players and
 						new players will start earning from their future matches only.
 				</ul>
-				<br>
+				<br>-->
 
 				<p>Happy Playing !!!</p>
 				<p>
@@ -135,6 +138,16 @@
 	<!-- jQuery -->
 	<script th:src="@{/js/jquery.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177842891-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177842891-1');
+</script>
 
 </body>
 

@@ -18,8 +18,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonPropertyOrder({ "dismissal-by", "dismissal", "SR", "6s", "4s", "B", "R", "dismissal-info", "batsman", "pid",
 		"detail" })
 public class Score__ {
-	@JsonProperty("dismissal-by")
-	private List<DismissalBy> dismissalBy;
 	@JsonProperty("dismissal")
 	private String dismissal;
 	@JsonProperty("SR")
@@ -44,19 +42,10 @@ public class Score__ {
 	private Map<String, Object> additionalProperties;
 
 	public Score__() {
-		this.dismissalBy = null;
 		this.additionalProperties = new HashMap<String, Object>();
 	}
 
-	@JsonProperty("dismissal-by")
-	public List<DismissalBy> getDismissalBy() {
-		return this.dismissalBy;
-	}
-
-	@JsonProperty("dismissal-by")
-	public void setDismissalBy(final List<DismissalBy> dismissalBy) {
-		this.dismissalBy = dismissalBy;
-	}
+	
 
 	@JsonProperty("dismissal")
 	public String getDismissal() {

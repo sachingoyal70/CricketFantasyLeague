@@ -77,7 +77,10 @@ a:hover, a:visited, a:link, a:active {
 					<p align="center"><a href="/welcome/chooseteam" class="list-group-item">Choose Team</a></p>
 					<p align="center"><a href="/welcome/modifyteam" class="list-group-item">Modify Team</a></p>
 					<p align="center"><a href="/welcome/oldplayers" class="list-group-item">Old Players</a></p>
-					<p align="center"><a href="/welcome/changePwd" class="list-group-item">Change Password</a></p>
+					<p align="center"><a href="/welcome/myleaderboard" class="list-group-item">My Leaderboard</a></p>
+					<p align="center"><a href="/welcome/teamleaderboard" class="list-group-item">Team Leaderboard</a></p>
+					<p align="center"><a href="/welcome/playerleaderboard" class="list-group-item">Player Leaderboard</a></p>
+					<p align="center"><a href="/welcome/changepwd" class="list-group-item">Change Password</a></p>
 					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
 
 				</div>
@@ -96,15 +99,20 @@ a:hover, a:visited, a:link, a:active {
 
 						<div class="jumbotron">
 
-								<p>Currently you are not eligible for team modification.
+					<!--			<p>Currently you are not eligible for team modification.
 									Below are some reasons :-</p>
 
-								<ul>
+					 			<ul>
 									<li>You have already modified your team.
 									<li>Your team is not activated.
 									<li>You are no substitution left.
 									<li>Current date time does not lie in team modification time window. 
-								</ul>
+								</ul>  -->
+								
+								<p>Due to Some technial issue, team modification link is
+	disabled for today ! Will open this link as soon as the issue resolved.
+	You will get points for all previous matches. Inconvenience caused is deeply regretted.
+</p>
 							
 						</div>
 
@@ -312,6 +320,16 @@ a:hover, a:visited, a:link, a:active {
 			if ( window.history.replaceState ) {
 			window.history.replaceState( null, null, window.location.href );
 			}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177842891-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177842891-1');
 </script>
 
 </body>

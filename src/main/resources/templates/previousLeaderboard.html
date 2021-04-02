@@ -43,8 +43,6 @@
 		<ul class="dropdown-menu">
 			<li><a href="/home/leaderboard">Team Leader Board</a></li>
 			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
-			<li><a href="/home/previousleaderboard">Previous Year Boards</a></li>
-
 		</ul></li>
 
 	<li><a href="/home/howtoplay">How to Play</a></li>
@@ -89,12 +87,6 @@
 					<p align="center">
 						<a href="/home/playerleaderboard" class="list-group-item">Player
 							Leader board</a>
-					</p>
-
-					<p align="center">
-
-						<a href="/home/previousleaderboard" class="list-group-item">Previous
-							Year Boards</a>
 					</p>
 
 				</div>
@@ -163,6 +155,16 @@
 	<script th:src="@{/js/jquery.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177842891-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177842891-1');
+</script>
 
 </body>
 

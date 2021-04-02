@@ -195,8 +195,6 @@ public class CommonUtils {
 
 			if (currentDate.after(cflStartDate) && isValidateModificationTime()) {
 				isValid = true;
-			} else if (currentDate.equals(cflStartDate) && isValidateModificationTime()) {
-				isValid = true;
 			} else {
 				isValid = false;
 			}
@@ -204,7 +202,7 @@ public class CommonUtils {
 
 		}
 
-		return isValid;
+		return false;
 	}
 
 	public static boolean isValidateModificationTime() throws ParseException {
@@ -230,6 +228,12 @@ public class CommonUtils {
 		}
 
 		return valid;
+	}
+
+	public static String getDate() throws ParseException {
+		final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		format.setTimeZone(TimeZone.getTimeZone("IST"));
+		return format.format(new Date());
 	}
 
 }

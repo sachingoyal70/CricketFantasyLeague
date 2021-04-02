@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	<title>Cricket Fantasy League  - Player Leaderboard</title>
+	<title>Cricket Fantasy League  -  My Leaderboard</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
@@ -16,7 +16,6 @@
 <link th:href="@{/css/modern-business.css}" rel="stylesheet">
 <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
 <link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
-
 
 </head>
 
@@ -33,30 +32,15 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/home">CFL <script>document.write(new Date().getFullYear())</script></a>
+			<a class="navbar-brand" href="/welcome">CFL <script>document.write(new Date().getFullYear())</script></a>
 		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 
-	<li class="dropdown"><a href="#" class="dropdown-toggle"
-		data-toggle="dropdown">Leader Board<b class="caret"></b></a>
-		<ul class="dropdown-menu">
-			<li><a href="/home/leaderboard">Team Leader Board</a></li>
-			<li><a href="/home/playerleaderboard">Player Leader Board</a></li>
-		</ul></li>
-
-	<li><a href="/home/howtoplay">How to Play</a></li>
-	<li><a href="/home/contactus">Contact Us</a></li>
-	<li><a href="/home/prizes">Prizes</a></li>
-	<li><a href="/home/testimonial">Testimonials</a></li>
-	<li><a href="/home/timeline">Timeline</a></li>
-	<li><a href="/home/noticeboard">Notice Board</a></li>
-	
-	
-</ul>
-
+			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -68,43 +52,75 @@
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Player Leader Board</h1>
+				<h1 class="page-header">My Leaderboard</h1>
 				<ol class="breadcrumb">
-					<li><a href="/home">Home</a></li>
-					<li class="active">Player Leader Board</li>
+					<li><a href="/welcome">Welcome</a></li>
+					<li class="active">My Leaderboard</li>
 				</ol>
 			</div>
 		</div>
 		<!-- /.row -->
-		<div class="row">
-		
-	
-		<!--  		 	<marquee direction="left" onmouseover="this.stop();"
-						onmouseout="this.start();" scrollamount="4">
-						<b style="color: red"><font size="4">Substitution window notification. <a href="/announcement">Click Here for
-								details </a></font>
-						</b>
-					</marquee> --> 
-	
 
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column -->
 			<div class="col-md-3">
 				<div class="list-group">
-					<h4 align="center">Leader board</h4>
-					<p align="center">
-						<a href="/home/leaderboard" class="list-group-item">Team
-							Leader board</a>
-					</p>
-					<p align="center">
-						<a href="/home/playerleaderboard" class="list-group-item">Player
-							Leader board</a>
-					</p>
+					<h4 align="center">Manager Area</h4>
+					<p align="center"><a href="/welcome" class="list-group-item">Home</a></p>
+					<p align="center"><a href="/welcome/chooseteam" class="list-group-item">Choose Team</a></p>
+					<p align="center"><a href="/welcome/modifyteam" class="list-group-item">Modify Team</a></p>
+					<p align="center"><a href="/welcome/oldplayers" class="list-group-item">Old Players</a></p>
+					<p align="center"><a href="/welcome/myleaderboard" class="list-group-item">My Leaderboard</a></p>
+					<p align="center"><a href="/welcome/teamleaderboard" class="list-group-item">Team Leaderboard</a></p>
+					<p align="center"><a href="/welcome/playerleaderboard" class="list-group-item">Player Leaderboard</a></p>
+					<p align="center"><a href="/welcome/changepwd" class="list-group-item">Change Password</a></p>
+					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
 
 				</div>
+
+
 			</div>
-				<div th:if= "${exp == null}" class="col-md-9">
+			
+			
+			
+			<!-- Content Column -->
+			<div class="col-md-9">
+					<form role="form" name="resetPasswordForm"
+						class="form form-vertical" action="/welcome/myleaderboard"
+						method="post"
+						data-toggle="validator" th:object="${myLeaderboard}">
+						<br>
+						<br>
+						<br>
+						<table align="center">
+
+							<tr>
+								<td><b>Select Team : </b></td>
+								<td><select class="form-control" th:field="*{friendTeamid}">
+        							<option value="0">Select Team</option>
+     					  		 	<option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.teamName}"></option>
+    								</select></td>
+							
+								<td>
+								
+											
+											<button type="submit" class="btn btn-primary">Add to My Leaderboard</button>
+									
+									
+
+								</td>
+							</tr>
+						</table>
+					</form>
+
+</div>
+
+
+<div class="col-md-9">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 align="center">Player Leaderboard</h4>
+							<h4 align="center">My Leaderboard</h4>
 						</div>
 
 						<div class="panel-body">
@@ -115,29 +131,26 @@
 										<tr align="center">
 											<th><p align="center">Rank</p></th>
 
-											<th><p align="center">#
+											<th><p align="center">Team Name
 												<p></th>
-											<th><p align="center">Player Name</p></th>
-											<th><p align="center">Player Team</p></th>
-											<th><p align="center">Player Role</p></th>
-											<th><p align="center">Player Value</p></th>
+											<th><p align="center">Team Owner</p></th>
 											<th><p align="center">Today's Points</p></th>
 											<th><p align="center">Total Points</p></th>
-											<th><p align="center">Player's Selection</p></th>
-											
+											<th><p align="center">Substitution Left</p></th>
+											<th><p align="center">Delete Team</p></th>
 										</tr>
 									</thead>
 									<tbody>
-											<tr data-th-each="searchResult : ${playerLeaderboard}" align="center">
-												<td data-th-text="${searchResult.ranks}"></td>
-												<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="100px" height="100px"></a></td>
-												<td data-th-text="${searchResult.name}"></td>
-												<td data-th-text="${searchResult.team}"></td>
-												<td data-th-text="${searchResult.role}"></td>
-												<td data-th-text="${searchResult.value}"></td>
-												<td data-th-text="${searchResult.todayScore}"></td>
-												<td data-th-text="${searchResult.currentScore}"></td>
-												<td data-th-text="${searchResult.playerPercentage}"></td>
+											<tr data-th-each="searchResult,iterator : ${teamLeaderboard}" align="center">
+												<td data-th-text="${iterator.index+1}"></td>
+												<td data-th-text="${searchResult.teamName}"></td>
+												<td data-th-text="${searchResult.user.name} + ' ' + ${searchResult.user.lastName}"></td>
+												<td data-th-text="${searchResult.teamTodayScore}"></td>
+												<td data-th-text="${searchResult.teamCurrentScore}"></td>
+												<td data-th-text="${searchResult.substution}"></td>
+												<td><a
+													th:href="@{/welcome/deleteteam/__${searchResult.id}__}">Click
+														Here</a></td>
 											</tr>
 
 									</tbody>
@@ -150,29 +163,8 @@
 
 				</div>
 
-
-				<br>
-				<br>
-				<div th:if= "${exp != null}" class="col-md-9">
-					<div class="jumbotron">
-						<p>Technical Issue : Unable to connect to database.</p>
-
-					</div>
-				</div>
-
-			<!-- <div class="col-md-6">
-				<img class="img-responsive"
-					src="<c:url value="/resources/images/trophy.jpg"/>" alt=" "
-					width="100%" align="middle">
-			</div> -->
-
-
-
-
+			
 		</div>
-
-
-
 		<!-- /.row -->
 
 		<hr>
@@ -203,7 +195,6 @@
 			});
 		});
 	</script>
-	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177842891-1"></script>
 <script>

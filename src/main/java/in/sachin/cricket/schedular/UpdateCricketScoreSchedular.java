@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import in.sachin.cricket.controller.MasterController;
+import in.sachin.cricket.entity.CFLMatches;
 import in.sachin.cricket.entity.CFLPlayer;
 import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
@@ -21,7 +22,8 @@ import in.sachin.cricket.scoreupdate.modal.Bowling;
 import in.sachin.cricket.scoreupdate.modal.Data;
 import in.sachin.cricket.scoreupdate.modal.Score_;
 import in.sachin.cricket.scoreupdate.modal.Score__;
-import in.sachin.cricket.scoreupdate.modal.WCFLMatchDataResponse;
+import in.sachin.cricket.util.CommonUtils;
+import in.sachin.cricket.scoreupdate.modal.CFLMatchDataResponse;
 
 /**
  * @author sachingoyal
@@ -40,22 +42,42 @@ public class UpdateCricketScoreSchedular extends MasterController {
 		return restTemplate;
 	}
 
-	@Scheduled(cron = "0 07 06 * * ?", zone = "IST")
+	@Scheduled(cron = "0 07 02 * * ?", zone = "IST")
 	public void updateMatchScoreData() {
 
-		WCFLMatchDataResponse data = getRestTemplate().getForObject("http://localhost/home/test",
-				WCFLMatchDataResponse.class);
+		try {
+			List<CFLMatches> matches = matchService.getPreviousMatches(CommonUtils.getDate());
 
-		if (data != null && data.getData() != null) {
-			updateScores(data);
+			for (CFLMatches match : matches) {
+				CFLMatchDataResponse data = getRestTemplate().getForObject(
+						"https://cricapi.com/api/fantasySummary?apikey=gQ68PpzHK9QOb5EvOCFDaCEswtn2&unique_id="
+								+ match.getMatchId(),
+						CFLMatchDataResponse.class);
+
+				if (data != null && data.getData() != null) {
+					updateScores(data);
+
+				}
+			}
+
+			// Logic To Correct Rank
+			updateRank();
+
+		} catch (Exception e) {
+
 		}
+	}
+
+	public void updateRank() {
+		List<CFLTeam> updteTeamRank = teamService.fetchAllTeams();
+		teamService.updateTeamsScore(updteTeamRank);
 	}
 
 	/**
 	 * 
 	 * @param matchdata
 	 */
-	public void updateScores(final WCFLMatchDataResponse matchdata) {
+	public void updateScores(final CFLMatchDataResponse matchdata) {
 		final Map<Integer, int[]> scores = getScoresToUpdate(matchdata);
 
 		List<Integer> playerIds = new ArrayList<Integer>(scores.keySet());
@@ -112,7 +134,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 
 		teamService.updatePlayerList(teamPlayers);
 
-		List<CFLTeam> cflTeam = teamService.getAllTeams();
+		List<CFLTeam> cflTeam = teamService.fetchAllTeams();
 
 		for (CFLTeam team : cflTeam) {
 			List<CFLTeamPlayers> player = team.getTeamSelectedPlayers();
@@ -134,7 +156,7 @@ public class UpdateCricketScoreSchedular extends MasterController {
 	 * @param matchdata
 	 * @return
 	 */
-	public Map<Integer, int[]> getScoresToUpdate(final WCFLMatchDataResponse matchdata) {
+	public Map<Integer, int[]> getScoresToUpdate(final CFLMatchDataResponse matchdata) {
 		final Map<Integer, int[]> scoresMap = new HashMap<Integer, int[]>();
 		int[] scoresData = null;
 		final Data data = matchdata.getData();

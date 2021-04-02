@@ -8,18 +8,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-	<title>Cricket Fantasy League  -  Old Players</title>
+	<title>Cricket Fantasy League  -  Change Password</title>
 </head>
 
 <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/modern-business.css}" rel="stylesheet">
 <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
-<link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
 
-<style type="text/css">
-a:hover, a:visited, a:link, a:active {
-	text-decoration: none;
+<style>
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
 }
 </style>
 
@@ -58,10 +73,10 @@ a:hover, a:visited, a:link, a:active {
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header"> Old Players</h1>
+				<h1 class="page-header">Change Password</h1>
 				<ol class="breadcrumb">
 					<li><a href="/welcome">Welcome</a></li>
-					<li class="active">Old Players</li>
+					<li class="active">Change Password</li>
 				</ol>
 			</div>
 		</div>
@@ -87,81 +102,68 @@ a:hover, a:visited, a:link, a:active {
 
 
 			</div>
+			
+			
+			
 			<!-- Content Column -->
-			<div th:if= "${teamStatus == 0}"class="col-md-9">
-			
-				<h2 align="center">Fantasize the World of Cricket with CFL</h2>
-				<div class="jumbotron">
-						<p align="center">Play the Cricket fantasy league with your
-							team.</p>
-						<p align="center">
-							You don't have a team it yet ? Let me help to <a
-								href="/welcome/chooseteam">get you there.</a>
-						</p>
-				</div>
-				
-			</div>
-			
-			
-			<div th:if= "${teamStatus == 1}"  class="col-md-9">
-				<div class="jumbotron">
-				<p align="center">Your current team score : NA</p>
-						<p align="center">Your current team rank : NA</p>
+			<div class="col-md-9">
+					<form role="form" name="resetPasswordForm"
+						class="form form-vertical" action="/welcome/changepwd"
+						method="post"
+						data-toggle="validator" th:object="${user}">
+						<br>
+						<br>
+						<br>
+						<table align="center">
 
-						<p align="center">Your team is still not activated. Please <a href="/welcome">Click Here</a> to get your team activated. </p>
-							
-					</div>
-			</div>
-				
-				<div th:if= "${teamStatus == 2}" class="col-md-9">
-				
-				
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 align="center">[[${teamDetails.teamName}]] - Old Players</h4>
-					</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<div class="table-responsive">
-							<table id="example" cellspacing="0" width="100%" class="table table-hover">
-								<thead>
-									<tr align="center">
-										<th><p align="center">#</p></th>
+							<tr>
+								<td align="center" colspan='2'>
+										<div  th:if= "${success == 0}" class="error">[[${error}]]</div>
+									
+										<div  th:if= "${success == 1}" class="msg">[[${msg}]]</div>
+								</td>
+							</tr>
 
-										<th><p align="center">Player Name</p></th>
-										<th><p align="center">Team
-											<p></th>
-										<th><p align="center">Runs</p></th>
-										<th><p align="center">Fours</p></th>
-										<th><p align="center">Sixes</p></th>
-										<th><p align="center">Wickets</p></th>
-										<th><p align="center">Bonus Points</p></th>
-										<th><p align="center">Player Team Points</p></th>
-									</tr>
-								</thead>
-								<tbody>
-										<tr th:if="${searchResult.inactive == 1}" data-th-each="searchResult : ${teamDetails.teamSelectedPlayers}" align="center">
-											
-											<td><a th:href="@{${searchResult.playerProfile}}" target="_blank"><img class="img-responsive" th:src="@{${searchResult.playerImage}}" alt=" " align="middle" width="60px" height="60px"></a></td>
-											<td data-th-text="${searchResult.name}"></td>
-											<td data-th-text="${searchResult.team}"></td>
-											<td data-th-text="${searchResult.run}"></td>
-											<td data-th-text="${searchResult.fours}"></td>
-											<td data-th-text="${searchResult.sixes}"></td>
-											<td data-th-text="${searchResult.wicket}"></td>
-											<td data-th-text="${searchResult.bonusScore}"></td>
-											<td data-th-text="${searchResult.score}"></td>
+							<tr>
+								<td><b>New Password : </b></td>
+								<td><input type="password" th:field="*{password}"
+										placeholder="Enter Password" class="form-control"
+										data-minlength="6" required="true"
+										data-error="Please enter password minimum of 6 characters" />
+									<div class="help-block with-errors"></div></td>
+							</tr>
+							<tr>
+								<td><br> <b>Confirm New Password : </b></td>
+								<td><br> <input type="password" th:field="*{confirmPassword}"
+										path="confirmPassword" placeholder="Enter confirm password"
+										class="form-control" required="true"
+										data-error="Please enter your confirm password" />
+									<div class="help-block with-errors"></div></td>
+							</tr>
+							<tr>
+								<td align="center" colspan='2'>
+									<div class="control-group">
+										<label></label>
+										<div class="controls">
+											<br>
+											<button type="submit" class="btn btn-primary">Reset
+												Password</button>
+										</div>
+									</div>
 
-										</tr>
+								</td>
+							</tr>
+						</table>
+					</form>
 
-								</tbody>
-							</table>
-						</div>
-						<!-- /.table-responsive -->
-					</div>
-					<!-- /.panel-body -->
-				</div>
-			</div>
+					<br>
+					<br>
+					<p align="center">Note :- Please enter your new password
+						(minimum of 6 characters)</p>
+
+
+</div>
+
 			
 		</div>
 		<!-- /.row -->
@@ -184,14 +186,10 @@ a:hover, a:visited, a:link, a:active {
 	<script th:src="@{/js/jquery.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
-	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/js/validator.js}"></script>
+
 	<script>
-		$(document).ready(function() {
-			$('#example').DataTable({
-				"deferRender" : true,
-				"scrollX" : true			
-			});
-		});
+		$('#resetPasswordForm').validator();
 	</script>
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->

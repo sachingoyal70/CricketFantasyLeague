@@ -76,6 +76,10 @@ public class HomeController extends MasterController {
 		dbMessage.setPhone(phone);
 
 		messageService.saveMsg(dbMessage);
+
+		emailservice.contactUsEmail("relations@winwithweb.in", messageproperties.getEmailFrom(), "Contact Us Enquiry",
+				message, name, email);
+
 		return "contactInfo";
 	}
 

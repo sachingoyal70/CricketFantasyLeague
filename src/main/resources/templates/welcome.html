@@ -23,6 +23,7 @@ a:hover, a:visited, a:link, a:active {
 }
 </style>
 
+
 </head>
 
 <body>
@@ -77,7 +78,10 @@ a:hover, a:visited, a:link, a:active {
 					<p align="center"><a href="/welcome/chooseteam" class="list-group-item">Choose Team</a></p>
 					<p align="center"><a href="/welcome/modifyteam" class="list-group-item">Modify Team</a></p>
 					<p align="center"><a href="/welcome/oldplayers" class="list-group-item">Old Players</a></p>
-					<p align="center"><a href="/welcome/changePwd" class="list-group-item">Change Password</a></p>
+					<p align="center"><a href="/welcome/myleaderboard" class="list-group-item">My Leaderboard</a></p>
+					<p align="center"><a href="/welcome/teamleaderboard" class="list-group-item">Team Leaderboard</a></p>
+					<p align="center"><a href="/welcome/playerleaderboard" class="list-group-item">Player Leaderboard</a></p>
+					<p align="center"><a href="/welcome/changepwd" class="list-group-item">Change Password</a></p>
 					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
 
 				</div>
@@ -107,7 +111,7 @@ a:hover, a:visited, a:link, a:active {
 
 						<p align="center">Your team is still not activated. Please pay using below button to get your team activated.</p>
 							
-						<form align="center"><script src="https://cdn.razorpay.com/static/widget/payment-button.js" data-payment_button_id="pl_FZkCX7CTsdMRTz"> </script> </form>
+						<form align="center"><script src="https://cdn.razorpay.com/static/widget/payment-button.js" data-payment_button_id="pl_Fc4XCjCJuaXBoa"> </script> </form>
 					
 					</div>
 				</div>
@@ -123,6 +127,14 @@ a:hover, a:visited, a:link, a:active {
 				</div>
 				
 				<div th:if= "${teamStatus == 2}" class="col-md-9">
+				
+				<marquee direction="left" onmouseover="this.stop();"
+						onmouseout="this.start();" scrollamount="4">
+						<b style="color: red"><font size="4">Regading Fantasy Points! <a href="/home/announcement">Click Here for
+								details </a></font>
+						</b>
+					</marquee> 
+				
 				
 				<div class="jumbotron">
 				<p align="center">Your current team score : [[${teamDetails.teamCurrentScore}]]</p>
@@ -212,6 +224,16 @@ a:hover, a:visited, a:link, a:active {
 			});
 		});
 	</script>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177842891-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177842891-1');
+</script>
 
 </body>
 
