@@ -52,7 +52,7 @@ public class TeamModifyController extends MasterController {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else if (team.getSubstution() <= 0) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
-		} else if (!CommonUtils.isValidateModificationDate(matchCount)) {
+		} else if (!CommonUtils.validateDate()) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else {
 			model.addAttribute("teamDetails", team);
