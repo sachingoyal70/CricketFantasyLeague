@@ -63,8 +63,8 @@ public class LoginController extends MasterController {
 			modelAndView.setViewName("login");
 			modelAndView.addObject("message", loginregistermessageproperties.getRegistrationSuccessMessage());
 			userService.saveUser(user);
-			emailservice.sendEmail(user, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
-					messageproperties.getAcctactivationBody());
+		//	emailservice.sendEmail(user, messageproperties.getEmailFrom(), messageproperties.getAcctactivationSubject(),
+		//			messageproperties.getAcctactivationBody());
 		}
 		return modelAndView;
 	}
@@ -178,8 +178,8 @@ public class LoginController extends MasterController {
 				userExists.setUserActivationKey(CommonUtils.generateToken(user.getEmail()));
 				userService.updateUser(userExists);
 				modelAndView.addObject("message", loginregistermessageproperties.getActivationLinkSentMessage());
-				emailservice.sendEmail(userExists, messageproperties.getEmailFrom(),
-						messageproperties.getAcctactivationSubject(), messageproperties.getAcctactivationBody());
+			//	emailservice.sendEmail(userExists, messageproperties.getEmailFrom(),
+			//			messageproperties.getAcctactivationSubject(), messageproperties.getAcctactivationBody());
 			} else {
 				modelAndView.addObject("message", loginregistermessageproperties.getAccountAlreadyActive());
 			}
@@ -189,9 +189,9 @@ public class LoginController extends MasterController {
 			userExists.setPassword(bCryptPasswordEncoder.encode(newPassword));
 			userService.updateUser(userExists);
 			modelAndView.setViewName("login");
-			emailservice.forgetPassword(userExists, messageproperties.getEmailFrom(),
-					messageproperties.getForgetPasswordSubject(), messageproperties.getForgetPasswordBody(),
-					newPassword);
+		//	emailservice.forgetPassword(userExists, messageproperties.getEmailFrom(),
+		//			messageproperties.getForgetPasswordSubject(), messageproperties.getForgetPasswordBody(),
+		//			newPassword);
 		}
 		return modelAndView;
 
