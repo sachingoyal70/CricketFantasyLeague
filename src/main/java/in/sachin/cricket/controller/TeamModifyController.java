@@ -40,12 +40,19 @@ public class TeamModifyController extends MasterController {
 		String email = request.getUserPrincipal().getName();
 		CFLTeam team = teamService.getTeam(email);
 		int teamStatus = CommonUtils.getTeamStatus(team);
+		int matchCount = 0;
+
+		try {
+			matchCount = matchService.getLiveMatches(CommonUtils.getDate()).size();
+		} catch (Exception e) {
+
+		}
 
 		if (teamStatus == CommonConstants.TEAM_NOT_SELECTED || teamStatus == CommonConstants.TEAM_SELECTED) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else if (team.getSubstution() <= 0) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
-		} else if (!CommonUtils.isValidateModificationDate()) {
+		} else if (!CommonUtils.isValidateModificationDate(matchCount)) {
 			model.addAttribute("teamStatus", CommonConstants.TEAM_NOT_SELECTED);
 		} else {
 			model.addAttribute("teamDetails", team);
@@ -174,11 +181,11 @@ public class TeamModifyController extends MasterController {
 
 		}
 
-		team.setSubstution(team.getSubstution() - teamPlayers.size());
-
-		if (CommonUtils.isValidateModificationDate()) {
-			teamService.postTeam(team);
+		if (!CommonUtils.validateDate()) {
+			team.setSubstution(team.getSubstution() - teamPlayers.size());
 		}
+
+		teamService.postTeam(team);
 
 		ModelAndView view = new ModelAndView();
 

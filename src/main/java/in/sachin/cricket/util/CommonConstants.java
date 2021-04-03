@@ -25,14 +25,16 @@ public class CommonConstants {
 
 	public static final int TEAM_TOTAL_SUBSTITUTION = 50;
 
-	public static final String TEAM_REGISTRATION_CLOSE_DATE = "2020-09-19";
+	public static final String TEAM_REGISTRATION_CLOSE_DATE = "2021-04-09";
 
 	public static final String TEAM_REGISTRATION_CLOSE_TIME = "18:00:00";
 
-	public static final String TEAM_MODIFICATION_START_DATE = "2020-09-25";
+	public static final String TEAM_MODIFICATION_START_DATE = "2021-04-12";
 
 	public static final String TEAM_MODIFICATION_START_TIME = "03:00:00";
 
-	public static final String TEAM_MODIFICATION_END_TIME = "15:00:00";
+	public static final String TEAM_MODIFICATION_END_TIME_ONE_MATCH = "19:00:00";
+	
+	public static final String TEAM_MODIFICATION_END_TIME_TWO_MATCH = "15:00:00";
 
 }

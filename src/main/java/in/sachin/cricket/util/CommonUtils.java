@@ -180,7 +180,7 @@ public class CommonUtils {
 		return valid;
 	}
 
-	public static boolean isValidateModificationDate() {
+	public static boolean isValidateModificationDate(int count) {
 		boolean isValid = false;
 
 		try {
@@ -193,7 +193,7 @@ public class CommonUtils {
 
 			Date currentDate = sdf.parse(sd.format(new Date()));
 
-			if (currentDate.after(cflStartDate) && isValidateModificationTime()) {
+			if (currentDate.after(cflStartDate) && isValidateModificationTime(count)) {
 				isValid = true;
 			} else {
 				isValid = false;
@@ -202,10 +202,10 @@ public class CommonUtils {
 
 		}
 
-		return false;
+		return isValid;
 	}
 
-	public static boolean isValidateModificationTime() throws ParseException {
+	public static boolean isValidateModificationTime(int count) throws ParseException {
 
 		boolean valid = false;
 
@@ -218,7 +218,9 @@ public class CommonUtils {
 		Date inTime = new SimpleDateFormat("HH:mm:ss").parse(CommonConstants.TEAM_MODIFICATION_START_TIME);
 
 		// End Time
-		Date outTime = new SimpleDateFormat("HH:mm:ss").parse(CommonConstants.TEAM_MODIFICATION_END_TIME);
+		Date outTime = new SimpleDateFormat("HH:mm:ss")
+				.parse(count > 1 ? CommonConstants.TEAM_MODIFICATION_END_TIME_TWO_MATCH
+						: CommonConstants.TEAM_MODIFICATION_END_TIME_ONE_MATCH);
 
 		// Current Time
 		Date checkTime = new SimpleDateFormat("HH:mm:ss").parse(sd.format(date));
