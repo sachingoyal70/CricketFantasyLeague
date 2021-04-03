@@ -42,7 +42,7 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		return restTemplate;
 	}
 
-	@Scheduled(cron = "0 0/5 15-23 * * ?", zone = "IST")
+	@Scheduled(cron = "0 0/15 15-23 * * ?", zone = "IST")
 	public void updateLiveData() {
 		try {
 			List<CFLMatches> matches = matchService.getLiveMatches(CommonUtils.getDate());
