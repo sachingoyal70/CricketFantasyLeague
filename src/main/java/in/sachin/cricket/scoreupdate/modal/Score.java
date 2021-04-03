@@ -29,7 +29,7 @@ public class Score {
 	@JsonProperty("catch")
 	private Integer _catch;
 	@JsonProperty("pid")
-	private String pid;
+	private Integer pid;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties;
 
@@ -98,12 +98,12 @@ public class Score {
 	}
 
 	@JsonProperty("pid")
-	public String getPid() {
+	public Integer getPid() {
 		return this.pid;
 	}
 
 	@JsonProperty("pid")
-	public void setPid(final String pid) {
+	public void setPid(final Integer pid) {
 		this.pid = pid;
 	}
 

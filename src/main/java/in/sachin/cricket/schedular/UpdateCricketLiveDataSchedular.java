@@ -20,6 +20,8 @@ import in.sachin.cricket.entity.CFLTeamPlayers;
 import in.sachin.cricket.scoreupdate.modal.Batting;
 import in.sachin.cricket.scoreupdate.modal.Bowling;
 import in.sachin.cricket.scoreupdate.modal.Data;
+import in.sachin.cricket.scoreupdate.modal.Fielding;
+import in.sachin.cricket.scoreupdate.modal.Score;
 import in.sachin.cricket.scoreupdate.modal.Score_;
 import in.sachin.cricket.scoreupdate.modal.Score__;
 import in.sachin.cricket.scoreupdate.modal.CFLMatchDataResponse;
@@ -81,7 +83,8 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 			if (scores.containsKey(player.getPlayerId())) {
 				int[] scoreArray = scores.get(player.getPlayerId());
 				int score = scoreArray[0] + scoreArray[1] + 2 * scoreArray[2] + 20 * scoreArray[3];
-				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4];
+				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4]
+						+ 10 * scoreArray[6] + 20 * scoreArray[7] + 20 * scoreArray[8];
 				player.setCurrentScore(player.getScore() + score + bonusPoints);
 				player.setTodayScore(score + bonusPoints);
 				player.setCurrentRun(player.getRun() + scoreArray[0]);
@@ -98,7 +101,8 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 			if (scores.containsKey(player.getPlayerId()) && player.getInactive() == 0) {
 				int[] scoreArray = scores.get(player.getPlayerId());
 				int score = scoreArray[0] + scoreArray[1] + 2 * scoreArray[2] + 20 * scoreArray[3];
-				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4];
+				int bonusPoints = scoreArray[0] / 50 * 20 + scoreArray[3] / 3 * 25 + scoreArray[5] * 20 + scoreArray[4]
+						+ 10 * scoreArray[6] + 20 * scoreArray[7] + 20 * scoreArray[8];
 				player.setCurrentScore(player.getScore() + score + bonusPoints);
 				player.setTodayScore(score + bonusPoints);
 				player.setCurrentRun(player.getRun() + scoreArray[0]);
@@ -143,7 +147,7 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 			for (int i = 0; i < batting.size(); ++i) {
 				final List<Score__> score = batting.get(i).getScores();
 				for (int j = 0; j < score.size(); ++j) {
-					scoresData = new int[6];
+					scoresData = new int[9];
 					final Score__ scoredata = score.get(j);
 					scoresData[0] = getIntData(scoredata.getR());
 					scoresData[1] = getIntData(scoredata.get4s());
@@ -163,7 +167,28 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 						scoresData[5] = getIntData(scoredata2.getM());
 					} else {
 						scoresData = new int[] { 0, 0, 0, getIntData(scoredata2.getW()),
-								scoredata2.get0s() == null ? 0 : scoredata2.get0s(), getIntData(scoredata2.getM()) };
+								scoredata2.get0s() == null ? 0 : scoredata2.get0s(), getIntData(scoredata2.getM()), 0,
+								0, 0 };
+						scoresMap.put(scoredata2.getPid(), scoresData);
+					}
+				}
+			}
+
+			final List<Fielding> fielding = data.getFielding();
+			for (int k = 0; k < fielding.size(); ++k) {
+				final List<Score> score2 = fielding.get(k).getScores();
+				for (int l = 0; l < score2.size(); ++l) {
+					final Score scoredata2 = score2.get(l);
+					if (scoresMap.containsKey(scoredata2.getPid())) {
+						scoresData = scoresMap.get(scoredata2.getPid());
+						scoresData[6] = scoredata2.getCatch() == null ? 0 : scoredata2.getCatch();
+						scoresData[7] = scoredata2.getRunout() == null ? 0 : scoredata2.getRunout();
+						scoresData[8] = scoredata2.getStumped() == null ? 0 : scoredata2.getStumped();
+					} else {
+						scoresData = new int[] { 0, 0, 0, 0, 0, 0,
+								scoredata2.getCatch() == null ? 0 : scoredata2.getCatch(),
+								scoredata2.getRunout() == null ? 0 : scoredata2.getRunout(),
+								scoredata2.getStumped() == null ? 0 : scoredata2.getStumped() };
 						scoresMap.put(scoredata2.getPid(), scoresData);
 					}
 				}
