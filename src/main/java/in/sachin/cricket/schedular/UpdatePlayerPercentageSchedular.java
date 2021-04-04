@@ -5,7 +5,6 @@ package in.sachin.cricket.schedular;
 
 import java.util.List;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import in.sachin.cricket.controller.MasterController;
@@ -18,7 +17,7 @@ import in.sachin.cricket.entity.CFLPlayer;
 @Component
 public class UpdatePlayerPercentageSchedular extends MasterController {
 
-	@Scheduled(cron = "0 0/15 03-15 * * ?", zone = "IST")
+	//@Scheduled(cron = "0 0/15 03-23 * * ?", zone = "IST")
 	public void updatePlayerPercentage() {
 
 		List<CFLPlayer> players = playerService.fetchAllPlayers();

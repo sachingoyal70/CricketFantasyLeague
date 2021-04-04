@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,12 +18,12 @@ import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.entity.CFLTeamPlayers;
 import in.sachin.cricket.scoreupdate.modal.Batting;
 import in.sachin.cricket.scoreupdate.modal.Bowling;
+import in.sachin.cricket.scoreupdate.modal.CFLMatchDataResponse;
 import in.sachin.cricket.scoreupdate.modal.Data;
 import in.sachin.cricket.scoreupdate.modal.Fielding;
 import in.sachin.cricket.scoreupdate.modal.Score;
 import in.sachin.cricket.scoreupdate.modal.Score_;
 import in.sachin.cricket.scoreupdate.modal.Score__;
-import in.sachin.cricket.scoreupdate.modal.CFLMatchDataResponse;
 import in.sachin.cricket.util.CommonUtils;
 
 /**
@@ -44,7 +43,7 @@ public class UpdateCricketLiveDataSchedular extends MasterController {
 		return restTemplate;
 	}
 
-	@Scheduled(cron = "0 0/15 15-23 * * ?", zone = "IST")
+	//@Scheduled(cron = "0 0/15 15-23 * * ?", zone = "IST")
 	public void updateLiveData() {
 		try {
 			List<CFLMatches> matches = matchService.getLiveMatches(CommonUtils.getDate());
