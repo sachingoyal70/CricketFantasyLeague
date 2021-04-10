@@ -188,12 +188,13 @@ public class UpdateCricketScoreSchedular extends MasterController {
 						scoresData[5] = getIntData(scoredata2.getM());
 					} else {
 						scoresData = new int[] { 0, 0, 0, getIntData(scoredata2.getW()),
-								scoredata2.get0s() == null ? 0 : scoredata2.get0s(), getIntData(scoredata2.getM()) };
+								scoredata2.get0s() == null ? 0 : scoredata2.get0s(), getIntData(scoredata2.getM()), 0,
+								0, 0 };
 						scoresMap.put(scoredata2.getPid(), scoresData);
 					}
 				}
 			}
-			
+
 			final List<Fielding> fielding = data.getFielding();
 			for (int k = 0; k < fielding.size(); ++k) {
 				final List<Score> score2 = fielding.get(k).getScores();
