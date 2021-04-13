@@ -181,9 +181,7 @@ public class TeamModifyController extends MasterController {
 
 		}
 
-		if (!CommonUtils.validateDate()) {
-			team.setSubstution(team.getSubstution() - teamPlayers.size());
-		}
+		team.setSubstution(team.getSubstution() - teamPlayers.size());
 
 		int matchCount = 0;
 
