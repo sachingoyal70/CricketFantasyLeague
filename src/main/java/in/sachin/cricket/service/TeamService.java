@@ -56,6 +56,10 @@ public class TeamService {
 	public CFLTeam getTeam(int id) {
 		return teamRepository.findById(id);
 	}
+	
+	public List<CFLTeam> getUnActivatedTeams() {
+		return teamRepository.findByTeamEnabled(0);
+	}
 
 	public CFLTeam getTeam(String user) {
 		return teamRepository.findByOwner(user);

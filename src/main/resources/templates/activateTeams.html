@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+	<title>Cricket Fantasy League  -  Select Team</title>
+</head>
+
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/modern-business.css}" rel="stylesheet">
+<link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/css/datatables/jquery.dataTables.min.css}" rel="stylesheet">
+
+<style type="text/css">
+a:hover, a:visited, a:link, a:active {
+	text-decoration: none;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+		<div id="pageloader">
+					<img
+						th:src="@{/images/loader.gif}"
+						alt="processing..." />
+				</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/admin">CFL <script>document.write(new Date().getFullYear())</script></a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container --> </nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Team Activate</h1>
+				<ol class="breadcrumb">
+					<li><a href="/admin">Welcome</a></li>
+					<li class="active">Team Activate</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column -->
+			<div class="col-md-3">
+				<div class="list-group">
+					<h4 align="center">Admin Area</h4>
+					<p align="center"><a href="/admin" class="list-group-item">Home</a></p>
+					<p align="center"><a href="/admin/activateteam" class="list-group-item">Activate Team</a></p>
+					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
+
+				</div>
+
+
+			</div>
+
+			<!-- Content Column -->
+			<!-- Content Column -->
+			<div class="col-md-9">
+				<form role="form" class="form form-vertical"
+					action="/admin/activateteam" id="approveTeamForm"
+					method="post"  th:object="${teamData}">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>Approve Team</h4>
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+
+							<div class="table-responsive">
+								<table class="display" cellspacing="0" width="100%" id="example">
+									<thead>
+										<tr>
+											<th><p align="center">Select</th>
+											<th><p align="center">Team Id</th>
+											<th><p align="center">Team Name</th>
+											<th><p align="center">Team Owner Email</th>
+											<th><p align="center">Team Name</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-th-each="searchResult : ${teamList}" align="center">
+											<td align="center"><input type="checkbox" th:field="*{teamDetails}"
+														th:value="${searchResult.id}" /></td>
+												<td align="center"><checkbox path="approvedTeam"
+														value="${searchResult.id}" /></td>
+												<td data-th-text="${searchResult.id}"></td>
+												<td data-th-text="${searchResult.teamName}"></td>
+												<td data-th-text="${searchResult.owner}"></td>
+												<td data-th-text="${searchResult.user.name}"></td>
+											</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<button id="teamSelectionButton" type="submit"
+								class="btn btn-default">Approve</button>
+
+
+						</div>
+						<!-- /.panel-body -->
+					</div>
+				</form>
+
+			</div>
+			
+		</div>
+		<!-- /.row -->
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CFL <script>document.write(new Date().getFullYear())</script></p>
+			</div>
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery-1.12.0.min.js}"></script>
+	<script th:src="@{/js/datatables/jquery.dataTables.min.js}"></script>
+
+<script>
+	$(document).ready(function() {
+		oTable = $('#example').dataTable();
+		$('#approveTeamForm').submit(function() {
+			$(oTable.fnGetHiddenNodes()).find('input:checked').appendTo(this);
+		});
+
+	});
+
+	var oTable = $("#example").dataTable();
+
+	$('#example tbody').on(
+			'click',
+			'tr',
+			function() {
+				$(this).removeClass('selected');
+				$(oTable.fnGetNodes()).filter(':has(:checkbox:checked)').each(
+						function() {
+							$(this).addClass('selected');
+						});
+
+			});
+</script>
+
+<script type="text/javascript">
+	jQuery.fn.dataTableExt.oApi.fnGetHiddenNodes = function(settings) {
+		var nodes;
+		var display = jQuery('tbody tr', settings.nTable);
+
+		if (jQuery.fn.dataTable.versionCheck) {
+			// DataTables 1.10
+			var api = new jQuery.fn.dataTable.Api(settings);
+			nodes = api.rows().nodes().toArray();
+		} else {
+			// 1.9-
+			nodes = this.oApi._fnGetTrNodes(settings);
+		}
+
+		/* Remove nodes which are being displayed */
+		for (var i = 0; i < display.length; i++) {
+			var iIndex = jQuery.inArray(display[i], nodes);
+
+			if (iIndex != -1) {
+				nodes.splice(iIndex, 1);
+			}
+		}
+
+		return nodes;
+	};
+</script>
+
+<script type="text/javascript">
+			if ( window.history.replaceState ) {
+			window.history.replaceState( null, null, window.location.href );
+			}
+			
+			$(document).ready(function(){
+				  $("#approveTeamForm").on("submit", function(){
+				    $("#pageloader").fadeIn();
+				  });//submit
+				});
+</script>
+
+</body>
+
+</html>
