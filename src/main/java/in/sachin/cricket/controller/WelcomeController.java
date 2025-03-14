@@ -161,6 +161,7 @@ public class WelcomeController extends MasterController {
 
 		List<CFLTeamPlayers> cflTeamPlayers = new ArrayList<CFLTeamPlayers>();
 
+		int totalValue = 0;
 		for (int i = 0; i < teamPlayerList.size(); i++) {
 			CFLPlayer player = teamPlayerList.get(i);
 			CFLTeamPlayers cflTeamPlayer = new CFLTeamPlayers();
@@ -172,13 +173,16 @@ public class WelcomeController extends MasterController {
 			cflTeamPlayer.setPlayerImage(player.getPlayerImage());
 			cflTeamPlayer.setPlayerProfile(player.getPlayerProfile());
 			cflTeamPlayers.add(cflTeamPlayer);
+			totalValue = totalValue + player.getValue();
 		}
 
-		CFLTeam.setTeamSelectedPlayers(cflTeamPlayers);
-		CFLTeam.setOwner(email);
-		CFLTeam.setUser(userService.findUserByEmail(email));
-		CFLTeam.setSubstution(CommonConstants.TEAM_TOTAL_SUBSTITUTION);
-		teamService.postTeam(CFLTeam);
+		if (totalValue > CommonConstants.TOTAL_TEAM_BUDGET) {
+			CFLTeam.setTeamSelectedPlayers(cflTeamPlayers);
+			CFLTeam.setOwner(email);
+			CFLTeam.setUser(userService.findUserByEmail(email));
+			CFLTeam.setSubstution(CommonConstants.TEAM_TOTAL_SUBSTITUTION);
+			teamService.postTeam(CFLTeam);
+		}
 
 		ModelAndView view = new ModelAndView();
 
@@ -282,7 +286,7 @@ public class WelcomeController extends MasterController {
 		return view;
 
 	}
-	
+
 	@RequestMapping(value = "/welcome/playerleaderboard", method = RequestMethod.GET)
 	public String displayPlayerLeaderBoard(Model model) {
 		try {
@@ -293,7 +297,7 @@ public class WelcomeController extends MasterController {
 		}
 		return "welcomePlayerleaderboard";
 	}
-	
+
 	@RequestMapping(value = "/welcome/teamleaderboard", method = RequestMethod.GET)
 	public String displayLeaderBoard(Model model) {
 		try {
