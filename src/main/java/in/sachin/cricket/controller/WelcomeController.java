@@ -176,7 +176,7 @@ public class WelcomeController extends MasterController {
 			totalValue = totalValue + player.getValue();
 		}
 
-		if (totalValue > CommonConstants.TOTAL_TEAM_BUDGET) {
+		if (totalValue <= CommonConstants.TOTAL_TEAM_BUDGET) {
 			CFLTeam.setTeamSelectedPlayers(cflTeamPlayers);
 			CFLTeam.setOwner(email);
 			CFLTeam.setUser(userService.findUserByEmail(email));
