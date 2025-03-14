@@ -29,9 +29,9 @@ public class CommonConstants {
 
 	public static final String TEAM_REGISTRATION_CLOSE_TIME = "18:00:00";
 
-	public static final String TEAM_MODIFICATION_START_DATE = "2021-04-12";
+	public static final String TEAM_MODIFICATION_START_DATE = "2025-03-22";
 
-	public static final String TEAM_MODIFICATION_START_TIME = "03:00:00";
+	public static final String TEAM_MODIFICATION_START_TIME = "10:00:00";
 
 	public static final String TEAM_MODIFICATION_END_TIME_ONE_MATCH = "19:00:00";
 	
