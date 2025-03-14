@@ -112,7 +112,7 @@ a:hover, a:visited, a:link, a:active {
 								<div id="selectedPlayers">Your selected players will be
 									displayed here.</div>
 								<div id="totalBudget" style="color: red">Total Budget Used
-									: $ 0</div>
+									: Points 0</div>
 								<div id="totalBAT" style="color: red">BAT : 0</div>
 								<div id="totalBWL" style="color: red">BWL : 0</div>
 								<div id="totalWK" style="color: red">WK : 0</div>
@@ -120,7 +120,7 @@ a:hover, a:visited, a:link, a:active {
 								<div id="teamBalance" style="font-weight: bold">You can
 									not submit your team until you are not selected exactly 11
 									players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK)
-									in $ 21.</div>
+									in Points 21.</div>
 								<br>
 
 
@@ -155,7 +155,7 @@ a:hover, a:visited, a:link, a:active {
 											<th><p align="center">Player Name</th>
 											<th><p align="center">Team</th>
 											<th><p align="center">Role</th>
-											<th><p align="center">Value ($)</th>
+											<th><p align="center">Value (Points)</th>
 											<th><p align="center">Player's Selection</th>
 
 										</tr>
@@ -291,9 +291,9 @@ a:hover, a:visited, a:link, a:active {
 		}
 
 		if (sum < 22) {
-			totalBudget = 'Total Budget Used: $ ' + sum;
+			totalBudget = 'Total Budget Used: Points ' + sum;
 		} else {
-			totalBudget = 'Total Budget Used: $ ' + sum
+			totalBudget = 'Total Budget Used: Points ' + sum
 					+ '(Exceed Limit) ';
 		}
 
@@ -307,7 +307,7 @@ a:hover, a:visited, a:link, a:active {
 			teamBalance = 'You can submit your team.';
 			enabledbutton = true;
 		} else {
-			teamBalance = 'You can not submit your team until you are not selected exactly 11 players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK) in $ 21.';
+			teamBalance = 'You can not submit your team until you are not selected exactly 11 players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK) in 21 Points.';
 			enabledbutton = false;
 		}
 
