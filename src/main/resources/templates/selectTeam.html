@@ -112,7 +112,7 @@ a:hover, a:visited, a:link, a:active {
 								<div id="selectedPlayers">Your selected players will be
 									displayed here.</div>
 								<div id="totalBudget" style="color: red">Total Budget Used
-									: Points 0</div>
+									: 0 Points</div>
 								<div id="totalBAT" style="color: red">BAT : 0</div>
 								<div id="totalBWL" style="color: red">BWL : 0</div>
 								<div id="totalWK" style="color: red">WK : 0</div>
@@ -120,7 +120,7 @@ a:hover, a:visited, a:link, a:active {
 								<div id="teamBalance" style="font-weight: bold">You can
 									not submit your team until you are not selected exactly 11
 									players ( 5 BAT + 5 Bwl + 1 WK or 4 BAT + 4 BWL + 2 ALL+ 1 WK)
-									in Points 21.</div>
+									in 21 Points.</div>
 								<br>
 
 
@@ -291,10 +291,10 @@ a:hover, a:visited, a:link, a:active {
 		}
 
 		if (sum < 22) {
-			totalBudget = 'Total Budget Used: Points ' + sum;
+			totalBudget = 'Total Budget Used: ' + sum + ' Points' ;
 		} else {
-			totalBudget = 'Total Budget Used: Points ' + sum
-					+ '(Exceed Limit) ';
+			totalBudget = 'Total Budget Used: ' + sum
+					+ ' Points (Exceed Limit) ';
 		}
 
 		if (batmen == 5 && bowler == 5 && wicket == 1
