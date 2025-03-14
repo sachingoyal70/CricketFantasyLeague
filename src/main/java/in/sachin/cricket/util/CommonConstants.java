@@ -25,7 +25,7 @@ public class CommonConstants {
 
 	public static final int TEAM_TOTAL_SUBSTITUTION = 50;
 
-	public static final String TEAM_REGISTRATION_CLOSE_DATE = "2021-04-09";
+	public static final String TEAM_REGISTRATION_CLOSE_DATE = "2025-03-22";
 
 	public static final String TEAM_REGISTRATION_CLOSE_TIME = "18:00:00";
 
