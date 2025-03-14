@@ -75,4 +75,13 @@ public class AdminController extends MasterController {
 		return "activateTeams";
 	}
 
+	@RequestMapping(value = "/admin/usermessage", method = RequestMethod.GET)
+	public String displayUserMessage(Model model, Principal currentUser) {
+		if (currentUser != null) {
+			model.addAttribute("user", currentUser.getName());
+		}
+		model.addAttribute("messageList", messageService.fetchAllMessages());
+		return "userMessage";
+	}
+
 }

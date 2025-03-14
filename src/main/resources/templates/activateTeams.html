@@ -80,6 +80,7 @@ a:hover, a:visited, a:link, a:active {
 					<h4 align="center">Admin Area</h4>
 					<p align="center"><a href="/admin" class="list-group-item">Home</a></p>
 					<p align="center"><a href="/admin/activateteam" class="list-group-item">Activate Team</a></p>
+					<p align="center"><a href="/admin/usermessage" class="list-group-item">User Message</a></p>
 					<p align="center"><a th:href="@{/logout}" class="list-group-item">Log Out</a></p>
 
 				</div>
@@ -116,8 +117,6 @@ a:hover, a:visited, a:link, a:active {
 										<tr data-th-each="searchResult : ${teamList}" align="center">
 											<td align="center"><input type="checkbox" th:field="*{teamDetails}"
 														th:value="${searchResult.id}" /></td>
-												<td align="center"><checkbox path="approvedTeam"
-														value="${searchResult.id}" /></td>
 												<td data-th-text="${searchResult.id}"></td>
 												<td data-th-text="${searchResult.teamName}"></td>
 												<td data-th-text="${searchResult.owner}"></td>
@@ -127,7 +126,7 @@ a:hover, a:visited, a:link, a:active {
 								</table>
 							</div>
 
-							<button id="teamSelectionButton" type="submit"
+							<button id="approveButton" type="submit"
 								class="btn btn-default">Approve</button>
 
 

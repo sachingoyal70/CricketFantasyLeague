@@ -3,10 +3,13 @@
  */
 package in.sachin.cricket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.sachin.cricket.entity.CFLMessage;
+import in.sachin.cricket.entity.CFLTeam;
 import in.sachin.cricket.repository.MessageRepository;
 
 /**
@@ -26,6 +29,10 @@ public class MessageService {
 
 	public void saveMsg(CFLMessage message) {
 		messageRepository.save(message);
+	}
+
+	public List<CFLMessage> fetchAllMessages() {
+		return messageRepository.findAll();
 	}
 
 }
